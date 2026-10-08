@@ -11,10 +11,16 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Gallery from './pages/Gallery';
 import CategoryDetail from './pages/CategoryDetail';
-import PriceCalculator from './pages/PriceCalculator';
 import Guides from './pages/Guides';
 import WhyUs from './pages/WhyUs';
 import Contact from './pages/Contact';
+
+// New Commercial Decor Pages
+import Commercial from './pages/Commercial';
+import MallDecor from './pages/MallDecor';
+import OfficeDecor from './pages/OfficeDecor';
+import JewelleryDecor from './pages/JewelleryDecor';
+import ShopDecor from './pages/ShopDecor';
 
 export default function App() {
   const [consultationModalOpen, setConsultationModalOpen] = useState(false);
@@ -32,19 +38,35 @@ export default function App() {
   return (
     <Router>
       <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans antialiased">
-        {/* Navigation Bar */}
+        {/* Navigation Bar with Commercial Decor Dropdown */}
         <Navbar onOpenConsultation={() => handleOpenConsultation()} />
 
         {/* Main Content Router */}
         <main className="flex-grow">
           <Routes>
-            <Route path="/" element={<Home onOpenConsultation={() => handleOpenConsultation()} />} />
-            <Route path="/about" element={<About onOpenConsultation={() => handleOpenConsultation()} />} />
-            <Route path="/gallery" element={<Gallery onOpenConsultation={() => handleOpenConsultation()} />} />
-            <Route path="/category/:id" element={<CategoryDetail onOpenConsultation={() => handleOpenConsultation()} />} />
-            <Route path="/calculator" element={<PriceCalculator onOpenConsultation={() => handleOpenConsultation()} />} />
-            <Route path="/guides" element={<Guides onOpenConsultation={() => handleOpenConsultation()} />} />
-            <Route path="/why-us" element={<WhyUs onOpenConsultation={() => handleOpenConsultation()} />} />
+            <Route path="/" element={<Home onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            <Route path="/about" element={<About onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            <Route path="/gallery" element={<Gallery onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            <Route path="/category/:id" element={<CategoryDetail onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            
+            {/* Commercial Decor Routes */}
+            <Route path="/commercial" element={<Commercial onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            <Route path="/commercial/mall-decor" element={<MallDecor onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            <Route path="/mall-decor" element={<MallDecor onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            
+            <Route path="/commercial/office-decor" element={<OfficeDecor onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            <Route path="/office-decor" element={<OfficeDecor onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            
+            <Route path="/commercial/jewellery-shop-decor" element={<JewelleryDecor onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            <Route path="/jewellery-decor" element={<JewelleryDecor onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            
+            <Route path="/commercial/shop-decor" element={<ShopDecor onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            <Route path="/shop-decor" element={<ShopDecor onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+
+            <Route path="/calculator" element={<Navigate to="/commercial" replace />} />
+
+            <Route path="/guides" element={<Guides onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            <Route path="/why-us" element={<WhyUs onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

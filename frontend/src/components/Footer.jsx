@@ -149,7 +149,19 @@ export default function Footer({ onOpenConsultation }) {
                 <Link to="/gallery" className="hover:text-rose-400 transition">Design Gallery</Link>
               </li>
               <li>
-                <Link to="/calculator" className="hover:text-rose-400 transition">Price Calculator</Link>
+                <Link to="/commercial" className="hover:text-rose-400 transition font-bold text-slate-300">Commercial Decor</Link>
+              </li>
+              <li>
+                <Link to="/commercial/mall-decor" className="hover:text-rose-400 transition text-xs pl-2">↳ Mall Decor</Link>
+              </li>
+              <li>
+                <Link to="/commercial/office-decor" className="hover:text-rose-400 transition text-xs pl-2">↳ Office Decor</Link>
+              </li>
+              <li>
+                <Link to="/commercial/jewellery-shop-decor" className="hover:text-rose-400 transition text-xs pl-2">↳ Jewellery Shop Decor</Link>
+              </li>
+              <li>
+                <Link to="/commercial/shop-decor" className="hover:text-rose-400 transition text-xs pl-2">↳ Shop Decor</Link>
               </li>
               <li>
                 <Link to="/why-us" className="hover:text-rose-400 transition">Why FourCube (Warranty)</Link>

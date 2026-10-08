@@ -8,8 +8,10 @@ import {
   Briefcase, 
   Bath, 
   Home, 
-  Sparkles,
-  Layers
+  Building2, 
+  Gem, 
+  ShoppingBag, 
+  Sparkles 
 } from 'lucide-react';
 
 export default function CategoryIcon({ name, className = "w-5 h-5 text-rose-600" }) {
@@ -30,6 +32,13 @@ export default function CategoryIcon({ name, className = "w-5 h-5 text-rose-600"
       return <Bath className={className} />;
     case 'Home':
       return <Home className={className} />;
+    case 'Building':
+    case 'Building2':
+      return <Building2 className={className} />;
+    case 'Gem':
+      return <Gem className={className} />;
+    case 'ShoppingBag':
+      return <ShoppingBag className={className} />;
     default:
       return <Sparkles className={className} />;
   }

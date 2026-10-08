@@ -49,8 +49,8 @@ export default function About({ onOpenConsultation }) {
 
           <div className="relative rounded-2xl overflow-hidden shadow-xl h-80 sm:h-96">
             <img
-              src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=80"
-              alt="FourCube Decor Studio"
+              src="/decor/WhatsApp%20Image%202026-10-08%20at%205.02.03%20PM.jpeg"
+              alt="FourCube Decor Studio Work"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>

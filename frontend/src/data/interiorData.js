@@ -1,321 +1,242 @@
+import { 
+  jewelleryDecorData, 
+  mallDecorData, 
+  officeDecorData, 
+  shopDecorData, 
+  realKitchenImages, 
+  realLivingImages, 
+  realBedroomImages, 
+  realWardrobeImages, 
+  realBathroomImages, 
+  realStudyImages,
+  allRealProjects,
+  realDecorVideo
+} from './decorMedia';
+
+export { realDecorVideo };
+
+// Commercial Offerings (The 4 new pages requested by the user!)
+export const commercialOfferings = [
+  {
+    id: 'mall-decor',
+    path: '/commercial/mall-decor',
+    title: 'Mall Decor',
+    shortTitle: 'Mall Decor',
+    badge: 'Grand Spaces',
+    tag: 'Commercial',
+    iconName: 'Building',
+    description: 'Turnkey shopping mall interiors, brand kiosks, luxury optical boutiques & retail atrium displays.',
+    heroImage: mallDecorData[0].image,
+    items: mallDecorData,
+    subcategories: ['Mall Flagship Stores', 'Luxury Optical Showrooms', 'Atrium Kiosks & Pods', 'Multi-Floor Retail Anchor Suites', 'Commercial Lighting & Facades']
+  },
+  {
+    id: 'office-decor',
+    path: '/commercial/office-decor',
+    title: 'Office Decor',
+    shortTitle: 'Office Decor',
+    badge: 'Executive',
+    tag: 'Corporate',
+    iconName: 'Briefcase',
+    description: 'Modern executive director lounges, acoustic fluted conference rooms, reception desks & ergonomic workstations.',
+    heroImage: officeDecorData[0].image,
+    items: officeDecorData,
+    subcategories: ['MD & Director Cabins', 'Boardroom Video Conference Walls', 'VIP Reception & Waiting Lounges', 'Ergonomic Workstations', 'Acoustic Wood Paneling']
+  },
+  {
+    id: 'jewellery-shop-decor',
+    path: '/commercial/jewellery-shop-decor',
+    title: 'Jewellery Shop Decor',
+    shortTitle: 'Jewellery Shop',
+    badge: 'High Security',
+    tag: 'Luxury',
+    iconName: 'Gem',
+    description: 'High-security tempered glass counters, 4000K daylight gemstone lighting, necklace wall niches & Candere boutique suites.',
+    heroImage: jewelleryDecorData[0].image,
+    items: jewelleryDecorData,
+    subcategories: ['Anti-Theft Tempered Glass Counters', 'Gemstone-True 4000K Lighting', 'Floating Necklace Niche Boxes', 'Bridal Trial Dressing Suites', 'Victorian Wall Mouldings']
+  },
+  {
+    id: 'shop-decor',
+    path: '/commercial/shop-decor',
+    title: 'Shop Decor',
+    shortTitle: 'Shop Decor',
+    badge: 'Retail',
+    tag: 'Boutique',
+    iconName: 'ShoppingBag',
+    description: 'Custom retail display racks, sanitaryware & bath fixture experience centers, eyewear shops & cash wrap counters.',
+    heroImage: shopDecorData[0].image,
+    items: shopDecorData,
+    subcategories: ['Eyewear & Optical Boutiques', 'Sanitary & Bath Experience Centers', 'Branded Wall Gondola Racks', 'Cash Wrap Counters', 'Storefront Display Windows']
+  }
+];
+
+// Residential Offerings (100% Real photos from user's decor folder!)
 export const navigationOfferings = [
   {
     id: 'modular-kitchen',
     title: 'Modular Kitchen',
-    description: 'L-shape, U-shape, Island & Parallel kitchen solutions',
+    description: 'High-gloss acrylic, L-shape, U-shape & parallel kitchen solutions',
     iconName: 'ChefHat',
-    image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80',
+    image: realKitchenImages[0].image,
     tag: 'Trending',
-    subcategories: ['L-Shaped Kitchen', 'U-Shaped Kitchen', 'Parallel Kitchen', 'Island Kitchen', 'Straight Kitchen']
+    subcategories: ['High-Gloss Mauve & White Kitchen', 'Minimalist Sky Blue Parallel Kitchen', 'Tinted Glass U-Shaped Kitchen', 'Island Breakfast Counters']
   },
   {
     id: 'living-room',
     title: 'Living Room',
-    description: 'Designer TV units, accent walls, coffee tables & sofas',
+    description: 'Marble TV consoles, fluted acoustic panels, mandir units & partitions',
     iconName: 'Sofa',
-    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80',
+    image: realLivingImages[0].image,
     tag: 'Popular',
-    subcategories: ['TV Entertainment Units', 'Foyer & Shoe Cabinets', 'Crockery Units', 'Partition Screens']
+    subcategories: ['Fluted Oak TV Units', 'Marble TV Walls with Brass Inlay', 'Integrated CNC Mandir TV Units', 'Fireplace Executive TV Walls', 'Lattice Partition Screens']
   },
   {
     id: 'bedroom',
     title: 'Bedroom',
-    description: 'Master beds, headboards, nightstands & vanity spaces',
+    description: 'Upholstered beds, custom tufted headboards, bedside nightstands',
     iconName: 'BedDouble',
-    image: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80',
+    image: realBedroomImages[0].image,
     tag: 'Cozy',
-    subcategories: ['Master Bedroom', 'Kids Bedroom', 'Guest Bedroom', 'Dressing Units']
+    subcategories: ['Marble & Wood Master Suites', 'Beige Fluted Upholstered Beds', 'Contemporary Wardrobe & TV Combos', 'Custom On-Site Arch Headboards']
   },
   {
     id: 'wardrobe',
     title: 'Wardrobe',
-    description: 'Sliding, hinged & walk-in wardrobes with accessories',
+    description: 'Sliding, hinged, 6-door floor-to-ceiling wardrobes with mirrors',
     iconName: 'DoorClosed',
-    image: 'https://images.unsplash.com/photo-1558997519-83ea9252def8?auto=format&fit=crop&w=800&q=80',
+    image: realWardrobeImages[0].image,
     tag: 'Custom Fit',
-    subcategories: ['Sliding Door Wardrobe', 'Hinged Wardrobe', 'Walk-In Closet', 'Loft Storage']
+    subcategories: ['Teal & Wood Geometric Wardrobes', 'White High-Gloss Sliding Wardrobes', 'Charcoal 6-Door Floor-to-Ceiling', 'Center Vanity Dressing Suites']
   },
   {
     id: 'space-saving',
     title: 'Space Saving Furniture',
-    description: 'Foldable beds, convertible desks & multi-use furniture',
+    description: 'Capsule dual study units, room dividers & smart convertible setups',
     iconName: 'Maximize2',
-    image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80',
+    image: realStudyImages[0].image,
     tag: 'Smart',
-    subcategories: ['Murphy Wall Beds', 'Extendable Dining', 'Storage Ottomans', 'Nesting Tables']
+    subcategories: ['Dual Capsule Study Desks', 'CNC Partition Dividers', 'Floating Storage Units', 'Multi-Use Workstations']
   },
   {
     id: 'home-office',
     title: 'Home Office',
-    description: 'Ergonomic study desks, bookshelf storage & lighting',
+    description: 'Ergonomic workstations, capsule wall organizers & executive desks',
     iconName: 'Briefcase',
-    image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80',
+    image: officeDecorData[0].image,
     tag: 'Productive',
-    subcategories: ['Executive Desks', 'Wall-mounted Study Units', 'Bookshelves & Display', 'Acoustic Panels']
+    subcategories: ['Executive Director Desks', 'Dual Study Stations', 'Acoustic Louver Walls', 'Bookshelves & Display Niches']
   },
   {
     id: 'bathroom',
     title: 'Bathroom',
-    description: 'Vanities, anti-fog LED mirrors & moisture-proof cabinets',
+    description: 'Oval backlit LED touch mirrors, fluted wood corner vanities',
     iconName: 'Bath',
-    image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80',
+    image: realBathroomImages[0].image,
     tag: 'Modern',
-    subcategories: ['Vanity Cabinets', 'LED Backlit Mirrors', 'Shower Partitions', 'Under-sink Storage']
+    subcategories: ['Oval Backlit Touch Mirrors', 'Fluted Waterproof Corner Vanities', 'Sanitaryware Exhibit Walls', 'Under-Sink Storage Cabinets']
   },
   {
     id: 'home-interiors',
     title: 'Home Interiors (2BHK / 3BHK)',
-    description: 'End-to-end full home turnkey interior transformations',
+    description: 'End-to-end full turnkey interior transformations from our factories',
     iconName: 'Home',
-    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80',
+    image: realLivingImages[1].image,
     tag: 'Turnkey',
-    subcategories: ['1 BHK Complete Package', '2 BHK Premium Interiors', '3 BHK Luxury Interiors', 'Villas & Penthouses']
+    subcategories: ['1 BHK Complete Package', '2 BHK Premium Turnkey', '3 BHK Luxury Interiors', 'Duplex & Penthouse Woodwork']
   }
 ];
 
-export const galleryItems = [
-  {
-    id: 1,
-    title: 'Emerald Luxe Parallel Modular Kitchen',
-    category: 'modular-kitchen',
-    categoryName: 'Modular Kitchen',
-    image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1000&q=80',
-    size: '120 sq.ft',
-    finish: 'Acrylic & Quartz Stone',
-    priceEstimate: '₹2.4 Lakh onwards',
-    features: ['Soft-close Blum hinges', 'Quartz scratch-proof countertop', 'Pantry pull-out', 'Profile LED lighting']
-  },
-  {
-    id: 2,
-    title: 'Minimalist Warm Oak Scandinavian Living Room',
-    category: 'living-room',
-    categoryName: 'Living Room',
-    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1000&q=80',
-    size: '220 sq.ft',
-    finish: 'Veneer & Matte PU',
-    priceEstimate: '₹1.8 Lakh onwards',
-    features: ['Floating TV console', 'Acoustic fluted wall panel', 'Hidden wire management', 'Ambient cove lighting']
-  },
-  {
-    id: 3,
-    title: 'Serene Velvet Master Bedroom with Accent Headboard',
-    category: 'bedroom',
-    categoryName: 'Bedroom',
-    image: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1000&q=80',
-    size: '180 sq.ft',
-    finish: 'Fabric Upholstery & Champagne Gold Metal',
-    priceEstimate: '₹2.1 Lakh onwards',
-    features: ['Custom tufted headboard', 'Floating bedside drawers', 'Integrated bed frame storage', 'Warm reading spots']
-  },
-  {
-    id: 4,
-    title: 'Smoke Glass & Matte Charcoal Walk-In Wardrobe',
-    category: 'wardrobe',
-    categoryName: 'Wardrobe',
-    image: 'https://images.unsplash.com/photo-1558997519-83ea9252def8?auto=format&fit=crop&w=1000&q=80',
-    size: '8x10 ft',
-    finish: 'Fluted Tinted Glass & Matt Laminate',
-    priceEstimate: '₹1.6 Lakh onwards',
-    features: ['Auto sensor hanger lights', 'Jewelry organizer drawers', 'Full height mirror', 'Hydraulic pull-down rack']
-  },
-  {
-    id: 5,
-    title: 'Contemporary Dual-Tone L-Shaped Kitchen',
-    category: 'modular-kitchen',
-    categoryName: 'Modular Kitchen',
-    image: 'https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1000&q=80',
-    size: '140 sq.ft',
-    finish: 'High-gloss Laminate & Granite',
-    priceEstimate: '₹2.8 Lakh onwards',
-    features: ['Corner carousel magic corner', 'Built-in microwave tower', 'Anti-fingerprint shutters', 'Chimney duct cover']
-  },
-  {
-    id: 6,
-    title: 'Compact Ergonomic Home Office & Library Unit',
-    category: 'home-office',
-    categoryName: 'Home Office',
-    image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1000&q=80',
-    size: '90 sq.ft',
-    finish: 'Natural Teak & Matte Black',
-    priceEstimate: '₹85,000 onwards',
-    features: ['Cable pass-through grommet', 'Heavy load floating shelves', 'Dual monitor workspace', 'Soft-touch push drawers']
-  },
-  {
-    id: 7,
-    title: 'Smart Convertible Studio with Murphy Bed',
-    category: 'space-saving',
-    categoryName: 'Space Saving',
-    image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1000&q=80',
-    size: 'Studio Fit',
-    finish: 'Engineered Hardwood & Gas Springs',
-    priceEstimate: '₹1.2 Lakh onwards',
-    features: ['Hydraulic wall bed mechanism', 'Built-in study desk transformable', 'Side wardrobe unit', 'Safety locks']
-  },
-  {
-    id: 8,
-    title: 'Spa-Inspired Vanity with Backlit Floating Mirror',
-    category: 'bathroom',
-    categoryName: 'Bathroom',
-    image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1000&q=80',
-    size: '60 sq.ft',
-    finish: 'Waterproof HDHMR & Corian',
-    priceEstimate: '₹75,000 onwards',
-    features: ['Anti-termite waterproof core', 'Under-counter vessel mount', 'Touch dimmable LED mirror', 'Hidden pipe access']
-  },
-  {
-    id: 9,
-    title: 'Modern 3BHK Turnkey Penthouse Interior',
-    category: 'home-interiors',
-    categoryName: 'Home Interiors',
-    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=80',
-    size: '1850 sq.ft',
-    finish: 'Premium Italian Marble & Custom Woodwork',
-    priceEstimate: '₹9.5 Lakh onwards',
-    features: ['False ceiling with cove lighting', 'Wall panelling & wallpaper', 'Complete modular woodwork', 'Curtain automation ready']
-  },
-  {
-    id: 10,
-    title: 'Nordic Clean Island Kitchen with Breakfast Counter',
-    category: 'modular-kitchen',
-    categoryName: 'Modular Kitchen',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80',
-    size: '160 sq.ft',
-    finish: 'PU Matte & Solid Ash Wood',
-    priceEstimate: '₹3.6 Lakh onwards',
-    features: ['Under-island wine rack', 'Bar stool leg space', 'Integrated induction cooktop', 'Heavy-duty tandem boxes']
-  },
-  {
-    id: 11,
-    title: 'Cozy Boho Chic Living with Display Alcoves',
-    category: 'living-room',
-    categoryName: 'Living Room',
-    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1000&q=80',
-    size: '200 sq.ft',
-    finish: 'Rattan Cane & Muted Oak',
-    priceEstimate: '₹1.5 Lakh onwards',
-    features: ['Arched niche display shelving', 'Custom console credenza', 'Rattan accent wardrobe doors', 'Warm spotlighting']
-  },
-  {
-    id: 12,
-    title: 'Smart 2BHK Turnkey Contemporary Apartment',
-    category: 'home-interiors',
-    categoryName: 'Home Interiors',
-    image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1000&q=80',
-    size: '1150 sq.ft',
-    finish: 'Premium Laminate & Fluted Acrylic',
-    priceEstimate: '₹5.8 Lakh onwards',
-    features: ['Living, Dining & 2 Bedrooms woodwork', 'Complete kitchen with chimney', 'False ceiling in all rooms', 'Deep cleaning & handover']
-  }
-];
+// All Gallery items mapped directly to REAL projects from the decor folder!
+export const galleryItems = allRealProjects.map((item, index) => ({
+  id: index + 1,
+  title: item.title,
+  category: item.category.toLowerCase().replace(/\s+/g, '-'),
+  categoryName: item.category,
+  image: item.image,
+  size: item.size || 'Commercial Fitout',
+  finish: item.finish || 'German CNC Precision Woodwork',
+  priceEstimate: item.priceEstimate || 'Custom Quotation',
+  features: item.features || item.highlights || ['German Machine Finish', '10-Year Warranty', '45-Day Handover', 'Fixed Price Quote']
+}));
 
 export const statistics = [
-  { value: '1,500+', label: 'Homes Transformed', suffix: 'Happy Families' },
-  { value: '45 Days', label: 'Guaranteed Move-In', suffix: 'Or we pay rent' },
-  { value: '10 Years', label: 'Flat Warranty', suffix: 'Assured durability' },
-  { value: '100%', label: 'Personalized Designs', suffix: '3D live renders' }
+  { value: '1,500+', label: 'Homes & Retail Projects', suffix: 'Completed on-time' },
+  { value: '45 Days', label: 'Guaranteed Handover', suffix: 'Strict milestone SLA' },
+  { value: '10 Years', label: 'Flat Warranty', suffix: 'Assured structural durability' },
+  { value: '100%', label: 'Real Workmanship', suffix: 'German factory fabrication' }
 ];
 
 export const processSteps = [
   {
     step: '01',
-    title: 'Meet Designer & Free 3D Plan',
-    description: 'Connect online or visit our experience studio. We understand your floor plan and generate interactive 3D models.'
+    title: 'Site Visit & 3D Visualization',
+    description: 'We measure your residential flat, retail shop, or commercial mall space with laser meters and design interactive 3D layout renders.'
   },
   {
     step: '02',
-    title: 'Select Materials & Instant Quote',
-    description: 'Browse 500+ finishes, touch genuine materials, and get transparent quotation with zero hidden costs.'
+    title: 'Material Selection & Transparent Quote',
+    description: 'Touch genuine samples of HDHMR, acrylics, fluted louvers, and German hardware (Blum, Hettich) with 100% fixed pricing.'
   },
   {
     step: '03',
-    title: 'Precision Factory Manufacturing',
-    description: 'Your modular furniture is crafted with German machinery in state-of-the-art facilities for micron accuracy.'
+    title: 'German Factory Manufacturing',
+    description: 'All panels, display counters, and wardrobes are machined with computer-controlled automated edge-banding and pre-drilled precision.'
   },
   {
     step: '04',
-    title: '45-Day Handover & 10-Yr Warranty',
-    description: 'Professional dust-free installation by trained technicians, rigorous quality checks, and clean handover.'
+    title: '45-Day Dust-Free Installation',
+    description: 'Trained technical crews perform on-site modular assembly within days, followed by clean handover and warranty certificate.'
   }
 ];
 
 export const testimonials = [
   {
-    name: 'Rajesh & Sneha Sharma',
-    location: 'Cyber City, Gurugram',
-    bhk: '3 BHK Home',
+    name: 'Vikram & Radhika Singhal',
+    location: 'DLF Phase 5, Gurugram',
+    bhk: '3 BHK Turnkey Interior',
     rating: 5,
-    quote: 'FourCube Decor transformed our new 3BHK flat within exactly 42 days! The modular kitchen storage and the living room TV console look straight out of an architectural magazine.',
-    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80'
+    quote: 'The high-gloss modular kitchen and marble TV unit with fluted wooden louvers are beyond expectation. Finished strictly within 43 days with zero price escalation!',
+    image: realBedroomImages[0].image
   },
   {
-    name: 'Amitabh Verma',
+    name: 'Karan Mehra (Store Owner)',
+    location: 'South Extension, Delhi',
+    bhk: 'Jewellery Showroom Fitout',
+    rating: 5,
+    quote: 'FourCube Decor designed our diamond jewellery showroom with 4000K lighting and anti-theft tempered counters. The Candere-style wall mouldings make our store look ultra-luxurious.',
+    image: jewelleryDecorData[0].image
+  },
+  {
+    name: 'Ananya & Sahil Roy',
     location: 'Whitefield, Bengaluru',
-    bhk: '2 BHK Home',
+    bhk: 'Full Wardrobe & Bedroom Suite',
     rating: 5,
-    quote: 'Their transparent pricing was the best part. No sudden surprise costs, genuine Blum hardware, and the designer customized every wardrobe inch to fit our storage needs.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80'
-  },
-  {
-    name: 'Priyanka & Rohit Mehta',
-    location: 'Andheri West, Mumbai',
-    bhk: 'Modular Kitchen & Master Bedroom',
-    rating: 5,
-    quote: 'The space-saving ideas were unbelievable! Our kitchen looks twice as big now and the acrylic finish is so easy to clean. Highly recommended for busy professionals.',
-    image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80'
+    quote: 'The 6-door floor-to-ceiling charcoal wardrobe and the vanity mirror setup solved all our storage worries. The real factory edge-banding is seamless.',
+    image: realWardrobeImages[0].image
   }
 ];
 
 export const faqs = [
   {
-    q: 'How does the 45-day move-in guarantee work?',
-    a: 'Once your 3D design and material selections are finalized, our manufacturing clock starts. We complete the entire woodwork and on-site assembly within 45 calendar days. If we delay, we pay you compensation for every day delayed.'
+    q: 'Do you design both residential and commercial spaces?',
+    a: 'Yes! FourCube Decor provides turnkey interior execution for residential flats (1BHK, 2BHK, 3BHK, Villas) as well as commercial projects including Mall Decor, Office Decor, Jewellery Shops, and Retail Stores.'
   },
   {
-    q: 'What is covered under the 10-year warranty?',
-    a: 'Our warranty covers all structural woodwork against peeling, manufacturing defects, termites, and hardware malfunctions across our certified branded fittings (Hettich, Blum, Hafele).'
+    q: 'Are all photos shown on this website real work of FourCube Decor?',
+    a: 'Yes, 100%! Every photo and video displayed in our gallery and portfolios is from our real on-site projects and factory installations.'
   },
   {
-    q: 'Can I customize according to my exact room dimensions?',
-    a: 'Yes, 100%! Our design team visits your site to perform laser measurements. Every wardrobe, cabinet, and kitchen is fabricated down to the millimeter.'
+    q: 'How does the 45-day handover guarantee work for retail & shops?',
+    a: 'Because 85% of cabinetry, wall mouldings, and counters are prefabricated in our automated German machinery factory, on-site assembly takes only 7-10 days. We guarantee 45-day move-in.'
   },
   {
-    q: 'Is the initial consultation and 3D design free?',
-    a: 'Yes, the first consultation, site inspection, and initial 3D visualization plan are completely free with zero commitment required.'
+    q: 'What warranty is offered on commercial and residential fittings?',
+    a: 'We offer our signature 10-year flat replacement warranty on structural woodwork against borer, termite, or delamination, and lifetime warranties on certified Blum / Hettich soft-close hardware.'
   },
   {
-    q: 'Do you also handle false ceilings, electricals, and painting?',
-    a: 'Yes! FourCube Decor is a complete turnkey interior design service. We manage modular woodwork, false ceilings, electrical lighting, wallpaper, and civil paint works under one contract.'
-  }
-];
-
-export const styleGuides = [
-  {
-    id: 'modern-minimalist',
-    title: 'Modern Minimalist Style',
-    desc: 'Clean lines, hidden storage, monochrome tones with warm wooden accents.',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
-    tips: ['Keep floors uncluttered', 'Use handleless push-to-open cabinets', 'Focus on diffused warm LED strips']
-  },
-  {
-    id: 'contemporary-luxury',
-    title: 'Contemporary Luxury',
-    desc: 'Champagne gold trims, fluted glass, marble feature walls, and plush velvet seating.',
-    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80',
-    tips: ['Add fluted wall panels behind TV', 'Choose statement pendant lighting', 'Mix matte dark shades with brushed brass']
-  },
-  {
-    id: 'scandinavian-cozy',
-    title: 'Scandinavian Warmth',
-    desc: 'Airy spaces, pale oak woodwork, organic linen textures, and indoor greenery.',
-    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80',
-    tips: ['Prioritize natural sunlight', 'Incorporate pastel muted tones', 'Use light pine or bleached oak laminates']
-  },
-  {
-    id: 'smart-compact',
-    title: 'Smart Space-Saving Hacks',
-    desc: 'Ingenious foldable desks, Murphy beds, and hidden storage for modern compact apartments.',
-    image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80',
-    tips: ['Utilize vertical wall height with lofts', 'Choose 2-in-1 convertible furniture', 'Use mirrors to amplify spatial depth']
+    q: 'How do I get a quotation for Mall or Jewellery Shop Decor?',
+    a: 'Simply click "Book Free Consultation" or WhatsApp us your floor layout and carpet area. Our senior commercial architect will provide a 3D plan and transparent bill of quantities within 24 hours.'
   }
 ];
 
@@ -324,8 +245,8 @@ export const companyContact = {
   phoneRaw: '+919876543210',
   whatsappRaw: '919876543210',
   email: 'contact@fourcubedecor.com',
-  address: 'FourCube Decor Design Experience Studio, Level 4, DLF Cyber City, Phase 2, Gurugram, Haryana 122002',
-  secondaryAddress: 'Flagship Studio: Indiranagar 100ft Road, Bengaluru, Karnataka 560038',
+  address: 'FourCube Decor Flagship Studio, Level 4, DLF Cyber City, Phase 2, Gurugram, Haryana 122002',
+  secondaryAddress: 'Bengaluru Studio: 100 Feet Road, Indiranagar, Bengaluru, Karnataka 560038',
   hours: 'Mon - Sun: 10:00 AM - 8:30 PM (Open all 7 days)',
   socialLinks: {
     instagram: 'https://instagram.com/fourcubedecor',
@@ -335,3 +256,35 @@ export const companyContact = {
     linkedin: 'https://linkedin.com/company/fourcubedecor'
   }
 };
+
+export const styleGuides = [
+  {
+    id: 'modern-minimalist',
+    title: 'Modern Minimalist Modular Kitchens',
+    desc: 'Clean lines, hidden profile LED channels, high-gloss acrylic cabinets with integrated built-in appliances.',
+    image: realKitchenImages[0].image,
+    tips: ['Keep countertops uncluttered', 'Use handleless push-to-open cabinets', 'Focus on diffused warm LED strips']
+  },
+  {
+    id: 'contemporary-luxury',
+    title: 'Contemporary Luxury Living & Media Walls',
+    desc: 'Statuario marble feature walls with fluted oak acoustic louvers and floating console credenzas.',
+    image: realLivingImages[0].image,
+    tips: ['Add fluted wall panels behind TV', 'Choose statement pendant lighting', 'Mix matte dark shades with brushed brass']
+  },
+  {
+    id: 'commercial-retail',
+    title: 'Commercial Boutique & Jewellery Architecture',
+    desc: 'High-security display counters, 4000K daylight gemstone illumination, and classic Victorian wall mouldings.',
+    image: jewelleryDecorData[0].image,
+    tips: ['Incorporate anti-theft tempered glass', 'Opt for 4000K CRI 95+ gemstone lighting', 'Include private consultation bridal suites']
+  },
+  {
+    id: 'smart-compact',
+    title: 'Smart Floor-to-Ceiling Wardrobes & Workstations',
+    desc: '6-door high-gloss reflective wardrobes with center vanity mirrors and loft suitcase storage.',
+    image: realWardrobeImages[2].image,
+    tips: ['Utilize vertical wall height with lofts', 'Choose 2-in-1 convertible furniture', 'Use mirrors to amplify spatial depth']
+  }
+];
+

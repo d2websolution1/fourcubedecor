@@ -11,20 +11,23 @@ import {
   MessageCircle, 
   ChevronRight, 
   Star, 
-  SlidersHorizontal,
-  Home as HomeIcon,
+  Building2,
   Plus,
-  Minus
+  Minus,
+  Play
 } from 'lucide-react';
 import { 
   navigationOfferings, 
+  commercialOfferings,
   galleryItems, 
   statistics, 
   processSteps, 
   testimonials, 
   faqs, 
-  companyContact 
+  companyContact,
+  realDecorVideo
 } from '../data/interiorData';
+import { realLivingImages, realBedroomImages, realKitchenImages } from '../data/decorMedia';
 import CategoryIcon from '../components/CategoryIcon';
 
 export default function Home({ onOpenConsultation }) {
@@ -32,7 +35,7 @@ export default function Home({ onOpenConsultation }) {
     name: '',
     phone: '',
     city: 'Gurugram',
-    bhk: '3 BHK',
+    projectType: '3 BHK Residential',
     whatsappUpdates: true,
   });
   const [heroSubmitted, setHeroSubmitted] = useState(false);
@@ -47,11 +50,11 @@ export default function Home({ onOpenConsultation }) {
 
   const filteredGallery = galleryFilter === 'all' 
     ? galleryItems.slice(0, 6) 
-    : galleryItems.filter(item => item.category === galleryFilter).slice(0, 6);
+    : galleryItems.filter(item => item.category.includes(galleryFilter)).slice(0, 6);
 
   return (
     <div className="space-y-20 pb-16">
-      {/* 1. HERO SECTION (Inspired by HomeLane with Hero Headline + Instant Booking Form) */}
+      {/* 1. HERO SECTION (100% Real Work + Fast Booking Form) */}
       <section className="relative bg-gradient-to-b from-rose-50/60 via-white to-slate-50 pt-8 pb-16 lg:py-20 overflow-hidden border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -59,18 +62,18 @@ export default function Home({ onOpenConsultation }) {
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-100/80 border border-rose-200 text-rose-700 text-xs font-bold tracking-wide">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>India's Trusted Modular Interior Platform</span>
+                <span>100% Genuine Projects · Residential & Commercial Turnkey</span>
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.15] font-heading">
-                Step Into Your Dream Home in Just{' '}
+                Step Into Your Dream Space in Just{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-amber-600">
                   45 Days.
                 </span>
               </h1>
 
               <p className="text-lg text-slate-600 leading-relaxed max-w-2xl">
-                Personalized modular kitchens, designer living rooms, and turnkey home interiors crafted with German machinery, certified 10-year flat warranty, and zero hidden costs.
+                Personalized modular kitchens, designer wardrobes, luxury jewellery showrooms, and commercial mall fitouts crafted with German machinery and certified 10-year flat warranty.
               </p>
 
               {/* HomeLane Style Feature Badges */}
@@ -81,7 +84,7 @@ export default function Home({ onOpenConsultation }) {
                   </div>
                   <div>
                     <div className="text-xs font-bold text-slate-800">45-Day Move-In</div>
-                    <div className="text-[11px] text-slate-500">Or we pay rent</div>
+                    <div className="text-[11px] text-slate-500">Strict SLA commitment</div>
                   </div>
                 </div>
 
@@ -91,7 +94,7 @@ export default function Home({ onOpenConsultation }) {
                   </div>
                   <div>
                     <div className="text-xs font-bold text-slate-800">10-Year Warranty</div>
-                    <div className="text-[11px] text-slate-500">Flat coverage</div>
+                    <div className="text-[11px] text-slate-500">Flat woodwork cover</div>
                   </div>
                 </div>
 
@@ -100,8 +103,8 @@ export default function Home({ onOpenConsultation }) {
                     <Award className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-slate-800">Zero Hidden Cost</div>
-                    <div className="text-[11px] text-slate-500">Transparent quotes</div>
+                    <div className="text-xs font-bold text-slate-800">100% Real Photos</div>
+                    <div className="text-[11px] text-slate-500">Actual site execution</div>
                   </div>
                 </div>
               </div>
@@ -117,16 +120,16 @@ export default function Home({ onOpenConsultation }) {
                 </Link>
 
                 <Link
-                  to="/calculator"
+                  to="/commercial"
                   className="px-6 py-3.5 border-2 border-slate-200 hover:border-rose-600 hover:text-rose-600 text-slate-700 font-bold text-sm rounded-xl transition flex items-center gap-2 bg-white"
                 >
-                  <SlidersHorizontal className="w-4 h-4 text-rose-600" />
-                  <span>Calculate Interior Cost</span>
+                  <Building2 className="w-4 h-4 text-rose-600" />
+                  <span>Commercial & Shop Decor</span>
                 </Link>
               </div>
             </div>
 
-            {/* Right Hero Lead Card (Replicating HomeLane "Talk to a designer") */}
+            {/* Right Hero Lead Card */}
             <div className="lg:col-span-5">
               <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-100 relative">
                 <div className="absolute top-0 right-8 -translate-y-1/2 bg-amber-500 text-slate-950 text-[11px] font-black uppercase tracking-wider px-3.5 py-1 rounded-full shadow-md">
@@ -138,7 +141,7 @@ export default function Home({ onOpenConsultation }) {
                     Talk to a Designer
                   </h3>
                   <p className="text-xs text-slate-500 mt-1">
-                    Book a free 3D design session with our interior specialists today.
+                    Book a free 3D design session for your home, shop, or office today.
                   </p>
                 </div>
 
@@ -152,7 +155,7 @@ export default function Home({ onOpenConsultation }) {
                       Our designer will call you on <strong className="text-slate-800">{heroForm.phone}</strong> to confirm your slot.
                     </p>
                     <a
-                      href={`https://wa.me/${companyContact.whatsappRaw}?text=Hi%20FourCube%20Decor,%20I%20just%20submitted%20my%20details%20for%20${heroForm.bhk}%20in%20${heroForm.city}.`}
+                      href={`https://wa.me/${companyContact.whatsappRaw}?text=Hi%20FourCube%20Decor,%20I%20just%20submitted%20my%20details%20for%20${heroForm.projectType}%20in%20${heroForm.city}.`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="mt-5 inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-600 text-white rounded-xl text-xs font-bold shadow-md hover:bg-emerald-700 transition"
@@ -219,18 +222,19 @@ export default function Home({ onOpenConsultation }) {
 
                       <div>
                         <label className="block text-[11px] font-bold text-slate-600 uppercase tracking-wider mb-1">
-                          Home Type
+                          Project Type
                         </label>
                         <select
-                          value={heroForm.bhk}
-                          onChange={(e) => setHeroForm({ ...heroForm, bhk: e.target.value })}
+                          value={heroForm.projectType}
+                          onChange={(e) => setHeroForm({ ...heroForm, projectType: e.target.value })}
                           className="w-full px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-rose-500 text-xs bg-white"
                         >
-                          <option value="1 BHK">1 BHK</option>
-                          <option value="2 BHK">2 BHK</option>
-                          <option value="3 BHK">3 BHK</option>
-                          <option value="4 BHK+">4 BHK+</option>
-                          <option value="Villa">Villa</option>
+                          <option value="1/2/3 BHK Home">1/2/3 BHK Home</option>
+                          <option value="Modular Kitchen">Modular Kitchen</option>
+                          <option value="Mall Decor">Mall Decor</option>
+                          <option value="Office Decor">Office Decor</option>
+                          <option value="Jewellery Shop Decor">Jewellery Shop Decor</option>
+                          <option value="Shop Decor">Shop Decor</option>
                         </select>
                       </div>
                     </div>
@@ -257,7 +261,7 @@ export default function Home({ onOpenConsultation }) {
                     </button>
 
                     <p className="text-[10px] text-center text-slate-400">
-                      By submitting you agree to our privacy policy and T&C.
+                      🔒 Privacy Assured. 100% Free & No obligation.
                     </p>
                   </form>
                 )}
@@ -282,17 +286,142 @@ export default function Home({ onOpenConsultation }) {
         </div>
       </section>
 
-      {/* 3. OFFERINGS CAROUSEL / GRID (The 8 Categories from the user screenshot) */}
+      {/* 3. COMMERCIAL DECOR SPOTLIGHT (The 4 New Pages Requested) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-wider text-rose-600">
+              Commercial & Retail Architecture
+            </span>
+            <h2 className="text-3xl font-extrabold text-slate-900 font-heading mt-1">
+              Commercial Decor Specialties
+            </h2>
+            <p className="text-slate-600 text-xs mt-1">
+              Turnkey fitouts for Malls, Corporate Offices, Jewellery Showrooms & Retail Shops
+            </p>
+          </div>
+
+          <Link
+            to="/commercial"
+            className="inline-flex items-center gap-2 text-sm font-bold text-rose-600 hover:text-rose-700"
+          >
+            <span>Explore All Commercial Services</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {commercialOfferings.map((item) => (
+            <Link
+              key={item.id}
+              to={item.path}
+              className="group bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-soft card-hover-lift flex flex-col justify-between"
+            >
+              <div className="relative h-52 overflow-hidden bg-slate-900">
+                <img
+                  src={item.heroImage}
+                  alt={item.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-lg text-xs font-bold text-slate-800 flex items-center gap-1.5 shadow">
+                  <CategoryIcon name={item.iconName} className="w-3.5 h-3.5 text-rose-600" />
+                  <span>{item.title}</span>
+                </div>
+                <span className="absolute top-3 right-3 bg-rose-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">
+                  {item.badge}
+                </span>
+                <div className="absolute bottom-3 left-3 right-3 text-white">
+                  <h4 className="font-bold text-sm leading-tight">{item.title}</h4>
+                </div>
+              </div>
+
+              <div className="p-5 flex-1 flex flex-col justify-between">
+                <p className="text-xs text-slate-500 line-clamp-2">
+                  {item.description}
+                </p>
+
+                <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-rose-600 group-hover:translate-x-1 transition-transform">
+                  <span>Explore Real Projects</span>
+                  <ChevronRight className="w-4 h-4" />
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* 4. REAL PROJECT VIDEO & EXECUTION DEMO */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-3xl p-8 sm:p-12 shadow-2xl border border-slate-800">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-6 space-y-4">
+              <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
+                Turnkey Execution Video
+              </span>
+              <h3 className="text-3xl font-extrabold font-heading text-white">
+                Real On-Site Workmanship
+              </h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Watch our trained execution team completing precision modular woodwork, illuminated wall niches, and seamless edge-banding with German automated precision.
+              </p>
+
+              <div className="space-y-2 pt-2 text-xs text-slate-300">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-emerald-400" />
+                  <span>Pre-drilled 32mm system holes for dust-free on-site assembly</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-emerald-400" />
+                  <span>Original Blum & Hettich certified soft-close hardware</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-emerald-400" />
+                  <span>Strict 45-day guaranteed move-in handover</span>
+                </div>
+              </div>
+
+              <div className="pt-4">
+                <button
+                  onClick={() => onOpenConsultation('Turnkey Project')}
+                  className="px-6 py-3.5 bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs rounded-xl shadow-lg transition inline-flex items-center gap-2"
+                >
+                  <Sparkles className="w-4 h-4" />
+                  <span>Book Free 3D Plan & Site Visit</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="lg:col-span-6">
+              <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-800 bg-black">
+                <video
+                  src={realDecorVideo}
+                  controls
+                  playsInline
+                  className="w-full max-h-96 object-contain mx-auto"
+                >
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <p className="text-[11px] text-center text-slate-400 mt-2">
+                ▶ Actual project site video from FourCube Decor installations
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. RESIDENTIAL OFFERINGS (100% Real Photos) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <span className="text-xs font-bold uppercase tracking-wider text-rose-600">
-            Our Interior Offerings
+            Residential Woodwork
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-heading mt-1">
-            Tailored Interiors For Every Corner of Your Home
+            Modular Kitchens, Living & Wardrobes
           </h2>
-          <p className="text-slate-600 text-sm mt-2">
-            Explore personalized modular solutions designed to maximize utility, aesthetics, and lasting comfort.
+          <p className="text-slate-600 text-xs mt-2">
+            Engineered with German CNC machinery for micron accuracy and lifetime durability.
           </p>
         </div>
 
@@ -301,14 +430,13 @@ export default function Home({ onOpenConsultation }) {
             <Link
               key={item.id}
               to={`/category/${item.id}`}
-              className="group bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-soft card-hover-lift flex flex-col"
+              className="group bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-soft card-hover-lift flex flex-col justify-between"
             >
               <div className="relative h-48 overflow-hidden bg-slate-100">
                 <img
                   src={item.image}
                   alt={item.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                 <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-lg text-xs font-bold text-slate-800 flex items-center gap-1.5 shadow-sm">
@@ -342,16 +470,16 @@ export default function Home({ onOpenConsultation }) {
         </div>
       </section>
 
-      {/* 4. DESIGN GALLERY SHOWCASE WITH FILTER TABS */}
+      {/* 6. DESIGN GALLERY SHOWCASE WITH FILTER TABS */}
       <section className="bg-slate-100/70 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-rose-600">
-                Real Home Transformations
+                100% Real Workmanship
               </span>
               <h2 className="text-3xl font-extrabold text-slate-900 font-heading mt-1">
-                Explore Popular Design Gallery
+                Completed Project Realizations
               </h2>
             </div>
 
@@ -359,7 +487,7 @@ export default function Home({ onOpenConsultation }) {
               to="/gallery"
               className="inline-flex items-center gap-2 text-sm font-bold text-rose-600 hover:text-rose-700"
             >
-              <span>View All 500+ Photos</span>
+              <span>View Full Gallery</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -374,37 +502,47 @@ export default function Home({ onOpenConsultation }) {
                   : 'bg-white text-slate-700 hover:bg-slate-200'
               }`}
             >
-              All Spaces
+              All Projects
             </button>
             <button
-              onClick={() => setGalleryFilter('modular-kitchen')}
+              onClick={() => setGalleryFilter('jewellery')}
               className={`px-4 py-2 rounded-xl text-xs font-bold transition ${
-                galleryFilter === 'modular-kitchen'
+                galleryFilter === 'jewellery'
+                  ? 'bg-rose-600 text-white shadow-md'
+                  : 'bg-white text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              Jewellery Shops
+            </button>
+            <button
+              onClick={() => setGalleryFilter('mall')}
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition ${
+                galleryFilter === 'mall'
+                  ? 'bg-rose-600 text-white shadow-md'
+                  : 'bg-white text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              Mall Decor
+            </button>
+            <button
+              onClick={() => setGalleryFilter('office')}
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition ${
+                galleryFilter === 'office'
+                  ? 'bg-rose-600 text-white shadow-md'
+                  : 'bg-white text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              Office Decor
+            </button>
+            <button
+              onClick={() => setGalleryFilter('kitchen')}
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition ${
+                galleryFilter === 'kitchen'
                   ? 'bg-rose-600 text-white shadow-md'
                   : 'bg-white text-slate-700 hover:bg-slate-200'
               }`}
             >
               Modular Kitchens
-            </button>
-            <button
-              onClick={() => setGalleryFilter('living-room')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition ${
-                galleryFilter === 'living-room'
-                  ? 'bg-rose-600 text-white shadow-md'
-                  : 'bg-white text-slate-700 hover:bg-slate-200'
-              }`}
-            >
-              Living Rooms
-            </button>
-            <button
-              onClick={() => setGalleryFilter('bedroom')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition ${
-                galleryFilter === 'bedroom'
-                  ? 'bg-rose-600 text-white shadow-md'
-                  : 'bg-white text-slate-700 hover:bg-slate-200'
-              }`}
-            >
-              Bedrooms
             </button>
             <button
               onClick={() => setGalleryFilter('wardrobe')}
@@ -425,12 +563,11 @@ export default function Home({ onOpenConsultation }) {
                 key={item.id}
                 className="bg-white rounded-2xl overflow-hidden shadow-card card-hover-lift group border border-slate-100 flex flex-col justify-between"
               >
-                <div className="relative h-64 overflow-hidden bg-slate-100">
+                <div className="relative h-64 overflow-hidden bg-slate-900">
                   <img
                     src={item.image}
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                    loading="lazy"
                   />
                   <div className="absolute top-3 left-3 bg-white/95 px-2.5 py-1 rounded-md text-[11px] font-bold text-slate-900 shadow">
                     {item.categoryName}
@@ -446,7 +583,7 @@ export default function Home({ onOpenConsultation }) {
                       {item.title}
                     </h3>
                     <p className="text-xs text-slate-500 mt-1">
-                      Size: <span className="text-slate-800 font-semibold">{item.size}</span> · Finish: <span className="text-slate-800 font-semibold">{item.finish}</span>
+                      Finish: <span className="text-slate-800 font-semibold">{item.finish}</span>
                     </p>
 
                     <div className="flex flex-wrap gap-1.5 mt-3">
@@ -460,18 +597,12 @@ export default function Home({ onOpenConsultation }) {
 
                   <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between">
                     <button
-                      onClick={onOpenConsultation}
+                      onClick={() => onOpenConsultation(`Project - ${item.title}`)}
                       className="text-xs font-bold text-rose-600 hover:text-rose-700 flex items-center gap-1"
                     >
                       <Sparkles className="w-3.5 h-3.5" />
-                      Get Free Quote for This
+                      Get Free Quote for This Look
                     </button>
-                    <Link
-                      to={`/category/${item.category}`}
-                      className="text-xs font-medium text-slate-400 hover:text-slate-600"
-                    >
-                      Details →
-                    </Link>
                   </div>
                 </div>
               </div>
@@ -480,7 +611,7 @@ export default function Home({ onOpenConsultation }) {
         </div>
       </section>
 
-      {/* 5. HOW IT WORKS / 4-STEP PROCESS */}
+      {/* 7. HOW IT WORKS / 4-STEP PROCESS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <span className="text-xs font-bold uppercase tracking-wider text-rose-600">
@@ -489,7 +620,7 @@ export default function Home({ onOpenConsultation }) {
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-heading mt-1">
             Your Interior Journey in 4 Simple Steps
           </h2>
-          <p className="text-slate-600 text-sm mt-2">
+          <p className="text-slate-600 text-xs mt-2">
             From initial sketch to handover, experience smooth execution without contractor delays.
           </p>
         </div>
@@ -520,106 +651,17 @@ export default function Home({ onOpenConsultation }) {
         </div>
       </section>
 
-      {/* 6. WHY CHOOSE FOURCUBE DECOR COMPARISON */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-3xl p-8 sm:p-12 shadow-2xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-5 space-y-4">
-              <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
-                FourCube Decor Advantage
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-white">
-                Why Thousands Choose Us Over Local Carpenters
-              </h2>
-              <p className="text-slate-300 text-sm leading-relaxed">
-                We eliminate unexpected price jumps, carpentry dust, and endless contractor delays with automated German manufacturing.
-              </p>
-
-              <div className="space-y-3 pt-2">
-                <div className="flex items-center gap-3 text-sm">
-                  <div className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
-                    ✓
-                  </div>
-                  <span>Laser-cut edge banding that never peels off</span>
-                </div>
-                <div className="flex items-center gap-3 text-sm">
-                  <div className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
-                    ✓
-                  </div>
-                  <span>Rigorous 146-point quality checklist before dispatch</span>
-                </div>
-                <div className="flex items-center gap-3 text-sm">
-                  <div className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
-                    ✓
-                  </div>
-                  <span>Dedicated project manager tracking daily site progress</span>
-                </div>
-              </div>
-
-              <div className="pt-4">
-                <Link
-                  to="/why-us"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-xl text-xs transition shadow-lg"
-                >
-                  <span>Read Full Warranty & SLA Policy</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
-
-            <div className="lg:col-span-7 bg-slate-950/60 p-6 rounded-2xl border border-slate-700 overflow-x-auto">
-              <table className="w-full text-left text-xs">
-                <thead>
-                  <tr className="border-b border-slate-700 text-slate-400 uppercase tracking-wider">
-                    <th className="py-3 px-3">Parameters</th>
-                    <th className="py-3 px-3 text-rose-400 font-bold">FourCube Decor</th>
-                    <th className="py-3 px-3">Local Carpenters</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-800 text-slate-300">
-                  <tr>
-                    <td className="py-3.5 px-3 font-semibold">Delivery Timeline</td>
-                    <td className="py-3.5 px-3 text-emerald-400 font-bold">Guaranteed 45 Days</td>
-                    <td className="py-3.5 px-3 text-slate-400">90-180 Days (Unpredictable)</td>
-                  </tr>
-                  <tr>
-                    <td className="py-3.5 px-3 font-semibold">Pricing Guarantee</td>
-                    <td className="py-3.5 px-3 text-emerald-400 font-bold">100% Fixed (Zero Hidden)</td>
-                    <td className="py-3.5 px-3 text-slate-400">Escalates by 25-40%</td>
-                  </tr>
-                  <tr>
-                    <td className="py-3.5 px-3 font-semibold">Warranty</td>
-                    <td className="py-3.5 px-3 text-emerald-400 font-bold">10-Year Flat Warranty</td>
-                    <td className="py-3.5 px-3 text-slate-400">No official warranty</td>
-                  </tr>
-                  <tr>
-                    <td className="py-3.5 px-3 font-semibold">Hardware Brand</td>
-                    <td className="py-3.5 px-3 text-emerald-400 font-bold">Certified Blum / Hettich</td>
-                    <td className="py-3.5 px-3 text-slate-400">Mixed / Unverified</td>
-                  </tr>
-                  <tr>
-                    <td className="py-3.5 px-3 font-semibold">3D Visualization</td>
-                    <td className="py-3.5 px-3 text-emerald-400 font-bold">Interactive 3D Renders</td>
-                    <td className="py-3.5 px-3 text-slate-400">Rough hand drawings</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. CUSTOMER REVIEWS */}
+      {/* 8. CUSTOMER REVIEWS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <span className="text-xs font-bold uppercase tracking-wider text-rose-600">
-            Real Stories
+            Verified Reviews
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-heading mt-1">
-            Loved by Over 1,500+ Happy Homeowners
+            Loved by Over 1,500+ Happy Clients
           </h2>
-          <p className="text-slate-600 text-sm mt-2">
-            See how FourCube Decor made their interior journeys peaceful and seamless.
+          <p className="text-slate-600 text-xs mt-2">
+            Real feedback from residential flat owners and retail store founders.
           </p>
         </div>
 
@@ -656,7 +698,7 @@ export default function Home({ onOpenConsultation }) {
         </div>
       </section>
 
-      {/* 8. FAQ SECTION */}
+      {/* 9. FAQ SECTION */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
           <span className="text-xs font-bold uppercase tracking-wider text-rose-600">
