@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { 
   Phone, 
   Mail, 
@@ -11,14 +11,14 @@ import {
 } from 'lucide-react';
 import { navigationOfferings, companyContact } from '../data/interiorData';
 import { southDelhiLocations } from '../data/locationsData';
-import { seoFooterTabs } from '../data/seoFooterData';
+import { footerServiceLinks } from '../data/seoFooterData';
 import { InstagramIcon, FacebookIcon, LinkedinIcon, YoutubeIcon } from './SocialIcons';
 import logoImg from '../assets/forhomedecor.png';
 
 export default function Footer({ onOpenConsultation }) {
   const [emailSub, setEmailSub] = useState('');
   const [subscribed, setSubscribed] = useState(false);
-  const [activeSeoTab, setActiveSeoTab] = useState('interior-design');
+  const location = useLocation();
 
   const handleSubscribe = (e) => {
     e.preventDefault();
@@ -30,12 +30,12 @@ export default function Footer({ onOpenConsultation }) {
 
   return (
     <footer className="bg-slate-950 text-slate-300 pt-16 pb-24 md:pb-12 border-t border-slate-800">
-      {/* 1. Popular Locality & Services SEO Directory (Tabbed Interface at the very top of Footer) */}
+      {/* 1. Popular Services & Category Direct Links (Matching User's Second Image) */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 pb-12 border-b border-slate-800/80 space-y-5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
             <span className="text-xs font-bold uppercase tracking-wider text-rose-500 font-heading">
-              Popular Services & Locality Directory
+              Popular Services & Offerings
             </span>
             <p className="text-xs text-slate-400 mt-0.5">
               Explore German-precision interior design & decor solutions across Delhi NCR, South Delhi, Noida, Ghaziabad & Gurugram.
@@ -50,52 +50,28 @@ export default function Footer({ onOpenConsultation }) {
           </Link>
         </div>
 
-        {/* Category Tabs (Active: White background with dark text, Inactive: Dark with border - identical to user screenshot) */}
+        {/* Category Buttons directly linked to Navbar pages */}
         <div className="flex flex-wrap gap-2 sm:gap-2.5 items-center pt-1">
-          {seoFooterTabs.map((tab) => {
-            const isActive = activeSeoTab === tab.id;
+          {footerServiceLinks.map((item) => {
+            const isActive = location.pathname === item.path;
             return (
-              <button
-                key={tab.id}
-                type="button"
-                onClick={() => setActiveSeoTab(tab.id)}
+              <Link
+                key={item.id}
+                to={item.path}
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
                 className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-150 cursor-pointer ${
                   isActive
                     ? 'bg-white text-slate-900 shadow-md font-bold'
-                    : 'bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-700/80 hover:border-slate-500'
+                    : 'bg-slate-900/60 hover:bg-white hover:text-slate-900 text-slate-300 border border-slate-700/80 hover:border-white'
                 }`}
               >
-                {tab.title}
-              </button>
+                {item.title}
+              </Link>
             );
           })}
         </div>
-
-        {/* Keywords list separated with pipes "|" (Exact format as in screenshot) */}
-        {(() => {
-          const currentTab = seoFooterTabs.find((t) => t.id === activeSeoTab) || seoFooterTabs[0];
-          return (
-            <div className="text-xs sm:text-sm text-slate-400 leading-relaxed sm:leading-loose pt-2">
-              {currentTab.keywords.map((item, index) => (
-                <React.Fragment key={index}>
-                  <Link
-                    to={item.link}
-                    onClick={() => {
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                    className="hover:text-rose-400 hover:underline transition-colors"
-                    title={item.service}
-                  >
-                    {item.text}
-                  </Link>
-                  {index < currentTab.keywords.length - 1 && (
-                    <span className="text-slate-600 select-none mx-2 font-light">|</span>
-                  )}
-                </React.Fragment>
-              ))}
-            </div>
-          );
-        })()}
       </div>
 
       {/* Main Footer Content */}
