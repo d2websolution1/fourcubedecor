@@ -118,15 +118,16 @@ export default function FloatingActions({ onOpenConsultation }) {
         <button
           onClick={() => setChatOpen(!chatOpen)}
           title="Chat on WhatsApp"
-          className="w-14 h-14 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-xl shadow-emerald-500/40 hover:bg-emerald-600 hover:scale-110 transition-all relative group animate-pulse-subtle"
+          className="w-14 h-14 rounded-full bg-gradient-to-tr from-emerald-600 to-emerald-400 text-white flex items-center justify-center shadow-2xl shadow-emerald-500/50 hover:scale-110 active:scale-95 transition-all relative group cursor-pointer"
           aria-label="WhatsApp Chat"
         >
-          <MessageCircle className="w-7 h-7" />
-          <span className="absolute -top-1 -right-1 w-4 h-4 bg-rose-500 text-white rounded-full text-[10px] font-bold flex items-center justify-center border-2 border-white">
+          <span className="absolute -inset-1 rounded-full bg-emerald-500/40 animate-ping pointer-events-none"></span>
+          <MessageCircle className="w-7 h-7 relative z-10" />
+          <span className="absolute -top-1 -right-1 w-4 h-4 bg-rose-500 text-white rounded-full text-[10px] font-bold flex items-center justify-center border-2 border-white z-20">
             1
           </span>
-          <span className="absolute right-16 whitespace-nowrap px-3 py-1 bg-emerald-700 text-white text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity shadow-md pointer-events-none">
-            Chat on WhatsApp
+          <span className="absolute right-16 whitespace-nowrap px-3 py-1.5 bg-emerald-800 text-white text-xs font-bold rounded-xl opacity-0 group-hover:opacity-100 transition-opacity shadow-lg pointer-events-none z-20">
+            💬 Chat on WhatsApp
           </span>
         </button>
       </div>

@@ -26,6 +26,15 @@ export default function Contact() {
     e.preventDefault();
     if (!contactForm.name || !contactForm.phone) return;
     setSubmitted(true);
+
+    const text = `Hi FourCube Decor, I submitted an enquiry on your website!\n\n📋 *Enquiry Details:*\n• *Name:* ${contactForm.name}\n• *Phone:* +91 ${contactForm.phone}\n• *Email:* ${contactForm.email || 'N/A'}\n• *City:* ${contactForm.city}\n• *Service:* ${contactForm.service}\n• *Message:* ${contactForm.message || 'Please contact me for consultation.'}`;
+    const waUrl = `https://wa.me/${companyContact.whatsappRaw}?text=${encodeURIComponent(text)}`;
+    try {
+      const win = window.open(waUrl, '_blank', 'noopener,noreferrer');
+      if (!win) window.location.href = waUrl;
+    } catch {
+      window.location.href = waUrl;
+    }
   };
 
   const studios = [

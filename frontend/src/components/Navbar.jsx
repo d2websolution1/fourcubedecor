@@ -454,9 +454,9 @@ export default function Navbar({ onOpenConsultation }) {
           <div className="hidden lg:flex items-center gap-3 ml-6 xl:ml-10">
             <button
               onClick={onOpenConsultation}
-              className="inline-flex items-center gap-2 px-6 py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-semibold text-xs rounded-xl shadow-md shadow-rose-600/25 transition hover:shadow-lg hover:shadow-rose-600/35 transform active:scale-95"
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-rose-600 via-rose-700 to-amber-600 hover:from-rose-700 hover:to-amber-700 text-white font-bold text-xs rounded-xl shadow-md shadow-rose-600/30 hover:shadow-xl hover:shadow-rose-600/45 transform active:scale-95 transition-all duration-200 glow-btn cursor-pointer group"
             >
-              <Sparkles className="w-3.5 h-3.5" />
+              <Sparkles className="w-3.5 h-3.5 text-amber-300 group-hover:rotate-45 transition-transform duration-300" />
               <span>Book Free Consultation</span>
             </button>
           </div>
@@ -465,10 +465,10 @@ export default function Navbar({ onOpenConsultation }) {
           <div className="flex items-center gap-2 lg:hidden">
             <button
               onClick={onOpenConsultation}
-              className="px-3 py-1.5 bg-rose-600 text-white font-medium text-xs rounded-lg flex items-center gap-1 shadow-sm"
+              className="px-3.5 py-1.5 bg-gradient-to-r from-rose-600 to-amber-600 text-white font-bold text-xs rounded-lg flex items-center gap-1 shadow-sm active:scale-95 transition-all"
             >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Consult</span>
+              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+              <span>Free 3D Plan</span>
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

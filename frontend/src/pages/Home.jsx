@@ -46,6 +46,15 @@ export default function Home({ onOpenConsultation }) {
     e.preventDefault();
     if (!heroForm.name || !heroForm.phone) return;
     setHeroSubmitted(true);
+
+    const text = `Hi FourCube Decor, I want to book a free 3D design consultation!\n\n📋 *My Details:*\n• *Name:* ${heroForm.name}\n• *Phone:* +91 ${heroForm.phone}\n• *City:* ${heroForm.city}\n• *Project Type:* ${heroForm.projectType}\n\nPlease share design layout options & cost quotation.`;
+    const waUrl = `https://wa.me/${companyContact.whatsappRaw}?text=${encodeURIComponent(text)}`;
+    try {
+      const win = window.open(waUrl, '_blank', 'noopener,noreferrer');
+      if (!win) window.location.href = waUrl;
+    } catch {
+      window.location.href = waUrl;
+    }
   };
 
   const filteredGallery = galleryFilter === 'all' 
@@ -254,9 +263,10 @@ export default function Home({ onOpenConsultation }) {
 
                     <button
                       type="submit"
-                      className="w-full py-3.5 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl text-sm transition shadow-lg shadow-rose-600/30 flex items-center justify-center gap-2"
+                      className="w-full py-4 bg-gradient-to-r from-rose-600 via-rose-700 to-amber-600 hover:from-rose-700 hover:to-amber-700 text-white font-bold rounded-xl text-sm transition shadow-lg shadow-rose-600/35 hover:shadow-xl hover:shadow-rose-600/45 flex items-center justify-center gap-2 transform active:scale-95 cursor-pointer glow-btn"
                     >
-                      <span>Book Free Consultation</span>
+                      <Sparkles className="w-4 h-4 text-amber-300" />
+                      <span>Book Free Consultation & Connect on WhatsApp</span>
                       <ArrowRight className="w-4 h-4" />
                     </button>
 
