@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import FloatingActions from './components/FloatingActions';
-import MobileBottomBar from './components/MobileBottomBar';
 import ConsultationModal from './components/ConsultationModal';
 
 // Pages
@@ -14,6 +13,10 @@ import CategoryDetail from './pages/CategoryDetail';
 import Guides from './pages/Guides';
 import WhyUs from './pages/WhyUs';
 import Contact from './pages/Contact';
+
+// Location-Based Interior Designer Pages (South Delhi)
+import LocationInteriorPage from './pages/LocationInteriorPage';
+import CitiesHub from './pages/CitiesHub';
 
 // New Commercial Decor Pages
 import Commercial from './pages/Commercial';
@@ -48,22 +51,36 @@ export default function App() {
             <Route path="/about" element={<About onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
             <Route path="/gallery" element={<Gallery onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
             <Route path="/category/:id" element={<CategoryDetail onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
-            
+
             {/* Commercial Decor Routes */}
             <Route path="/commercial" element={<Commercial onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
             <Route path="/commercial/mall-decor" element={<MallDecor onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
             <Route path="/mall-decor" element={<MallDecor onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
-            
+
             <Route path="/commercial/office-decor" element={<OfficeDecor onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
             <Route path="/office-decor" element={<OfficeDecor onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
-            
+
             <Route path="/commercial/jewellery-shop-decor" element={<JewelleryDecor onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
             <Route path="/jewellery-decor" element={<JewelleryDecor onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
-            
+
             <Route path="/commercial/shop-decor" element={<ShopDecor onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
             <Route path="/shop-decor" element={<ShopDecor onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
 
             <Route path="/calculator" element={<Navigate to="/commercial" replace />} />
+
+            {/* Location-Based Interior Designer Routes (South Delhi & Cities Hub) */}
+            <Route path="/cities" element={<CitiesHub onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            <Route path="/cities/interior-designers-:slug" element={<LocationInteriorPage onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            <Route path="/interior-designers-:slug" element={<LocationInteriorPage onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+
+            {/* Direct Named Locality Routes for Saket, Hauz Khas, GK, Vasant Kunj, South Ext, Mehrauli, Lajpat Nagar */}
+            <Route path="/interior-designers-saket" element={<LocationInteriorPage locationSlug="saket" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            <Route path="/interior-designers-hauz-khas" element={<LocationInteriorPage locationSlug="hauz-khas" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            <Route path="/interior-designers-greater-kailash" element={<LocationInteriorPage locationSlug="greater-kailash" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            <Route path="/interior-designers-vasant-kunj" element={<LocationInteriorPage locationSlug="vasant-kunj" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            <Route path="/interior-designers-south-extension" element={<LocationInteriorPage locationSlug="south-extension" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            <Route path="/interior-designers-mehrauli" element={<LocationInteriorPage locationSlug="mehrauli" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            <Route path="/interior-designers-lajpat-nagar" element={<LocationInteriorPage locationSlug="lajpat-nagar" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
 
             <Route path="/guides" element={<Guides onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
             <Route path="/why-us" element={<WhyUs onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
@@ -75,16 +92,13 @@ export default function App() {
         {/* Footer */}
         <Footer onOpenConsultation={() => handleOpenConsultation()} />
 
-        {/* Global Floating Actions (WhatsApp Chat & Call button) */}
+        {/* Global Floating Actions (WhatsApp Chat & Call button - Hidden on mobile for clutter-free scrolling) */}
         <FloatingActions onOpenConsultation={() => handleOpenConsultation()} />
 
-        {/* Mobile Fixed Bottom Navigation Bar */}
-        <MobileBottomBar onOpenConsultation={() => handleOpenConsultation()} />
-
         {/* Consultation Modal Triggered From Any CTA */}
-        <ConsultationModal 
-          isOpen={consultationModalOpen} 
-          onClose={handleCloseConsultation} 
+        <ConsultationModal
+          isOpen={consultationModalOpen}
+          onClose={handleCloseConsultation}
           defaultService={activeConsultationService}
         />
       </div>

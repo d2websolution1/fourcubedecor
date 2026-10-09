@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { X, CheckCircle, ShieldCheck, Clock, Sparkles, Phone, MessageSquare } from 'lucide-react';
+import logoImg from '../assets/forhomedecor.png';
 
 export default function ConsultationModal({ isOpen, onClose, defaultService = '' }) {
   const [formData, setFormData] = useState({
@@ -45,8 +46,13 @@ export default function ConsultationModal({ isOpen, onClose, defaultService = ''
             <X className="w-5 h-5" />
           </button>
           
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 text-xs font-semibold tracking-wide uppercase mb-2">
-            <Sparkles className="w-3.5 h-3.5 text-amber-300" /> Free Design Consultation
+          <div className="flex items-center gap-3 mb-2">
+            <div className="bg-white p-1 rounded-lg shadow-sm">
+              <img src={logoImg} alt="FourCube Decor" className="h-8 w-auto object-contain" />
+            </div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 text-xs font-semibold tracking-wide uppercase">
+              <Sparkles className="w-3.5 h-3.5 text-amber-300" /> Free Design Consultation
+            </div>
           </div>
           <h3 className="text-2xl font-bold font-heading">Book Your Free 3D Design Session</h3>
           <p className="text-rose-100 text-sm mt-1">

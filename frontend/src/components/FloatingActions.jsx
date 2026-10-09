@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { MessageCircle, Phone, X, Send, Sparkles, ShieldCheck } from 'lucide-react';
 import { companyContact } from '../data/interiorData';
+import logoImg from '../assets/forhomedecor.png';
 
 export default function FloatingActions({ onOpenConsultation }) {
   const [chatOpen, setChatOpen] = useState(false);
@@ -27,7 +28,7 @@ export default function FloatingActions({ onOpenConsultation }) {
   };
 
   return (
-    <div className="fixed bottom-20 md:bottom-6 right-5 z-40 flex flex-col items-end gap-3 pointer-events-none">
+    <div className="hidden md:flex fixed bottom-6 right-5 z-40 flex-col items-end gap-3 pointer-events-none">
       {/* WhatsApp Chat Popup Box */}
       {chatOpen && (
         <div className="pointer-events-auto w-80 sm:w-96 bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden animate-fade-in mb-2">
@@ -35,8 +36,8 @@ export default function FloatingActions({ onOpenConsultation }) {
           <div className="bg-emerald-600 p-4 text-white flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="relative">
-                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center font-bold text-white">
-                  4C
+                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden p-1 shadow">
+                  <img src={logoImg} alt="FourCube Decor" className="w-full h-full object-contain" />
                 </div>
                 <span className="w-3 h-3 bg-emerald-400 border-2 border-white rounded-full absolute bottom-0 right-0"></span>
               </div>

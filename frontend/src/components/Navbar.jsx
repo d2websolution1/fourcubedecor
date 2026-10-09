@@ -13,27 +13,34 @@ import {
   Building2,
   Briefcase,
   Gem,
-  ShoppingBag
+  ShoppingBag,
+  MapPin
 } from 'lucide-react';
 import { navigationOfferings, commercialOfferings, companyContact } from '../data/interiorData';
+import { southDelhiLocations } from '../data/locationsData';
 import CategoryIcon from './CategoryIcon';
+import logoImg from '../assets/forhomedecor.png';
 
 export default function Navbar({ onOpenConsultation }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [offeringsDropdownOpen, setOfferingsDropdownOpen] = useState(false);
   const [commercialDropdownOpen, setCommercialDropdownOpen] = useState(false);
+  const [citiesDropdownOpen, setCitiesDropdownOpen] = useState(false);
   const [mobileOfferingsOpen, setMobileOfferingsOpen] = useState(false);
   const [mobileCommercialOpen, setMobileCommercialOpen] = useState(false);
+  const [mobileCitiesOpen, setMobileCitiesOpen] = useState(false);
   const location = useLocation();
 
   const offeringsTimeoutRef = useRef(null);
   const commercialTimeoutRef = useRef(null);
+  const citiesTimeoutRef = useRef(null);
 
   // Close menus on route change
   useEffect(() => {
     setMobileMenuOpen(false);
     setOfferingsDropdownOpen(false);
     setCommercialDropdownOpen(false);
+    setCitiesDropdownOpen(false);
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
@@ -56,6 +63,17 @@ export default function Navbar({ onOpenConsultation }) {
   const handleCommercialMouseLeave = () => {
     commercialTimeoutRef.current = setTimeout(() => {
       setCommercialDropdownOpen(false);
+    }, 200);
+  };
+
+  const handleCitiesMouseEnter = () => {
+    if (citiesTimeoutRef.current) clearTimeout(citiesTimeoutRef.current);
+    setCitiesDropdownOpen(true);
+  };
+
+  const handleCitiesMouseLeave = () => {
+    citiesTimeoutRef.current = setTimeout(() => {
+      setCitiesDropdownOpen(false);
     }, 200);
   };
 
@@ -115,22 +133,12 @@ export default function Navbar({ onOpenConsultation }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-tr from-rose-600 to-amber-500 flex items-center justify-center text-white shadow-md shadow-rose-600/20 group-hover:scale-105 transition">
-              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                <line x1="12" y1="22.08" x2="12" y2="12"></line>
-              </svg>
-            </div>
-            <div>
-              <span className="text-2xl font-black tracking-tight text-slate-900 font-heading">
-                Four<span className="text-rose-600">Cube</span>
-              </span>
-              <span className="block text-[10px] uppercase font-bold tracking-widest text-slate-400 -mt-1">
-                Decor & Interiors
-              </span>
-            </div>
+          <Link to="/" className="flex items-center gap-3 group py-1">
+            <img 
+              src={logoImg} 
+              alt="FourCube Decor" 
+              className="h-14 sm:h-16 w-auto object-contain transition-transform duration-200 group-hover:scale-105" 
+            />
           </Link>
 
           {/* Desktop Nav Links */}
@@ -329,6 +337,91 @@ export default function Navbar({ onOpenConsultation }) {
               )}
             </div>
 
+            {/* 3. CITIES & SOUTH DELHI LOCATIONS DROPDOWN (Matching HomeLane reference) */}
+            <div 
+              className="relative"
+              onMouseEnter={handleCitiesMouseEnter}
+              onMouseLeave={handleCitiesMouseLeave}
+            >
+              <Link
+                to="/cities"
+                className={`inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold rounded-lg transition ${
+                  citiesDropdownOpen || location.pathname.startsWith('/cities') || location.pathname.startsWith('/interior-designers-')
+                    ? 'text-rose-600 bg-rose-50'
+                    : 'text-slate-700 hover:text-rose-600 hover:bg-slate-50'
+                }`}
+              >
+                <span>Cities</span>
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${citiesDropdownOpen ? 'rotate-180 text-rose-600' : 'text-slate-400'}`} />
+              </Link>
+
+              {citiesDropdownOpen && (
+                <div className="absolute top-full left-0 w-[560px] bg-white rounded-2xl shadow-mega border border-slate-100 p-5 animate-fade-in z-50">
+                  <div className="pb-3 border-b border-slate-100 flex items-center justify-between">
+                    <div>
+                      <div className="flex items-center gap-1.5">
+                        <MapPin className="w-4 h-4 text-rose-600" />
+                        <h4 className="text-sm font-bold text-slate-900 font-heading">
+                          South Delhi Localities & Experience Studios
+                        </h4>
+                      </div>
+                      <p className="text-[11px] text-slate-500 mt-0.5">
+                        Guaranteed 45-day move-in & 10-year warranty in South Delhi
+                      </p>
+                    </div>
+                    <Link
+                      to="/cities"
+                      className="text-xs font-bold text-rose-600 hover:text-rose-700 flex items-center gap-1"
+                    >
+                      All Locations <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+
+                  {/* 2-Column Grid of South Delhi Localities */}
+                  <div className="grid grid-cols-2 gap-2 pt-3">
+                    {southDelhiLocations.map((loc) => (
+                      <Link
+                        key={loc.slug}
+                        to={`/interior-designers-${loc.slug}`}
+                        className="group flex items-start gap-2.5 p-2 rounded-xl hover:bg-rose-50/80 transition border border-transparent hover:border-rose-100"
+                      >
+                        <div className="w-8 h-8 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-rose-600 group-hover:text-white transition">
+                          <MapPin className="w-4 h-4" />
+                        </div>
+                        <div className="min-w-0">
+                          <div className="text-xs font-bold text-slate-800 group-hover:text-rose-600 transition flex items-center gap-1">
+                            <span>{loc.name}</span>
+                            <span className="text-[9px] px-1.5 py-0.2 bg-slate-100 text-slate-600 rounded font-normal">
+                              {loc.pincode}
+                            </span>
+                          </div>
+                          <p className="text-[10px] text-slate-500 truncate mt-0.5">
+                            {loc.popularSocieties[0]}
+                          </p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+
+                  {/* Bottom Promo bar */}
+                  <div className="mt-3 pt-3 border-t border-slate-100 bg-slate-50 -mx-5 -mb-5 p-3 rounded-b-2xl flex items-center justify-between">
+                    <span className="text-[11px] text-slate-600 font-medium">
+                      Need doorstep laser measurement in South Delhi?
+                    </span>
+                    <button
+                      onClick={() => {
+                        setCitiesDropdownOpen(false);
+                        onOpenConsultation('South Delhi Site Visit');
+                      }}
+                      className="text-xs font-bold text-rose-600 hover:text-rose-700 bg-rose-50 px-3 py-1 rounded-lg border border-rose-200"
+                    >
+                      Book Free Site Visit
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+
             <Link
               to="/guides"
               className={`px-3 py-2 text-sm font-semibold rounded-lg transition ${
@@ -348,15 +441,6 @@ export default function Navbar({ onOpenConsultation }) {
             </Link>
 
             <Link
-              to="/why-us"
-              className={`px-3 py-2 text-sm font-semibold rounded-lg transition ${
-                location.pathname === '/why-us' ? 'text-rose-600 bg-rose-50' : 'text-slate-700 hover:text-rose-600 hover:bg-slate-50'
-              }`}
-            >
-              Why Us
-            </Link>
-
-            <Link
               to="/contact"
               className={`px-3 py-2 text-sm font-semibold rounded-lg transition ${
                 location.pathname === '/contact' ? 'text-rose-600 bg-rose-50' : 'text-slate-700 hover:text-rose-600 hover:bg-slate-50'
@@ -366,19 +450,11 @@ export default function Navbar({ onOpenConsultation }) {
             </Link>
           </nav>
 
-          {/* Action CTAs */}
-          <div className="hidden lg:flex items-center gap-3">
-            <a
-              href={`tel:${companyContact.phoneRaw}`}
-              className="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-700 hover:text-rose-600 hover:border-rose-200 hover:bg-rose-50/50 font-semibold text-xs transition"
-            >
-              <Phone className="w-3.5 h-3.5 text-rose-600" />
-              <span>Call Now</span>
-            </a>
-
+          {/* Action CTAs with generous spacing from Contact link */}
+          <div className="hidden lg:flex items-center gap-3 ml-6 xl:ml-10">
             <button
               onClick={onOpenConsultation}
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-semibold text-xs rounded-xl shadow-md shadow-rose-600/25 transition hover:shadow-lg hover:shadow-rose-600/35 transform active:scale-95"
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-semibold text-xs rounded-xl shadow-md shadow-rose-600/25 transition hover:shadow-lg hover:shadow-rose-600/35 transform active:scale-95"
             >
               <Sparkles className="w-3.5 h-3.5" />
               <span>Book Free Consultation</span>
@@ -415,6 +491,47 @@ export default function Navbar({ onOpenConsultation }) {
             >
               Home
             </Link>
+
+            {/* Mobile Collapsible Cities & South Delhi Locations */}
+            <div>
+              <button
+                onClick={() => setMobileCitiesOpen(!mobileCitiesOpen)}
+                className="w-full flex items-center justify-between px-3 py-2 rounded-lg font-bold text-slate-800 hover:bg-rose-50 hover:text-rose-600"
+              >
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-rose-600" />
+                  <span>Cities & Locations (South Delhi)</span>
+                </div>
+                <ChevronDown className={`w-4 h-4 transition-transform ${mobileCitiesOpen ? 'rotate-180 text-rose-600' : ''}`} />
+              </button>
+
+              {mobileCitiesOpen && (
+                <div className="pl-4 pr-2 py-2 space-y-1 bg-slate-50 rounded-xl my-1">
+                  {southDelhiLocations.map((loc) => (
+                    <Link
+                      key={loc.slug}
+                      to={`/interior-designers-${loc.slug}`}
+                      className="flex items-center justify-between p-2 rounded-lg hover:bg-white text-slate-700 text-xs font-semibold"
+                    >
+                      <div className="flex items-center gap-2">
+                        <MapPin className="w-3.5 h-3.5 text-rose-500" />
+                        <span>Interior Designers in {loc.name}</span>
+                      </div>
+                      <span className="text-[10px] text-slate-500 font-normal">
+                        {loc.pincode}
+                      </span>
+                    </Link>
+                  ))}
+                  <Link
+                    to="/cities"
+                    className="flex items-center gap-2 p-2 rounded-lg bg-rose-100/60 text-rose-700 text-xs font-bold mt-1"
+                  >
+                    <span>View All South Delhi Locations</span>
+                    <ArrowRight className="w-3.5 h-3.5 ml-auto" />
+                  </Link>
+                </div>
+              )}
+            </div>
 
             {/* Mobile Collapsible Commercial Decor */}
             <div>
@@ -502,13 +619,6 @@ export default function Navbar({ onOpenConsultation }) {
               className="block px-3 py-2 rounded-lg font-bold text-slate-800 hover:bg-rose-50 hover:text-rose-600"
             >
               About Us
-            </Link>
-
-            <Link
-              to="/why-us"
-              className="block px-3 py-2 rounded-lg font-bold text-slate-800 hover:bg-rose-50 hover:text-rose-600"
-            >
-              Why Choose FourCube (10-Yr Warranty)
             </Link>
 
             <Link

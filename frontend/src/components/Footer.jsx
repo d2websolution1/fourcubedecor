@@ -11,7 +11,9 @@ import {
   Sparkles
 } from 'lucide-react';
 import { navigationOfferings, companyContact } from '../data/interiorData';
+import { southDelhiLocations } from '../data/locationsData';
 import { InstagramIcon, FacebookIcon, LinkedinIcon, YoutubeIcon } from './SocialIcons';
+import logoImg from '../assets/forhomedecor.png';
 
 export default function Footer({ onOpenConsultation }) {
   const [emailSub, setEmailSub] = useState('');
@@ -70,17 +72,14 @@ export default function Footer({ onOpenConsultation }) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800">
           {/* Brand Info */}
           <div className="lg:col-span-4 space-y-4">
-            <Link to="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-rose-600 flex items-center justify-center text-white shadow-md">
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                  <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                </svg>
+            <Link to="/" className="inline-block group">
+              <div className="bg-white p-2.5 rounded-2xl inline-flex items-center shadow-md transition-transform group-hover:scale-105">
+                <img 
+                  src={logoImg} 
+                  alt="FourCube Decor" 
+                  className="h-14 sm:h-16 w-auto object-contain" 
+                />
               </div>
-              <span className="text-2xl font-black text-white font-heading">
-                Four<span className="text-rose-500">Cube</span> Decor
-              </span>
             </Link>
 
             <p className="text-sm text-slate-400 leading-relaxed">
@@ -252,6 +251,29 @@ export default function Footer({ onOpenConsultation }) {
                 </form>
               )}
             </div>
+          </div>
+        </div>
+
+        {/* Popular Locations in South Delhi (SEO & Locality Directory) */}
+        <div className="py-8 border-b border-slate-800 space-y-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-rose-500 font-heading">
+              Popular Interior Designers in South Delhi:
+            </span>
+            <Link to="/cities" className="text-xs font-semibold text-slate-400 hover:text-white transition">
+              View All Locations →
+            </Link>
+          </div>
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-slate-400">
+            {southDelhiLocations.map((loc) => (
+              <Link
+                key={loc.slug}
+                to={`/interior-designers-${loc.slug}`}
+                className="hover:text-rose-400 transition"
+              >
+                Interior Designers in {loc.name}
+              </Link>
+            ))}
           </div>
         </div>
 
