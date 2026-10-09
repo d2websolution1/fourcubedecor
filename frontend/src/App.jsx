@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import PreFooterCta from './components/PreFooterCta';
 import Footer from './components/Footer';
 import FloatingActions from './components/FloatingActions';
 import ConsultationModal from './components/ConsultationModal';
@@ -88,6 +89,9 @@ export default function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
+
+        {/* Pre-Footer Transform Your Space CTA Section */}
+        <PreFooterCta onOpenConsultation={() => handleOpenConsultation()} />
 
         {/* Footer */}
         <Footer onOpenConsultation={() => handleOpenConsultation()} />
