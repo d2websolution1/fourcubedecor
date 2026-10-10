@@ -64,16 +64,17 @@ export default function Footer({ onOpenConsultation }) {
           </Link>
         </div>
 
-        {/* Category Buttons directly linked to Navbar pages */}
+        {/* Category Buttons directly linked to Navbar pages with auto redirect */}
         <div className="flex flex-wrap gap-2 sm:gap-2.5 items-center pt-1">
           {footerServiceLinks.map((item) => {
             const isActive = activeCategoryId === item.id;
             return (
-              <button
+              <Link
                 key={item.id}
-                type="button"
+                to={item.path}
                 onClick={() => {
                   setActiveCategoryId(item.id);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
                 className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-150 cursor-pointer ${
                   isActive
@@ -82,7 +83,7 @@ export default function Footer({ onOpenConsultation }) {
                 }`}
               >
                 {item.title}
-              </button>
+              </Link>
             );
           })}
         </div>
