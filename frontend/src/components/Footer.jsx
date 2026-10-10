@@ -72,6 +72,37 @@ export default function Footer({ onOpenConsultation }) {
             );
           })}
         </div>
+
+        {/* South Delhi Locality Quick Links */}
+        <div className="pt-4 border-t border-slate-800/80 space-y-2.5">
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-rose-500 font-heading">
+              South Delhi
+            </span>
+          </div>
+
+          <div className="flex flex-wrap gap-2 sm:gap-2.5 items-center">
+            {southDelhiLocations.map((loc) => {
+              const isActive = location.pathname === loc.path;
+              return (
+                <Link
+                  key={loc.slug}
+                  to={loc.path}
+                  onClick={() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className={`px-4 sm:px-5 py-2 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-150 cursor-pointer ${
+                    isActive
+                      ? 'bg-white text-slate-900 shadow-md font-bold'
+                      : 'bg-slate-900/60 hover:bg-white hover:text-slate-900 text-slate-300 border border-slate-700/80 hover:border-white'
+                  }`}
+                >
+                  {loc.name}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
       </div>
 
       {/* Main Footer Content */}
