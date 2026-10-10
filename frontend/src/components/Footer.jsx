@@ -73,13 +73,13 @@ export default function Footer({ onOpenConsultation }) {
           })}
         </div>
 
-        {/* South Delhi Locality Text Links */}
-        <div className="pt-4 border-t border-slate-800/80 space-y-2">
+        {/* South Delhi Locality Text Links (Matching Screenshot Format) */}
+        <div className="pt-4 border-t border-slate-800/80 space-y-2.5">
           <div className="text-xs font-bold uppercase tracking-wider text-rose-500 font-heading">
             South Delhi
           </div>
 
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs sm:text-sm">
+          <div className="text-xs sm:text-sm text-slate-400 leading-relaxed sm:leading-loose">
             {southDelhiLocations.map((loc, idx) => (
               <React.Fragment key={loc.slug}>
                 <Link
@@ -87,14 +87,14 @@ export default function Footer({ onOpenConsultation }) {
                   onClick={() => {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className={`hover:text-white hover:underline transition ${
+                  className={`hover:text-rose-400 hover:underline transition-colors ${
                     location.pathname === loc.path ? 'text-white font-semibold' : 'text-slate-400'
                   }`}
                 >
-                  {loc.name}
+                  interior-design in {loc.name}
                 </Link>
                 {idx < southDelhiLocations.length - 1 && (
-                  <span className="text-slate-600 select-none">•</span>
+                  <span className="text-slate-600 select-none mx-2 sm:mx-2.5 font-light">|</span>
                 )}
               </React.Fragment>
             ))}
