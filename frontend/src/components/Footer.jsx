@@ -20,6 +20,20 @@ export default function Footer({ onOpenConsultation }) {
   const [subscribed, setSubscribed] = useState(false);
   const location = useLocation();
 
+  // Find category matching current URL if any, otherwise default to 'interior-design'
+  const matchedService = footerServiceLinks.find((item) => item.path === location.pathname);
+  const [activeCategoryId, setActiveCategoryId] = useState(matchedService ? matchedService.id : 'interior-design');
+
+  // Keep synced if user navigates between pages
+  React.useEffect(() => {
+    const match = footerServiceLinks.find((item) => item.path === location.pathname);
+    if (match) {
+      setActiveCategoryId(match.id);
+    }
+  }, [location.pathname]);
+
+  const currentCategory = footerServiceLinks.find((item) => item.id === activeCategoryId) || footerServiceLinks[0];
+
   const handleSubscribe = (e) => {
     e.preventDefault();
     if (emailSub) {
@@ -53,13 +67,13 @@ export default function Footer({ onOpenConsultation }) {
         {/* Category Buttons directly linked to Navbar pages */}
         <div className="flex flex-wrap gap-2 sm:gap-2.5 items-center pt-1">
           {footerServiceLinks.map((item) => {
-            const isActive = location.pathname === item.path;
+            const isActive = activeCategoryId === item.id;
             return (
-              <Link
+              <button
                 key={item.id}
-                to={item.path}
+                type="button"
                 onClick={() => {
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  setActiveCategoryId(item.id);
                 }}
                 className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-150 cursor-pointer ${
                   isActive
@@ -68,15 +82,24 @@ export default function Footer({ onOpenConsultation }) {
                 }`}
               >
                 {item.title}
-              </Link>
+              </button>
             );
           })}
         </div>
 
-        {/* South Delhi Locality Text Links (Matching Screenshot Format) */}
+        {/* South Delhi Locality Text Links (Dynamic based on selected category) */}
         <div className="pt-4 border-t border-slate-800/80 space-y-2.5">
-          <div className="text-xs font-bold uppercase tracking-wider text-rose-500 font-heading">
-            South Delhi
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-rose-500 font-heading">
+              South Delhi
+            </span>
+            <Link
+              to={currentCategory.path}
+              className="text-xs text-rose-400 hover:text-white transition flex items-center gap-1"
+            >
+              <span>Explore {currentCategory.title}</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
 
           <div className="text-xs sm:text-sm text-slate-400 leading-relaxed sm:leading-loose">
@@ -87,11 +110,9 @@ export default function Footer({ onOpenConsultation }) {
                   onClick={() => {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className={`hover:text-rose-400 hover:underline transition-colors ${
-                    location.pathname === loc.path ? 'text-white font-semibold' : 'text-slate-400'
-                  }`}
+                  className="hover:text-rose-400 hover:underline transition-colors"
                 >
-                  interior-design in {loc.name}
+                  {currentCategory.prefix} in {loc.name}
                 </Link>
                 {idx < southDelhiLocations.length - 1 && (
                   <span className="text-slate-600 select-none mx-2 sm:mx-2.5 font-light">|</span>
