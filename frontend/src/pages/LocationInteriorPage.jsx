@@ -18,17 +18,28 @@ import {
   Info,
   Play
 } from 'lucide-react';
-import { southDelhiLocations, getLocationBySlug, realDecorVideo } from '../data/locationsData';
+import { southDelhiLocations, getLocationBySlug, getServiceByPath, realDecorVideo } from '../data/locationsData';
+import { 
+  realKitchenImages, 
+  realLivingImages, 
+  realWardrobeImages, 
+  officeDecorData, 
+  jewelleryDecorData, 
+  mallDecorData 
+} from '../data/decorMedia';
 import { companyContact } from '../data/interiorData';
 
-export default function LocationInteriorPage({ onOpenConsultation, locationSlug }) {
-  const { slug } = useParams();
+export default function LocationInteriorPage({ onOpenConsultation, locationSlug, serviceKey }) {
+  const { slug, service } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
 
   // Find location by prop, or slug param, or current location pathname
   const effectiveSlug = locationSlug || slug || location.pathname;
   const locationData = getLocationBySlug(effectiveSlug) || southDelhiLocations[0];
+
+  // Determine current service (e.g. 'interior-design', 'modular-kitchen', 'wardrobes-storage', etc.)
+  const effectiveService = serviceKey || service || getServiceByPath(location.pathname);
 
   const [activeTab, setActiveTab] = useState('all');
   const [activeFaq, setActiveFaq] = useState(null);
@@ -40,6 +51,75 @@ export default function LocationInteriorPage({ onOpenConsultation, locationSlug 
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setActiveFaq(null);
   }, [locationData.slug, location.pathname]);
+
+  const serviceConfigs = {
+    'modular-kitchen': {
+      label: 'Modular Kitchen',
+      heroTag: `#1 Rated German Modular Kitchens in ${locationData.name}`,
+      heroTitle: `Modular Kitchen in`,
+      heroDesc: `German-precision modular kitchens, high-gloss acrylic finishes, seamless quartz counters, and Blum soft-close tandem drawers tailored for ${locationData.name}. 10-year flat warranty with 45-day guaranteed handover.`,
+      heroImage: realKitchenImages[0].image,
+      ctaText: `Book Free Modular Kitchen Session in ${locationData.name}`
+    },
+    'wardrobes-storage': {
+      label: 'Modular Wardrobes & Storage',
+      heroTag: `#1 Rated Floor-to-Ceiling Wardrobes in ${locationData.name}`,
+      heroTitle: `Luxury Modular Wardrobes in`,
+      heroDesc: `Custom sliding, hinged, and walk-in wardrobe designs tailored for ${locationData.name} apartments and builder floors. High-gloss acrylic, HDHMR core and anti-bending aluminum stiffeners.`,
+      heroImage: realWardrobeImages[0].image,
+      ctaText: `Book Free Wardrobe Design in ${locationData.name}`
+    },
+    'living-room-tv': {
+      label: 'Living Room & TV Units',
+      heroTag: `Luxury Fluted & Marble TV Walls in ${locationData.name}`,
+      heroTitle: `Living Room & TV Units in`,
+      heroDesc: `Bookmatched marble TV walls, acoustic fluted oak panelling, and bespoke living room interior styling for homes in ${locationData.name}. Delivered in 45 days.`,
+      heroImage: realLivingImages[1].image,
+      ctaText: `Book Living Room Consultation in ${locationData.name}`
+    },
+    'commercial-office': {
+      label: 'Commercial & Office',
+      heroTag: `Turnkey Office Interior Fitouts in ${locationData.name}`,
+      heroTitle: `Commercial & Office Interiors in`,
+      heroDesc: `Director cabins, boardroom acoustic panelling, and turnkey corporate office fitouts across ${locationData.name} business districts.`,
+      heroImage: officeDecorData[0].image,
+      ctaText: `Book Office Fitout Consultation in ${locationData.name}`
+    },
+    'jewellery-shop': {
+      label: 'Jewellery & Shop Decor',
+      heroTag: `High-Security Retail Boutiques in ${locationData.name}`,
+      heroTitle: `Jewellery & Boutique Shop Decor in`,
+      heroDesc: `High-security tempered glass display counters, 4000K daylight gemstone lighting, and luxury retail showroom design in ${locationData.name}.`,
+      heroImage: jewelleryDecorData[0].image,
+      ctaText: `Book Retail Showroom Consultation in ${locationData.name}`
+    },
+    'exhibition-mall': {
+      label: 'Exhibition & Mall Decor',
+      heroTag: `Mall Showrooms & Brand Kiosks in ${locationData.name}`,
+      heroTitle: `Mall & Exhibition Decor in`,
+      heroDesc: `Turnkey shopping mall flagship showroom fitouts, atrium brand pods, and exhibition stall setups across ${locationData.name}.`,
+      heroImage: mallDecorData[0].image,
+      ctaText: `Book Mall Decor Consultation in ${locationData.name}`
+    },
+    'turnkey-renovation': {
+      label: 'Turnkey Renovation',
+      heroTag: `45-Day Turnkey Home Renovation in ${locationData.name}`,
+      heroTitle: `Turnkey Home Renovation in`,
+      heroDesc: `Complete builder floor and apartment renovation in ${locationData.name}. From civil alterations and German modular woodwork to false ceiling and turnkey handover.`,
+      heroImage: locationData.heroImage,
+      ctaText: `Book Turnkey Renovation Visit in ${locationData.name}`
+    },
+    'interior-design': {
+      label: 'Interior Design',
+      heroTag: `#1 Rated Turnkey Interior Designers in ${locationData.name}`,
+      heroTitle: `Best Interior Designers in`,
+      heroDesc: `${locationData.tagline}. German factory precision woodwork, 100% real on-site executions, and a guaranteed 45-day move-in SLA.`,
+      heroImage: locationData.heroImage,
+      ctaText: `Book Free 3D Design Session in ${locationData.name}`
+    }
+  };
+
+  const activeConfig = serviceConfigs[effectiveService] || serviceConfigs['interior-design'];
 
   const bhkDetails = {
     '1bhk': {
@@ -84,6 +164,12 @@ export default function LocationInteriorPage({ onOpenConsultation, locationSlug 
             <span className="text-slate-400">South Delhi</span>
             <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
             <span className="text-amber-400 font-semibold">{locationData.name}</span>
+            {effectiveService !== 'interior-design' && (
+              <>
+                <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
+                <span className="text-rose-400 font-medium">{activeConfig.label}</span>
+              </>
+            )}
           </div>
           <div className="flex items-center gap-3 text-slate-400">
             <span className="flex items-center gap-1 text-emerald-400 font-medium">
@@ -102,10 +188,11 @@ export default function LocationInteriorPage({ onOpenConsultation, locationSlug 
             </span>
             {southDelhiLocations.map((loc) => {
               const isActive = loc.slug === locationData.slug;
+              const targetUrl = `/${effectiveService}-in-${loc.slug}`;
               return (
                 <Link
                   key={loc.slug}
-                  to={`/interior-designers-${loc.slug}`}
+                  to={targetUrl}
                   className={`px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition shrink-0 ${
                     isActive
                       ? 'bg-rose-600 text-white shadow-md shadow-rose-600/30'
@@ -125,8 +212,8 @@ export default function LocationInteriorPage({ onOpenConsultation, locationSlug 
         {/* Background photo with gradient overlays */}
         <div className="absolute inset-0 z-0">
           <img 
-            src={locationData.heroImage} 
-            alt={`Interior Designers in ${locationData.name}`} 
+            src={activeConfig.heroImage} 
+            alt={`${activeConfig.label} in ${locationData.name}`} 
             className="w-full h-full object-cover object-center opacity-30 scale-105 transition-transform duration-1000"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/90 to-transparent"></div>
@@ -139,15 +226,15 @@ export default function LocationInteriorPage({ onOpenConsultation, locationSlug 
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-600/20 border border-rose-500/30 text-rose-300 text-xs font-bold">
                 <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-                <span>#1 Rated Turnkey Interior Designers in {locationData.name}</span>
+                <span>{activeConfig.heroTag}</span>
               </div>
 
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-heading tracking-tight leading-tight text-white">
-                Best Interior Designers in <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-amber-300 to-rose-200">{locationData.name}</span>
+                {activeConfig.heroTitle} <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-amber-300 to-rose-200">{locationData.name}</span>
               </h1>
 
               <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
-                {locationData.tagline}. German factory precision woodwork, 100% real on-site executions, and a guaranteed 45-day move-in SLA.
+                {activeConfig.heroDesc}
               </p>
 
               {/* Statistics Counters Banner (HomeLane Style: 400+ Projects, 15+ Designers, etc.) */}

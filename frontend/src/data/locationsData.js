@@ -740,15 +740,40 @@ export const southDelhiLocations = [
 
 export const getLocationBySlug = (slugOrPath) => {
   if (!slugOrPath) return null;
-  const cleaned = slugOrPath
+  const raw = slugOrPath.toLowerCase().trim();
+
+  // Try direct match first
+  const direct = southDelhiLocations.find(l => 
+    l.slug === raw || 
+    l.path === raw || 
+    l.path === `/${raw}`
+  );
+  if (direct) return direct;
+
+  // Handle patterns like:
+  // /interior-design-in-saket -> saket
+  // /modular-kitchen-in-saket -> saket
+  // /interior-designers-saket -> saket
+  // /cities/interior-designers-saket -> saket
+  const cleaned = raw
     .replace(/^\/?(cities\/)?/, '')
+    .replace(/^.*-in-/, '')
     .replace(/^interior-designers-/, '')
-    .toLowerCase()
+    .replace(/^\//, '')
     .trim();
+
   return southDelhiLocations.find(l => 
     l.slug === cleaned || 
-    l.slug === slugOrPath || 
-    l.path === slugOrPath || 
-    l.path === `/${slugOrPath}`
+    cleaned.includes(l.slug)
   );
 };
+
+export const getServiceByPath = (path) => {
+  if (!path) return 'interior-design';
+  const match = path.toLowerCase().match(/^\/?([a-z0-9-]+)-in-/);
+  if (match) {
+    return match[1];
+  }
+  return 'interior-design';
+};
+
