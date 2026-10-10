@@ -26,6 +26,13 @@ import OfficeDecor from './pages/OfficeDecor';
 import JewelleryDecor from './pages/JewelleryDecor';
 import ShopDecor from './pages/ShopDecor';
 
+
+// Data for Location & Category Routes
+import { southDelhiLocations } from './data/locationsData';
+import { footerServiceLinks } from './data/seoFooterData';
+
+
+
 export default function App() {
   const [consultationModalOpen, setConsultationModalOpen] = useState(false);
   const [activeConsultationService, setActiveConsultationService] = useState('Full Home Interiors');
@@ -74,33 +81,37 @@ export default function App() {
             <Route path="/cities/interior-designers-:slug" element={<LocationInteriorPage onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
             <Route path="/interior-designers-:slug" element={<LocationInteriorPage onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
 
-            {/* Dynamic Service & Locality Routes (e.g. /interior-design-in-saket, /modular-kitchen-in-saket) */}
-            <Route path="/interior-design-in-:slug" element={<LocationInteriorPage serviceKey="interior-design" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
-            <Route path="/modular-kitchen-in-:slug" element={<LocationInteriorPage serviceKey="modular-kitchen" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
-            <Route path="/wardrobes-storage-in-:slug" element={<LocationInteriorPage serviceKey="wardrobes-storage" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
-            <Route path="/living-room-tv-in-:slug" element={<LocationInteriorPage serviceKey="living-room-tv" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
-            <Route path="/commercial-office-in-:slug" element={<LocationInteriorPage serviceKey="commercial-office" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
-            <Route path="/jewellery-shop-in-:slug" element={<LocationInteriorPage serviceKey="jewellery-shop" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
-            <Route path="/exhibition-mall-in-:slug" element={<LocationInteriorPage serviceKey="exhibition-mall" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
-            <Route path="/turnkey-renovation-in-:slug" element={<LocationInteriorPage serviceKey="turnkey-renovation" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
-
-            {/* Direct Named Interior Design Locality Routes */}
-            <Route path="/interior-design-in-saket" element={<LocationInteriorPage locationSlug="saket" serviceKey="interior-design" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
-            <Route path="/interior-design-in-hauz-khas" element={<LocationInteriorPage locationSlug="hauz-khas" serviceKey="interior-design" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
-            <Route path="/interior-design-in-greater-kailash" element={<LocationInteriorPage locationSlug="greater-kailash" serviceKey="interior-design" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
-            <Route path="/interior-design-in-vasant-kunj" element={<LocationInteriorPage locationSlug="vasant-kunj" serviceKey="interior-design" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
-            <Route path="/interior-design-in-south-extension" element={<LocationInteriorPage locationSlug="south-extension" serviceKey="interior-design" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
-            <Route path="/interior-design-in-mehrauli" element={<LocationInteriorPage locationSlug="mehrauli" serviceKey="interior-design" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
-            <Route path="/interior-design-in-lajpat-nagar" element={<LocationInteriorPage locationSlug="lajpat-nagar" serviceKey="interior-design" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            {/* Dedicated Service x Locality Pages for ALL 8 Categories across all 7 South Delhi Localities */}
+            {footerServiceLinks.flatMap((service) =>
+              southDelhiLocations.map((loc) => (
+                <Route
+                  key={`${service.prefix}-${loc.slug}`}
+                  path={`/${service.prefix}-in-${loc.slug}`}
+                  element={
+                    <LocationInteriorPage
+                      locationSlug={loc.slug}
+                      serviceKey={service.id}
+                      onOpenConsultation={(svc) => handleOpenConsultation(svc)}
+                    />
+                  }
+                />
+              ))
+            )}
 
             {/* Direct Named Locality Routes for Saket, Hauz Khas, GK, Vasant Kunj, South Ext, Mehrauli, Lajpat Nagar */}
-            <Route path="/interior-designers-saket" element={<LocationInteriorPage locationSlug="saket" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
-            <Route path="/interior-designers-hauz-khas" element={<LocationInteriorPage locationSlug="hauz-khas" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
-            <Route path="/interior-designers-greater-kailash" element={<LocationInteriorPage locationSlug="greater-kailash" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
-            <Route path="/interior-designers-vasant-kunj" element={<LocationInteriorPage locationSlug="vasant-kunj" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
-            <Route path="/interior-designers-south-extension" element={<LocationInteriorPage locationSlug="south-extension" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
-            <Route path="/interior-designers-mehrauli" element={<LocationInteriorPage locationSlug="mehrauli" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
-            <Route path="/interior-designers-lajpat-nagar" element={<LocationInteriorPage locationSlug="lajpat-nagar" onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            {southDelhiLocations.map((loc) => (
+              <Route
+                key={`interior-designers-${loc.slug}`}
+                path={`/interior-designers-${loc.slug}`}
+                element={
+                  <LocationInteriorPage
+                    locationSlug={loc.slug}
+                    serviceKey="interior-design"
+                    onOpenConsultation={(svc) => handleOpenConsultation(svc)}
+                  />
+                }
+              />
+            ))}
 
             <Route path="/guides" element={<Guides onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
             <Route path="/why-us" element={<WhyUs onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
