@@ -10,6 +10,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import { companyContact } from '../data/interiorData';
+import { SOUTH_DELHI_LOCATIONS } from '../data/locationsData';
 import { InstagramIcon, FacebookIcon, LinkedinIcon, YoutubeIcon } from '../components/SocialIcons';
 
 export default function Contact() {
@@ -17,7 +18,7 @@ export default function Contact() {
     name: '',
     phone: '',
     email: '',
-    city: 'Gurugram',
+    city: 'Saket',
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
@@ -27,7 +28,7 @@ export default function Contact() {
     if (!contactForm.name || !contactForm.phone) return;
     setSubmitted(true);
 
-    const text = `Hi FourCube Decor, I submitted an enquiry on your website!\n\n📋 *Enquiry Details:*\n• *Name:* ${contactForm.name}\n• *Phone:* +91 ${contactForm.phone}\n• *Email:* ${contactForm.email || 'N/A'}\n• *City:* ${contactForm.city}\n• *Service:* ${contactForm.service}\n• *Message:* ${contactForm.message || 'Please contact me for consultation.'}`;
+    const text = `Hi FourCube Decor, I submitted an enquiry on your website!\n\n📋 *Enquiry Details:*\n• *Name:* ${contactForm.name}\n• *Phone:* +91 ${contactForm.phone}\n• *Email:* ${contactForm.email || 'N/A'}\n• *Location (South Delhi):* ${contactForm.city}\n• *Message:* ${contactForm.message || 'Please contact me for consultation.'}`;
     const waUrl = `https://wa.me/${companyContact.whatsappRaw}?text=${encodeURIComponent(text)}`;
     try {
       const win = window.open(waUrl, '_blank', 'noopener,noreferrer');
@@ -39,20 +40,20 @@ export default function Contact() {
 
   const studios = [
     {
-      city: 'Gurugram (Flagship Experience Studio)',
-      address: 'Level 4, DLF Cyber City, Building 9A, DLF Phase 2, Gurugram, Haryana 122002',
+      city: 'Saket (Flagship Experience Studio)',
+      address: 'Saket District Centre, Near Select CITYWALK, Saket, South Delhi 110017',
       phone: '+91 98765 43210',
       timing: 'Mon - Sun: 10:00 AM - 8:30 PM'
     },
     {
-      city: 'Bengaluru (South Studio)',
-      address: 'Plot 42, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038',
+      city: 'Greater Kailash (GK Luxury Studio)',
+      address: 'M-Block Market, Greater Kailash 2 (GK-2), South Delhi 110048',
       phone: '+91 98765 43211',
       timing: 'Mon - Sun: 10:00 AM - 8:30 PM'
     },
     {
-      city: 'Mumbai (Western Hub)',
-      address: 'Crystal Plaza, New Link Road, Opposite Infinity Mall, Andheri West, Mumbai, MH 400053',
+      city: 'South Extension (Showroom & Design Hub)',
+      address: 'Main Ring Road, South Extension Part 2, South Delhi 110049',
       phone: '+91 98765 43212',
       timing: 'Mon - Sun: 10:00 AM - 8:30 PM'
     }
@@ -251,20 +252,18 @@ export default function Contact() {
 
                   <div>
                     <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1">
-                      City of Residence
+                      Location (South Delhi)
                     </label>
                     <select
                       value={contactForm.city}
                       onChange={(e) => setContactForm({ ...contactForm, city: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-rose-500 text-sm bg-white"
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-rose-500 text-sm bg-white font-medium"
                     >
-                      <option value="Gurugram">Gurugram</option>
-                      <option value="Delhi NCR">Delhi NCR</option>
-                      <option value="Noida">Noida</option>
-                      <option value="Bengaluru">Bengaluru</option>
-                      <option value="Mumbai">Mumbai</option>
-                      <option value="Pune">Pune</option>
-                      <option value="Hyderabad">Hyderabad</option>
+                      {SOUTH_DELHI_LOCATIONS.map((loc) => (
+                        <option key={loc} value={loc}>
+                          {loc}
+                        </option>
+                      ))}
                     </select>
                   </div>
                 </div>

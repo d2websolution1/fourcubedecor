@@ -27,6 +27,7 @@ import {
   companyContact,
   realDecorVideo
 } from '../data/interiorData';
+import { SOUTH_DELHI_LOCATIONS } from '../data/locationsData';
 import { realLivingImages, realBedroomImages, realKitchenImages } from '../data/decorMedia';
 import CategoryIcon from '../components/CategoryIcon';
 
@@ -34,7 +35,7 @@ export default function Home({ onOpenConsultation }) {
   const [heroForm, setHeroForm] = useState({
     name: '',
     phone: '',
-    city: 'Gurugram',
+    city: 'Saket',
     projectType: '3 BHK Residential',
     whatsappUpdates: true,
   });
@@ -212,20 +213,18 @@ export default function Home({ onOpenConsultation }) {
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <label className="block text-[11px] font-bold text-slate-600 uppercase tracking-wider mb-1">
-                          Property City
+                          Property Location
                         </label>
                         <select
                           value={heroForm.city}
                           onChange={(e) => setHeroForm({ ...heroForm, city: e.target.value })}
-                          className="w-full px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-rose-500 text-xs bg-white"
+                          className="w-full px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-rose-500 text-xs bg-white font-medium"
                         >
-                          <option value="Gurugram">Gurugram</option>
-                          <option value="Delhi NCR">Delhi NCR</option>
-                          <option value="Noida">Noida</option>
-                          <option value="Bengaluru">Bengaluru</option>
-                          <option value="Mumbai">Mumbai</option>
-                          <option value="Hyderabad">Hyderabad</option>
-                          <option value="Pune">Pune</option>
+                          {SOUTH_DELHI_LOCATIONS.map((loc) => (
+                            <option key={loc} value={loc}>
+                              {loc}
+                            </option>
+                          ))}
                         </select>
                       </div>
 

@@ -56,7 +56,7 @@ export const footerServiceLinks = [
     title: 'Turnkey Renovation',
     path: '/cities',
     prefix: 'turnkey-renovation',
-    description: 'End-to-end luxury home renovation across Delhi NCR'
+    description: 'End-to-end luxury home renovation across South Delhi'
   }
 ];
 

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { X, CheckCircle, ShieldCheck, Clock, Sparkles, MessageSquare, ArrowRight, ExternalLink } from 'lucide-react';
 import { companyContact } from '../data/interiorData';
+import { SOUTH_DELHI_LOCATIONS } from '../data/locationsData';
 import logoImg from '../assets/forhomedecor.png';
 
 export default function ConsultationModal({ isOpen, onClose, defaultService = '' }) {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    city: 'Delhi NCR',
+    city: 'Saket',
     bhk: '3 BHK',
     service: defaultService || 'Full Home Interiors',
     whatsappUpdates: true,
@@ -180,22 +181,18 @@ export default function ConsultationModal({ isOpen, onClose, defaultService = ''
 
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                    Property City / Area
+                    Property Location (South Delhi)
                   </label>
                   <select
                     value={formData.city}
                     onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-rose-500/30 focus:border-rose-500 text-sm bg-white transition-all shadow-sm"
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-rose-500/30 focus:border-rose-500 text-sm bg-white transition-all shadow-sm font-medium"
                   >
-                    <option value="Delhi NCR">Delhi NCR</option>
-                    <option value="South Delhi">South Delhi</option>
-                    <option value="Gurugram">Gurugram</option>
-                    <option value="Noida">Noida</option>
-                    <option value="Ghaziabad">Ghaziabad</option>
-                    <option value="Faridabad">Faridabad</option>
-                    <option value="Bengaluru">Bengaluru</option>
-                    <option value="Mumbai">Mumbai</option>
-                    <option value="Other">Other City</option>
+                    {SOUTH_DELHI_LOCATIONS.map((loc) => (
+                      <option key={loc} value={loc}>
+                        {loc}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>

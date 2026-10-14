@@ -107,13 +107,13 @@ export default function CitiesHub({ onOpenConsultation }) {
       <section className="bg-slate-900 text-white py-14 text-center">
         <div className="max-w-3xl mx-auto px-4 space-y-4">
           <h2 className="text-2xl sm:text-3xl font-black font-heading">
-            Live in Another Part of Delhi NCR?
+            Live Anywhere Across South Delhi?
           </h2>
           <p className="text-slate-300 text-xs sm:text-sm">
-            We provide doorstep 3D laser consultation across Delhi NCR including Central Delhi, West Delhi, Gurugram, and Noida.
+            We provide doorstep 3D laser consultation across all South Delhi localities: Saket, Hauz Khas, Greater Kailash, Vasant Kunj, South Extension, Mehrauli, and Lajpat Nagar.
           </p>
           <button
-            onClick={() => onOpenConsultation('Delhi NCR Full Home Consultation')}
+            onClick={() => onOpenConsultation('South Delhi Full Home Consultation')}
             className="px-8 py-3.5 bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs rounded-xl transition shadow-lg"
           >
             Book Free Site Measurement

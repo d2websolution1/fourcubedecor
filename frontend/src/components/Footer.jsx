@@ -52,7 +52,7 @@ export default function Footer({ onOpenConsultation }) {
               Popular Services & Offerings
             </span>
             <p className="text-xs text-slate-400 mt-0.5">
-              Explore German-precision interior design & decor solutions across Delhi NCR, South Delhi, Noida, Ghaziabad & Gurugram.
+              Explore German-precision interior design & decor solutions across South Delhi: Saket, Hauz Khas, Greater Kailash, Vasant Kunj, South Extension, Mehrauli & Lajpat Nagar.
             </p>
           </div>
           <Link 

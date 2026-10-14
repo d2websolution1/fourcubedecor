@@ -14,6 +14,16 @@ import {
 
 export { realDecorVideo };
 
+export const SOUTH_DELHI_LOCATIONS = [
+  'Saket',
+  'Hauz Khas',
+  'Greater Kailash',
+  'Vasant Kunj',
+  'South Extension',
+  'Mehrauli',
+  'Lajpat Nagar'
+];
+
 export const southDelhiLocations = [
   {
     slug: 'saket',

@@ -193,7 +193,7 @@ export const processSteps = [
 export const testimonials = [
   {
     name: 'Vikram & Radhika Singhal',
-    location: 'DLF Phase 5, Gurugram',
+    location: 'Greater Kailash, South Delhi',
     bhk: '3 BHK Turnkey Interior',
     rating: 5,
     quote: 'The high-gloss modular kitchen and marble TV unit with fluted wooden louvers are beyond expectation. Finished strictly within 43 days with zero price escalation!',
@@ -201,7 +201,7 @@ export const testimonials = [
   },
   {
     name: 'Karan Mehra (Store Owner)',
-    location: 'South Extension, Delhi',
+    location: 'South Extension, South Delhi',
     bhk: 'Jewellery Showroom Fitout',
     rating: 5,
     quote: 'FourCube Decor designed our diamond jewellery showroom with 4000K lighting and anti-theft tempered counters. The Candere-style wall mouldings make our store look ultra-luxurious.',
@@ -209,7 +209,7 @@ export const testimonials = [
   },
   {
     name: 'Ananya & Sahil Roy',
-    location: 'Whitefield, Bengaluru',
+    location: 'Vasant Kunj, South Delhi',
     bhk: 'Full Wardrobe & Bedroom Suite',
     rating: 5,
     quote: 'The 6-door floor-to-ceiling charcoal wardrobe and the vanity mirror setup solved all our storage worries. The real factory edge-banding is seamless.',
@@ -245,8 +245,8 @@ export const companyContact = {
   phoneRaw: '+919876543210',
   whatsappRaw: '919876543210',
   email: 'contact@fourcubedecor.com',
-  address: 'FourCube Decor Flagship Studio, Level 4, DLF Cyber City, Phase 2, Gurugram, Haryana 122002',
-  secondaryAddress: 'Bengaluru Studio: 100 Feet Road, Indiranagar, Bengaluru, Karnataka 560038',
+  address: 'FourCube Decor Flagship Studio, Saket District Centre, Near Select CITYWALK, Saket, South Delhi 110017',
+  secondaryAddress: 'GK Luxury Studio: M-Block Market, Greater Kailash 2, South Delhi 110048',
   hours: 'Mon - Sun: 10:00 AM - 8:30 PM (Open all 7 days)',
   socialLinks: {
     instagram: 'https://instagram.com/fourcubedecor',
