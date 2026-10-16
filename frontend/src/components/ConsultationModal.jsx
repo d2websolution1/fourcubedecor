@@ -211,7 +211,8 @@ export default function ConsultationModal({ isOpen, onClose, defaultService = ''
                     <option value="2 BHK">2 BHK Apartment / Floor</option>
                     <option value="3 BHK">3 BHK Luxury Home</option>
                     <option value="4+ BHK / Villa">4+ BHK / Villa</option>
-                    <option value="Builder Floor">Builder Floor</option>
+                    <option value="Exhibition Stall (18-100 sqm)">Exhibition Stall (18-100 sqm)</option>
+                    <option value="Exhibition Stall (100+ sqm)">Exhibition Stall (100+ sqm)</option>
                     <option value="Commercial Office">Commercial Office</option>
                     <option value="Jewellery / Retail Shop">Jewellery / Retail Shop</option>
                     <option value="Mall / Showroom">Mall / Showroom</option>
@@ -227,6 +228,13 @@ export default function ConsultationModal({ isOpen, onClose, defaultService = ''
                     onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-rose-500/30 focus:border-rose-500 text-sm bg-white transition-all shadow-sm"
                   >
+                    <option value="Custom Booth Design">Custom Exhibition Booth Design</option>
+                    <option value="Modular Booth Design">Modular Booth Design</option>
+                    <option value="Double Storey Booth Design">Double Storey Mezzanine Booth</option>
+                    <option value="Country Pavilion Booth Design">Country Pavilion Booth Design</option>
+                    <option value="Office Interior">Corporate Office Interior</option>
+                    <option value="Portable Booth Design">Portable Booth Design</option>
+                    <option value="Event Management Services">Corporate Event Management & AV</option>
                     <option value="Full Home Interiors">Full Home Interiors (Turnkey)</option>
                     <option value="Modular Kitchen Only">Modular Kitchen Only</option>
                     <option value="Living Room & TV Units">Living Room & TV Units</option>

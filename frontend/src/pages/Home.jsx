@@ -1,34 +1,36 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Sparkles, 
-  Clock, 
-  ShieldCheck, 
-  Award, 
-  ArrowRight, 
-  CheckCircle, 
-  Phone, 
-  MessageCircle, 
-  ChevronRight, 
-  Star, 
+import {
+  Sparkles,
+  Clock,
+  ShieldCheck,
+  Award,
+  ArrowRight,
+  CheckCircle,
+  Phone,
+  MessageCircle,
+  ChevronRight,
+  Star,
   Building2,
   Plus,
   Minus,
   Play
 } from 'lucide-react';
-import { 
-  navigationOfferings, 
+import {
+  navigationOfferings,
   commercialOfferings,
-  galleryItems, 
-  statistics, 
-  processSteps, 
-  testimonials, 
-  faqs, 
+  galleryItems,
+  statistics,
+  processSteps,
+  testimonials,
+  faqs,
   companyContact,
   realDecorVideo
 } from '../data/interiorData';
 import { SOUTH_DELHI_LOCATIONS } from '../data/locationsData';
 import { realLivingImages, realBedroomImages, realKitchenImages } from '../data/decorMedia';
+import { exhibitionServicesData } from '../data/servicesData';
+import HeroSlider from '../components/HeroSlider';
 import CategoryIcon from '../components/CategoryIcon';
 
 export default function Home({ onOpenConsultation }) {
@@ -58,35 +60,112 @@ export default function Home({ onOpenConsultation }) {
     }
   };
 
-  const filteredGallery = galleryFilter === 'all' 
-    ? galleryItems.slice(0, 6) 
+  const filteredGallery = galleryFilter === 'all'
+    ? galleryItems.slice(0, 6)
     : galleryItems.filter(item => item.category.includes(galleryFilter)).slice(0, 6);
 
   return (
     <div className="space-y-20 pb-16">
-      {/* 1. HERO SECTION (100% Real Work + Fast Booking Form) */}
-      <section className="relative bg-gradient-to-b from-rose-50/60 via-white to-slate-50 pt-8 pb-16 lg:py-20 overflow-hidden border-b border-slate-100">
+      {/* 1. HERO SLIDER SECTION (User's second task) */}
+      <HeroSlider onOpenConsultation={(svc) => onOpenConsultation(svc)} />
+
+      {/* 2. EXHIBITION & TRADE SHOW SERVICES SHOWCASE (All 7 services from reference dazlevents) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-orange-700 text-xs font-bold tracking-wide mb-2">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Turnkey Exhibition & Interior Solutions</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 font-heading">
+              Our Professional Exhibition & Interior Services
+            </h2>
+            <p className="text-slate-600 text-sm mt-1 max-w-2xl">
+              From Pragati Maidan (IECC) and IICC Yashobhoomi to BEC Mumbai, BIEC Bengaluru, and worldwide. Custom booths, modular systems, double storey mezzanines, and corporate staging.
+            </p>
+          </div>
+
+          <Link
+            to="/services"
+            className="inline-flex items-center gap-2 px-5 py-3 bg-slate-900 hover:bg-orange-600 text-white font-bold text-xs rounded-xl transition shadow shrink-0"
+          >
+            <span>View All 7 Services</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
+        {/* 7 Services Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          {exhibitionServicesData.map((svc) => (
+            <div
+              key={svc.id}
+              className="group bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-soft hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
+            >
+              <div>
+                <div className="relative h-48 overflow-hidden bg-slate-900">
+                  <img
+                    src={svc.heroImage}
+                    alt={svc.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+                  <span className="absolute top-2.5 left-2.5 bg-slate-900/90 backdrop-blur-md text-amber-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-slate-700">
+                    {svc.badge}
+                  </span>
+                </div>
+                <div className="p-4 space-y-2">
+                  <h3 className="text-base font-bold text-slate-900 group-hover:text-rose-600 transition font-heading">
+                    {svc.title}
+                  </h3>
+                  <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">
+                    {svc.shortDesc}
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-4 pt-0 flex items-center justify-between border-t border-slate-50 mt-2">
+                <Link
+                  to={`/services/${svc.slug}`}
+                  className="text-xs font-bold text-rose-600 hover:text-rose-700 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform"
+                >
+                  <span>Details</span>
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+                <button
+                  onClick={() => onOpenConsultation(svc.title)}
+                  className="text-[11px] font-bold px-3 py-1.5 bg-slate-100 hover:bg-rose-600 hover:text-white rounded-lg transition"
+                >
+                  Get Quote
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 3. FAST 3D CONSULTATION & COMMITMENT */}
+      <section className="relative bg-gradient-to-b from-rose-50/60 via-white to-slate-50 pt-8 pb-16 lg:py-16 overflow-hidden border-y border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left Hero Pitch */}
+            {/* Left Pitch */}
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-100/80 border border-rose-200 text-rose-700 text-xs font-bold tracking-wide">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>100% Genuine Projects · Residential & Commercial Turnkey</span>
+                <span>Exhibition Stalls · Commercial Retail · Luxury Residential</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.15] font-heading">
-                Step Into Your Dream Space in Just{' '}
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.15] font-heading">
+                Step Into Your Dream Space or Exhibition Booth with{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-amber-600">
-                  45 Days.
+                  Zero Delay.
                 </span>
-              </h1>
+              </h2>
 
-              <p className="text-lg text-slate-600 leading-relaxed max-w-2xl">
-                Personalized modular kitchens, designer wardrobes, luxury jewellery showrooms, and commercial mall fitouts crafted with German machinery and certified 10-year flat warranty.
+              <p className="text-base text-slate-600 leading-relaxed max-w-2xl">
+                Whether you need a flagship trade show booth at Pragati Maidan, an optical showroom in South Delhi, or a turnkey modern modular kitchen, our German machinery fabrication guarantees pristine finishes and verified SLAs.
               </p>
 
-              {/* HomeLane Style Feature Badges */}
+              {/* Badges */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
                 <div className="flex items-center gap-2.5 p-3 rounded-xl bg-white shadow-soft border border-slate-100">
                   <div className="w-8 h-8 rounded-lg bg-rose-100 text-rose-600 flex items-center justify-center shrink-0">
@@ -113,7 +192,7 @@ export default function Home({ onOpenConsultation }) {
                     <Award className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-slate-800">100% Real Photos</div>
+                    <div className="text-xs font-bold text-slate-800">100% Real Work</div>
                     <div className="text-[11px] text-slate-500">Actual site execution</div>
                   </div>
                 </div>
@@ -122,19 +201,19 @@ export default function Home({ onOpenConsultation }) {
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link
-                  to="/gallery"
+                  to="/services"
                   className="px-6 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm rounded-xl transition shadow flex items-center gap-2"
                 >
-                  <span>Explore Design Gallery</span>
+                  <span>Explore All Services</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
 
                 <Link
-                  to="/commercial"
+                  to="/gallery"
                   className="px-6 py-3.5 border-2 border-slate-200 hover:border-rose-600 hover:text-rose-600 text-slate-700 font-bold text-sm rounded-xl transition flex items-center gap-2 bg-white"
                 >
                   <Building2 className="w-4 h-4 text-rose-600" />
-                  <span>Commercial & Shop Decor</span>
+                  <span>Real Project Photos</span>
                 </Link>
               </div>
             </div>
@@ -505,61 +584,55 @@ export default function Home({ onOpenConsultation }) {
           <div className="flex flex-wrap gap-2 mb-8">
             <button
               onClick={() => setGalleryFilter('all')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition ${
-                galleryFilter === 'all'
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition ${galleryFilter === 'all'
                   ? 'bg-rose-600 text-white shadow-md'
                   : 'bg-white text-slate-700 hover:bg-slate-200'
-              }`}
+                }`}
             >
               All Projects
             </button>
             <button
               onClick={() => setGalleryFilter('jewellery')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition ${
-                galleryFilter === 'jewellery'
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition ${galleryFilter === 'jewellery'
                   ? 'bg-rose-600 text-white shadow-md'
                   : 'bg-white text-slate-700 hover:bg-slate-200'
-              }`}
+                }`}
             >
               Jewellery Shops
             </button>
             <button
               onClick={() => setGalleryFilter('mall')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition ${
-                galleryFilter === 'mall'
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition ${galleryFilter === 'mall'
                   ? 'bg-rose-600 text-white shadow-md'
                   : 'bg-white text-slate-700 hover:bg-slate-200'
-              }`}
+                }`}
             >
               Mall Decor
             </button>
             <button
               onClick={() => setGalleryFilter('office')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition ${
-                galleryFilter === 'office'
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition ${galleryFilter === 'office'
                   ? 'bg-rose-600 text-white shadow-md'
                   : 'bg-white text-slate-700 hover:bg-slate-200'
-              }`}
+                }`}
             >
               Office Decor
             </button>
             <button
               onClick={() => setGalleryFilter('kitchen')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition ${
-                galleryFilter === 'kitchen'
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition ${galleryFilter === 'kitchen'
                   ? 'bg-rose-600 text-white shadow-md'
                   : 'bg-white text-slate-700 hover:bg-slate-200'
-              }`}
+                }`}
             >
               Modular Kitchens
             </button>
             <button
               onClick={() => setGalleryFilter('wardrobe')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition ${
-                galleryFilter === 'wardrobe'
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition ${galleryFilter === 'wardrobe'
                   ? 'bg-rose-600 text-white shadow-md'
                   : 'bg-white text-slate-700 hover:bg-slate-200'
-              }`}
+                }`}
             >
               Wardrobes
             </button>

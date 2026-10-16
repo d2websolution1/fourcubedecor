@@ -1,36 +1,46 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { 
-  Phone, 
-  MessageCircle, 
-  ChevronDown, 
-  Menu, 
-  X, 
-  Sparkles, 
-  ShieldCheck, 
+import {
+  Phone,
+  MessageCircle,
+  ChevronDown,
+  Menu,
+  X,
+  Sparkles,
+  ShieldCheck,
   Clock,
   ArrowRight,
   Building2,
   Briefcase,
   Gem,
   ShoppingBag,
-  MapPin
+  MapPin,
+  Boxes,
+  Globe,
+  PackageCheck,
+  Tv,
+  Layers
 } from 'lucide-react';
 import { navigationOfferings, commercialOfferings, companyContact } from '../data/interiorData';
 import { southDelhiLocations } from '../data/locationsData';
+import { exhibitionServicesData } from '../data/servicesData';
 import CategoryIcon from './CategoryIcon';
 import logoImg from '../assets/forhomedecor.png';
 
 export default function Navbar({ onOpenConsultation }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [offeringsDropdownOpen, setOfferingsDropdownOpen] = useState(false);
   const [commercialDropdownOpen, setCommercialDropdownOpen] = useState(false);
   const [citiesDropdownOpen, setCitiesDropdownOpen] = useState(false);
+
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileOfferingsOpen, setMobileOfferingsOpen] = useState(false);
   const [mobileCommercialOpen, setMobileCommercialOpen] = useState(false);
   const [mobileCitiesOpen, setMobileCitiesOpen] = useState(false);
   const location = useLocation();
 
+  const servicesTimeoutRef = useRef(null);
   const offeringsTimeoutRef = useRef(null);
   const commercialTimeoutRef = useRef(null);
   const citiesTimeoutRef = useRef(null);
@@ -38,11 +48,23 @@ export default function Navbar({ onOpenConsultation }) {
   // Close menus on route change
   useEffect(() => {
     setMobileMenuOpen(false);
+    setServicesDropdownOpen(false);
     setOfferingsDropdownOpen(false);
     setCommercialDropdownOpen(false);
     setCitiesDropdownOpen(false);
     window.scrollTo(0, 0);
   }, [location.pathname]);
+
+  const handleServicesMouseEnter = () => {
+    if (servicesTimeoutRef.current) clearTimeout(servicesTimeoutRef.current);
+    setServicesDropdownOpen(true);
+  };
+
+  const handleServicesMouseLeave = () => {
+    servicesTimeoutRef.current = setTimeout(() => {
+      setServicesDropdownOpen(false);
+    }, 200);
+  };
 
   const handleOfferingsMouseEnter = () => {
     if (offeringsTimeoutRef.current) clearTimeout(offeringsTimeoutRef.current);
@@ -77,7 +99,7 @@ export default function Navbar({ onOpenConsultation }) {
     }, 200);
   };
 
-  // Split offerings into left and right columns matching user's reference screenshot
+  // Split offerings into left and right columns matching user's reference
   const leftOfferings = [
     navigationOfferings.find(o => o.id === 'home-interiors'),
     navigationOfferings.find(o => o.id === 'living-room'),
@@ -99,17 +121,17 @@ export default function Navbar({ onOpenConsultation }) {
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-1.5 text-amber-400 font-medium">
             <Clock className="w-3.5 h-3.5" />
-            <span>Guaranteed 45-Day Move-In</span>
+            <span>Guaranteed 45-Day Move-In · Exhibition Zero Delay</span>
           </div>
           <span className="hidden md:inline text-slate-600">|</span>
           <div className="hidden md:flex items-center gap-1.5 text-slate-300">
             <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-            <span>10-Year Flat Warranty</span>
+            <span>10-Year Flat Warranty · ITPO Approved</span>
           </div>
         </div>
 
         <div className="flex items-center gap-4">
-          <a 
+          <a
             href={`tel:${companyContact.phoneRaw}`}
             className="flex items-center gap-1.5 hover:text-white transition"
           >
@@ -118,7 +140,7 @@ export default function Navbar({ onOpenConsultation }) {
           </a>
           <span className="text-slate-600">|</span>
           <a
-            href={`https://wa.me/${companyContact.whatsappRaw}?text=Hi%20FourCube%20Decor,%20I%20am%20interested%20in%20home%20and%20commercial%20interiors.`}
+            href={`https://wa.me/${companyContact.whatsappRaw}?text=${encodeURIComponent('Hi FourCube Decor, I am interested in Exhibition Booth Design & Interior Services.')}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1 text-emerald-400 hover:text-emerald-300 transition font-medium"
@@ -133,11 +155,11 @@ export default function Navbar({ onOpenConsultation }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group py-1">
-            <img 
-              src={logoImg} 
-              alt="FourCube Decor" 
-              className="h-14 sm:h-16 w-auto object-contain transition-transform duration-200 group-hover:scale-105" 
+          <Link to="/" className="flex items-center gap-3 group py-1 shrink-0">
+            <img
+              src={logoImg}
+              alt="FourCube Decor"
+              className="h-14 sm:h-16 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
             />
           </Link>
 
@@ -145,28 +167,151 @@ export default function Navbar({ onOpenConsultation }) {
           <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
             <Link
               to="/"
-              className={`px-3 py-2 text-sm font-semibold rounded-lg transition ${
-                location.pathname === '/' ? 'text-rose-600 bg-rose-50' : 'text-slate-700 hover:text-rose-600 hover:bg-slate-50'
-              }`}
+              className={`px-3 py-2 text-sm font-semibold rounded-lg transition ${location.pathname === '/' ? 'text-rose-600 bg-rose-50' : 'text-slate-700 hover:text-rose-600 hover:bg-slate-50'
+                }`}
             >
               Home
             </Link>
 
-            {/* 1. Design Gallery / Residential Mega Menu on HOVER */}
-            <div 
+            {/* SERVICES DROPDOWN (Matches dazlevents screenshot style with dark theme & orange border highlight) */}
+            <div
+              className="relative"
+              onMouseEnter={handleServicesMouseEnter}
+              onMouseLeave={handleServicesMouseLeave}
+            >
+              <Link
+                to="/services"
+                className={`inline-flex items-center gap-1.5 px-3 py-2 text-sm font-bold uppercase tracking-wider rounded-lg transition ${servicesDropdownOpen || location.pathname.startsWith('/services')
+                    ? 'text-rose-600 bg-rose-50'
+                    : 'text-slate-800 hover:text-rose-600 hover:bg-slate-50'
+                  }`}
+              >
+                <span>Services</span>
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${servicesDropdownOpen ? 'rotate-180 text-rose-600' : 'text-slate-400'}`} />
+              </Link>
+
+              {/* Reference-Styled Dropdown Menu */}
+              {servicesDropdownOpen && (
+                <div className="absolute top-full left-0 w-[300px] bg-[#141414] text-white rounded-xl shadow-2xl border-2 border-orange-500 py-2 animate-scale-in z-50 overflow-hidden">
+                  <div className="px-4 py-2 border-b border-neutral-800/80 bg-neutral-900/60 flex items-center justify-between">
+                    <span className="text-[10px] font-bold text-orange-400 uppercase tracking-widest">
+                      Exhibitions & Interiors
+                    </span>
+                    <span className="text-[10px] bg-orange-500/20 text-orange-300 font-bold px-1.5 py-0.5 rounded">
+                      7 Services
+                    </span>
+                  </div>
+
+                  <div className="divide-y divide-neutral-800/60">
+                    {exhibitionServicesData.map((item) => (
+                      <Link
+                        key={item.id}
+                        to={`/services/${item.slug}`}
+                        className="group flex items-center justify-between px-4 py-3 text-[13px] font-medium text-neutral-200 hover:text-orange-400 hover:bg-white/5 transition-all duration-150"
+                      >
+                        <span className="group-hover:translate-x-1.5 transition-transform duration-200">
+                          {item.title}
+                        </span>
+                        <ArrowRight className="w-3.5 h-3.5 text-neutral-600 group-hover:text-orange-400 opacity-0 group-hover:opacity-100 transition-all duration-150" />
+                      </Link>
+                    ))}
+                  </div>
+
+                  <div className="p-2.5 bg-neutral-950/80 border-t border-neutral-800 text-center">
+                    <Link
+                      to="/services"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-orange-400 hover:text-orange-300 transition"
+                    >
+                      <span>Explore All Services Overview</span>
+                      <ArrowRight className="w-3 h-3" />
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* COMMERCIAL DECOR MEGA MENU */}
+            <div
+              className="relative"
+              onMouseEnter={handleCommercialMouseEnter}
+              onMouseLeave={handleCommercialMouseLeave}
+            >
+              <Link
+                to="/commercial"
+                className={`inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold rounded-lg transition ${commercialDropdownOpen || location.pathname.startsWith('/commercial')
+                    ? 'text-rose-600 bg-rose-50'
+                    : 'text-slate-700 hover:text-rose-600 hover:bg-slate-50'
+                  }`}
+              >
+                <span>Commercial Decor</span>
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${commercialDropdownOpen ? 'rotate-180 text-rose-600' : 'text-slate-400'}`} />
+              </Link>
+
+              {commercialDropdownOpen && (
+                <div className="absolute top-full left-0 w-[640px] bg-white rounded-2xl shadow-mega border border-slate-100 p-5 grid grid-cols-2 gap-3 animate-fade-in z-50">
+                  <div className="col-span-2 pb-2 border-b border-slate-100 flex items-center justify-between">
+                    <div>
+                      <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                        Commercial Fitouts
+                      </span>
+                      <h4 className="text-sm font-bold text-slate-900 font-heading">
+                        Turnkey Commercial & Retail Solutions
+                      </h4>
+                    </div>
+                    <Link
+                      to="/commercial"
+                      className="text-xs font-bold text-rose-600 hover:text-rose-700 flex items-center gap-1"
+                    >
+                      Overview <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+
+                  {commercialOfferings.map((item) => (
+                    <Link
+                      key={item.id}
+                      to={item.path}
+                      className="group flex items-start gap-3.5 p-3 rounded-xl hover:bg-rose-50/80 transition border border-transparent hover:border-rose-100"
+                    >
+                      <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 bg-slate-100 border border-slate-200">
+                        <img
+                          src={item.heroImage}
+                          alt={item.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition duration-300"
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-sm font-bold text-slate-800 group-hover:text-rose-600 transition">
+                            {item.title}
+                          </span>
+                          <span className="text-[10px] font-bold px-1.5 py-0.2 bg-amber-100 text-amber-800 rounded">
+                            {item.badge}
+                          </span>
+                        </div>
+                        <p className="text-[11px] text-slate-500 line-clamp-1 mt-0.5">
+                          {item.description}
+                        </p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* RESIDENTIAL DESIGN GALLERY MEGA MENU */}
+            <div
               className="relative"
               onMouseEnter={handleOfferingsMouseEnter}
               onMouseLeave={handleOfferingsMouseLeave}
             >
               <button
-                className={`inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold rounded-lg transition ${
-                  offeringsDropdownOpen || location.pathname.startsWith('/category') || location.pathname === '/gallery'
+                className={`inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold rounded-lg transition ${offeringsDropdownOpen || location.pathname.startsWith('/category') || location.pathname === '/gallery'
                     ? 'text-rose-600 bg-rose-50'
                     : 'text-slate-700 hover:text-rose-600 hover:bg-slate-50'
-                }`}
+                  }`}
                 onClick={() => setOfferingsDropdownOpen(!offeringsDropdownOpen)}
               >
-                <span>Design Gallery</span>
+                <span>Residential Gallery</span>
                 <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${offeringsDropdownOpen ? 'rotate-180 text-rose-600' : 'text-slate-400'}`} />
               </button>
 
@@ -267,89 +412,18 @@ export default function Navbar({ onOpenConsultation }) {
               )}
             </div>
 
-            {/* 2. NEW COMMERCIAL DECOR MEGA MENU ON HOVER (Replaced Price Calculator) */}
-            <div 
-              className="relative"
-              onMouseEnter={handleCommercialMouseEnter}
-              onMouseLeave={handleCommercialMouseLeave}
-            >
-              <Link
-                to="/commercial"
-                className={`inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold rounded-lg transition ${
-                  commercialDropdownOpen || location.pathname.startsWith('/commercial')
-                    ? 'text-rose-600 bg-rose-50'
-                    : 'text-slate-700 hover:text-rose-600 hover:bg-slate-50'
-                }`}
-              >
-                <span>Commercial Decor</span>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${commercialDropdownOpen ? 'rotate-180 text-rose-600' : 'text-slate-400'}`} />
-              </Link>
-
-              {/* Commercial Hover Dropdown Card */}
-              {commercialDropdownOpen && (
-                <div className="absolute top-full left-0 w-[640px] bg-white rounded-2xl shadow-mega border border-slate-100 p-5 grid grid-cols-2 gap-3 animate-fade-in z-50">
-                  <div className="col-span-2 pb-2 border-b border-slate-100 flex items-center justify-between">
-                    <div>
-                      <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                        Commercial Fitouts
-                      </span>
-                      <h4 className="text-sm font-bold text-slate-900 font-heading">
-                        Turnkey Commercial & Retail Solutions
-                      </h4>
-                    </div>
-                    <Link
-                      to="/commercial"
-                      className="text-xs font-bold text-rose-600 hover:text-rose-700 flex items-center gap-1"
-                    >
-                      Overview <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                  </div>
-
-                  {commercialOfferings.map((item) => (
-                    <Link
-                      key={item.id}
-                      to={item.path}
-                      className="group flex items-start gap-3.5 p-3 rounded-xl hover:bg-rose-50/80 transition border border-transparent hover:border-rose-100"
-                    >
-                      <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 bg-slate-100 border border-slate-200">
-                        <img 
-                          src={item.heroImage} 
-                          alt={item.title} 
-                          className="w-full h-full object-cover group-hover:scale-110 transition duration-300" 
-                        />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-1.5">
-                          <span className="text-sm font-bold text-slate-800 group-hover:text-rose-600 transition">
-                            {item.title}
-                          </span>
-                          <span className="text-[10px] font-bold px-1.5 py-0.2 bg-amber-100 text-amber-800 rounded">
-                            {item.badge}
-                          </span>
-                        </div>
-                        <p className="text-[11px] text-slate-500 line-clamp-1 mt-0.5">
-                          {item.description}
-                        </p>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* 3. CITIES & SOUTH DELHI LOCATIONS DROPDOWN (Matching HomeLane reference) */}
-            <div 
+            {/* CITIES & LOCATIONS */}
+            <div
               className="relative"
               onMouseEnter={handleCitiesMouseEnter}
               onMouseLeave={handleCitiesMouseLeave}
             >
               <Link
                 to="/cities"
-                className={`inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold rounded-lg transition ${
-                  citiesDropdownOpen || location.pathname.startsWith('/cities') || location.pathname.startsWith('/interior-designers-')
+                className={`inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold rounded-lg transition ${citiesDropdownOpen || location.pathname.startsWith('/cities') || location.pathname.startsWith('/interior-designers-')
                     ? 'text-rose-600 bg-rose-50'
                     : 'text-slate-700 hover:text-rose-600 hover:bg-slate-50'
-                }`}
+                  }`}
               >
                 <span>Cities</span>
                 <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${citiesDropdownOpen ? 'rotate-180 text-rose-600' : 'text-slate-400'}`} />
@@ -377,7 +451,6 @@ export default function Navbar({ onOpenConsultation }) {
                     </Link>
                   </div>
 
-                  {/* 2-Column Grid of South Delhi Localities */}
                   <div className="grid grid-cols-2 gap-2 pt-3">
                     {southDelhiLocations.map((loc) => (
                       <Link
@@ -403,7 +476,6 @@ export default function Navbar({ onOpenConsultation }) {
                     ))}
                   </div>
 
-                  {/* Bottom Promo bar */}
                   <div className="mt-3 pt-3 border-t border-slate-100 bg-slate-50 -mx-5 -mb-5 p-3 rounded-b-2xl flex items-center justify-between">
                     <span className="text-[11px] text-slate-600 font-medium">
                       Need doorstep laser measurement in South Delhi?
@@ -424,37 +496,34 @@ export default function Navbar({ onOpenConsultation }) {
 
             <Link
               to="/guides"
-              className={`px-3 py-2 text-sm font-semibold rounded-lg transition ${
-                location.pathname === '/guides' ? 'text-rose-600 bg-rose-50' : 'text-slate-700 hover:text-rose-600 hover:bg-slate-50'
-              }`}
+              className={`px-3 py-2 text-sm font-semibold rounded-lg transition ${location.pathname === '/guides' ? 'text-rose-600 bg-rose-50' : 'text-slate-700 hover:text-rose-600 hover:bg-slate-50'
+                }`}
             >
               Design Guides
             </Link>
 
             <Link
               to="/about"
-              className={`px-3 py-2 text-sm font-semibold rounded-lg transition ${
-                location.pathname === '/about' ? 'text-rose-600 bg-rose-50' : 'text-slate-700 hover:text-rose-600 hover:bg-slate-50'
-              }`}
+              className={`px-3 py-2 text-sm font-semibold rounded-lg transition ${location.pathname === '/about' ? 'text-rose-600 bg-rose-50' : 'text-slate-700 hover:text-rose-600 hover:bg-slate-50'
+                }`}
             >
               About Us
             </Link>
 
             <Link
               to="/contact"
-              className={`px-3 py-2 text-sm font-semibold rounded-lg transition ${
-                location.pathname === '/contact' ? 'text-rose-600 bg-rose-50' : 'text-slate-700 hover:text-rose-600 hover:bg-slate-50'
-              }`}
+              className={`px-3 py-2 text-sm font-semibold rounded-lg transition ${location.pathname === '/contact' ? 'text-rose-600 bg-rose-50' : 'text-slate-700 hover:text-rose-600 hover:bg-slate-50'
+                }`}
             >
               Contact
             </Link>
           </nav>
 
-          {/* Action CTAs with generous spacing from Contact link */}
-          <div className="hidden lg:flex items-center gap-3 ml-6 xl:ml-10">
+          {/* Action CTAs */}
+          <div className="hidden lg:flex items-center gap-3 ml-4 xl:ml-8">
             <button
               onClick={onOpenConsultation}
-              className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-rose-600 via-rose-700 to-amber-600 hover:from-rose-700 hover:to-amber-700 text-white font-bold text-xs rounded-xl shadow-md shadow-rose-600/30 hover:shadow-xl hover:shadow-rose-600/45 transform active:scale-95 transition-all duration-200 glow-btn cursor-pointer group"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-rose-600 via-rose-700 to-amber-600 hover:from-rose-700 hover:to-amber-700 text-white font-bold text-xs rounded-xl shadow-md shadow-rose-600/30 hover:shadow-xl hover:shadow-rose-600/45 transform active:scale-95 transition-all duration-200 glow-btn cursor-pointer group"
             >
               <Sparkles className="w-3.5 h-3.5 text-amber-300 group-hover:rotate-45 transition-transform duration-300" />
               <span>Book Free Consultation</span>
@@ -465,10 +534,10 @@ export default function Navbar({ onOpenConsultation }) {
           <div className="flex items-center gap-2 lg:hidden">
             <button
               onClick={onOpenConsultation}
-              className="px-3.5 py-1.5 bg-gradient-to-r from-rose-600 to-amber-600 text-white font-bold text-xs rounded-lg flex items-center gap-1 shadow-sm active:scale-95 transition-all"
+              className="px-3 py-1.5 bg-gradient-to-r from-rose-600 to-amber-600 text-white font-bold text-xs rounded-lg flex items-center gap-1 shadow-sm active:scale-95 transition-all"
             >
               <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-              <span>Free 3D Plan</span>
+              <span>3D Plan</span>
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -492,41 +561,38 @@ export default function Navbar({ onOpenConsultation }) {
               Home
             </Link>
 
-            {/* Mobile Collapsible Cities & South Delhi Locations */}
+            {/* Mobile Collapsible Services (Exhibitions & Interiors) */}
             <div>
               <button
-                onClick={() => setMobileCitiesOpen(!mobileCitiesOpen)}
+                onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
                 className="w-full flex items-center justify-between px-3 py-2 rounded-lg font-bold text-slate-800 hover:bg-rose-50 hover:text-rose-600"
               >
                 <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-rose-600" />
-                  <span>Cities & Locations (South Delhi)</span>
+                  <Layers className="w-4 h-4 text-orange-600" />
+                  <span>Services (Exhibitions & Interiors)</span>
                 </div>
-                <ChevronDown className={`w-4 h-4 transition-transform ${mobileCitiesOpen ? 'rotate-180 text-rose-600' : ''}`} />
+                <ChevronDown className={`w-4 h-4 transition-transform ${mobileServicesOpen ? 'rotate-180 text-orange-600' : ''}`} />
               </button>
 
-              {mobileCitiesOpen && (
-                <div className="pl-4 pr-2 py-2 space-y-1 bg-slate-50 rounded-xl my-1">
-                  {southDelhiLocations.map((loc) => (
+              {mobileServicesOpen && (
+                <div className="pl-4 pr-2 py-2 space-y-1 bg-slate-900 rounded-xl my-1 border border-orange-500/50">
+                  {exhibitionServicesData.map((item) => (
                     <Link
-                      key={loc.slug}
-                      to={`/interior-designers-${loc.slug}`}
-                      className="flex items-center justify-between p-2 rounded-lg hover:bg-white text-slate-700 text-xs font-semibold"
+                      key={item.id}
+                      to={`/services/${item.slug}`}
+                      className="flex items-center justify-between p-2 rounded-lg hover:bg-neutral-800 text-neutral-200 text-xs font-semibold"
                     >
-                      <div className="flex items-center gap-2">
-                        <MapPin className="w-3.5 h-3.5 text-rose-500" />
-                        <span>Interior Designers in {loc.name}</span>
-                      </div>
-                      <span className="text-[10px] text-slate-500 font-normal">
-                        {loc.pincode}
+                      <span>{item.title}</span>
+                      <span className="text-[10px] text-orange-400 font-normal">
+                        {item.badge}
                       </span>
                     </Link>
                   ))}
                   <Link
-                    to="/cities"
-                    className="flex items-center gap-2 p-2 rounded-lg bg-rose-100/60 text-rose-700 text-xs font-bold mt-1"
+                    to="/services"
+                    className="flex items-center gap-2 p-2 rounded-lg bg-orange-600 text-white text-xs font-bold mt-2"
                   >
-                    <span>View All South Delhi Locations</span>
+                    <span>View All Services & Specs</span>
                     <ArrowRight className="w-3.5 h-3.5 ml-auto" />
                   </Link>
                 </div>
@@ -574,7 +640,7 @@ export default function Navbar({ onOpenConsultation }) {
               )}
             </div>
 
-            {/* Mobile Collapsible Offerings */}
+            {/* Mobile Collapsible Residential Offerings */}
             <div>
               <button
                 onClick={() => setMobileOfferingsOpen(!mobileOfferingsOpen)}
@@ -600,7 +666,48 @@ export default function Navbar({ onOpenConsultation }) {
                     to="/gallery"
                     className="flex items-center gap-2 p-2 rounded-lg bg-rose-100/60 text-rose-700 text-xs font-bold col-span-full mt-1"
                   >
-                    <span>View All 100% Real Projects</span>
+                    <span>View All Real Projects</span>
+                    <ArrowRight className="w-3.5 h-3.5 ml-auto" />
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Mobile Collapsible Cities & South Delhi Locations */}
+            <div>
+              <button
+                onClick={() => setMobileCitiesOpen(!mobileCitiesOpen)}
+                className="w-full flex items-center justify-between px-3 py-2 rounded-lg font-bold text-slate-800 hover:bg-rose-50 hover:text-rose-600"
+              >
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-rose-600" />
+                  <span>Cities & Locations (South Delhi)</span>
+                </div>
+                <ChevronDown className={`w-4 h-4 transition-transform ${mobileCitiesOpen ? 'rotate-180 text-rose-600' : ''}`} />
+              </button>
+
+              {mobileCitiesOpen && (
+                <div className="pl-4 pr-2 py-2 space-y-1 bg-slate-50 rounded-xl my-1">
+                  {southDelhiLocations.map((loc) => (
+                    <Link
+                      key={loc.slug}
+                      to={`/interior-designers-${loc.slug}`}
+                      className="flex items-center justify-between p-2 rounded-lg hover:bg-white text-slate-700 text-xs font-semibold"
+                    >
+                      <div className="flex items-center gap-2">
+                        <MapPin className="w-3.5 h-3.5 text-rose-500" />
+                        <span>Interior Designers in {loc.name}</span>
+                      </div>
+                      <span className="text-[10px] text-slate-500 font-normal">
+                        {loc.pincode}
+                      </span>
+                    </Link>
+                  ))}
+                  <Link
+                    to="/cities"
+                    className="flex items-center gap-2 p-2 rounded-lg bg-rose-100/60 text-rose-700 text-xs font-bold mt-1"
+                  >
+                    <span>View All South Delhi Locations</span>
                     <ArrowRight className="w-3.5 h-3.5 ml-auto" />
                   </Link>
                 </div>
@@ -650,7 +757,7 @@ export default function Navbar({ onOpenConsultation }) {
                 Call Now
               </a>
               <a
-                href={`https://wa.me/${companyContact.whatsappRaw}?text=Hi%20FourCube%20Decor,%20I%20want%20to%20know%20more.`}
+                href={`https://wa.me/${companyContact.whatsappRaw}?text=${encodeURIComponent('Hi FourCube Decor, I want to know more.')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="py-2.5 px-3 bg-emerald-600 text-white rounded-xl flex items-center justify-center gap-2 font-semibold text-xs"

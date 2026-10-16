@@ -12,6 +12,7 @@ import {
 import { navigationOfferings, companyContact } from '../data/interiorData';
 import { southDelhiLocations } from '../data/locationsData';
 import { footerServiceLinks } from '../data/seoFooterData';
+import { exhibitionServicesData } from '../data/servicesData';
 import { InstagramIcon, FacebookIcon, LinkedinIcon, YoutubeIcon } from './SocialIcons';
 import logoImg from '../assets/forhomedecor.png';
 
@@ -131,7 +132,7 @@ export default function Footer({ onOpenConsultation }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800">
           {/* Brand Info */}
-          <div className="lg:col-span-4 space-y-4">
+          <div className="lg:col-span-3 space-y-4">
             <Link to="/" className="inline-block group">
               <div className="bg-white p-2.5 rounded-2xl inline-flex items-center shadow-md transition-transform group-hover:scale-105">
                 <img 
@@ -143,7 +144,7 @@ export default function Footer({ onOpenConsultation }) {
             </Link>
 
             <p className="text-sm text-slate-400 leading-relaxed">
-              India's trusted modular interior brand specializing in personalized modular kitchens, luxurious living rooms, and turnkey home renovations with precision German machinery.
+              India's premier exhibition booth fabricator & turnkey modular interior brand. Serving Pragati Maidan, IICC Yashobhoomi, BEC Mumbai, and luxury residential & retail clients nationwide.
             </p>
 
             {/* Social Media Links */}
@@ -192,61 +193,67 @@ export default function Footer({ onOpenConsultation }) {
             </div>
           </div>
 
-          {/* Quick Pages */}
-          <div className="lg:col-span-2 space-y-3">
+          {/* Exhibition & Services (New from Reference) */}
+          <div className="lg:col-span-3 space-y-3">
+            <div className="flex items-center gap-1.5">
+              <h5 className="text-sm font-bold text-white uppercase tracking-wider font-heading">
+                Exhibitions & Services
+              </h5>
+            </div>
+            <ul className="space-y-2 text-sm text-slate-400">
+              {exhibitionServicesData.map((svc) => (
+                <li key={svc.id}>
+                  <Link
+                    to={`/services/${svc.slug}`}
+                    className="hover:text-orange-400 transition flex items-center gap-1.5 group"
+                  >
+                    <span className="text-neutral-500 group-hover:text-orange-400 transition">›</span>
+                    <span>{svc.title}</span>
+                  </Link>
+                </li>
+              ))}
+              <li className="pt-1">
+                <Link
+                  to="/services"
+                  className="text-xs font-bold text-orange-400 hover:text-orange-300 transition flex items-center gap-1"
+                >
+                  <span>All 7 Services Overview</span>
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Interior & Commercial Offerings */}
+          <div className="lg:col-span-3 space-y-3">
             <h5 className="text-sm font-bold text-white uppercase tracking-wider font-heading">
-              Company
+              Commercial & Interior
             </h5>
             <ul className="space-y-2 text-sm text-slate-400">
               <li>
-                <Link to="/" className="hover:text-rose-400 transition">Home</Link>
+                <Link to="/commercial" className="hover:text-rose-400 transition font-bold text-slate-300">Commercial Fitouts</Link>
               </li>
               <li>
-                <Link to="/about" className="hover:text-rose-400 transition">About Us</Link>
+                <Link to="/commercial/mall-decor" className="hover:text-rose-400 transition text-xs pl-2">↳ Mall Decor & Kiosks</Link>
+              </li>
+              <li>
+                <Link to="/commercial/jewellery-shop-decor" className="hover:text-rose-400 transition text-xs pl-2">↳ Jewellery Showrooms</Link>
+              </li>
+              <li>
+                <Link to="/commercial/office-decor" className="hover:text-rose-400 transition text-xs pl-2">↳ Corporate Offices</Link>
+              </li>
+              <li>
+                <Link to="/commercial/shop-decor" className="hover:text-rose-400 transition text-xs pl-2">↳ Boutique & Retail Stores</Link>
               </li>
               <li>
                 <Link to="/gallery" className="hover:text-rose-400 transition">Design Gallery</Link>
               </li>
               <li>
-                <Link to="/commercial" className="hover:text-rose-400 transition font-bold text-slate-300">Commercial Decor</Link>
+                <Link to="/why-us" className="hover:text-rose-400 transition">10-Year Warranty</Link>
               </li>
               <li>
-                <Link to="/commercial/mall-decor" className="hover:text-rose-400 transition text-xs pl-2">↳ Mall Decor</Link>
+                <Link to="/guides" className="hover:text-rose-400 transition">Design Guides</Link>
               </li>
-              <li>
-                <Link to="/commercial/office-decor" className="hover:text-rose-400 transition text-xs pl-2">↳ Office Decor</Link>
-              </li>
-              <li>
-                <Link to="/commercial/jewellery-shop-decor" className="hover:text-rose-400 transition text-xs pl-2">↳ Jewellery Shop Decor</Link>
-              </li>
-              <li>
-                <Link to="/commercial/shop-decor" className="hover:text-rose-400 transition text-xs pl-2">↳ Shop Decor</Link>
-              </li>
-              <li>
-                <Link to="/why-us" className="hover:text-rose-400 transition">Why FourCube (Warranty)</Link>
-              </li>
-              <li>
-                <Link to="/guides" className="hover:text-rose-400 transition">Design Guides & Ideas</Link>
-              </li>
-              <li>
-                <Link to="/contact" className="hover:text-rose-400 transition">Contact & Studios</Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Offerings Links */}
-          <div className="lg:col-span-3 space-y-3">
-            <h5 className="text-sm font-bold text-white uppercase tracking-wider font-heading">
-              Our Interior Offerings
-            </h5>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 text-sm text-slate-400">
-              {navigationOfferings.map((offering) => (
-                <li key={offering.id}>
-                  <Link to={`/category/${offering.id}`} className="hover:text-rose-400 transition flex items-center gap-1.5">
-                    <span>{offering.title}</span>
-                  </Link>
-                </li>
-              ))}
             </ul>
           </div>
 

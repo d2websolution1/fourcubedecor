@@ -5,6 +5,9 @@
 @layer base {
   body {
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    color: #1e293b;
+    background-color: #f8fafc;
+    overflow-x: hidden;
   }
   h1, h2, h3, h4, .font-heading {
     font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
@@ -17,14 +20,14 @@
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #0f172a;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #334155;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #ea580c;
 }
 
 /* Glass & animations */
@@ -34,12 +37,19 @@
   -webkit-backdrop-filter: blur(12px);
 }
 
+.glass-dark {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .card-hover-lift {
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .card-hover-lift:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.12);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
 }
 
 /* Custom Animation Keyframes */
@@ -58,6 +68,15 @@
   }
   50% {
     box-shadow: 0 0 28px rgba(225, 29, 72, 0.65);
+  }
+}
+
+@keyframes pulseGlowOrange {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(249, 115, 22, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(249, 115, 22, 0.7);
   }
 }
 
@@ -81,6 +100,17 @@
   }
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .animate-float {
   animation: float 4s ease-in-out infinite;
 }
@@ -93,12 +123,34 @@
   animation: scaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
 .glow-btn {
   animation: pulseGlow 3s infinite;
+}
+
+.glow-btn-orange {
+  animation: pulseGlowOrange 3s infinite;
 }
 
 .shimmer-badge {
   background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.1) 100%);
   background-size: 200% 100%;
   animation: shimmer 3s infinite;
+}
+
+.shadow-mega {
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-soft {
+  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.07);
+}
+
+@layer utilities {
+  .duration-7000 {
+    transition-duration: 7000ms;
+  }
 }

@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Building2, 
-  Briefcase, 
-  Gem, 
-  ShoppingBag, 
-  Sparkles, 
-  ShieldCheck, 
-  Clock, 
+import {
+  Building2,
+  Briefcase,
+  Gem,
+  ShoppingBag,
+  Sparkles,
+  ShieldCheck,
+  Clock,
   ArrowRight,
   Play
 } from 'lucide-react';

@@ -6,10 +6,10 @@ import CategoryIcon from '../components/CategoryIcon';
 
 export default function CategoryDetail({ onOpenConsultation }) {
   const { id } = useParams();
-  
+
   // Find current offering
   const currentOffering = navigationOfferings.find(o => o.id === id) || navigationOfferings[0];
-  
+
   // Find items belonging to this category
   const relatedGallery = galleryItems.filter(item => item.category === currentOffering.id);
 

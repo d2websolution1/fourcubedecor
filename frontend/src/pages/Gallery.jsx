@@ -23,18 +23,18 @@ export default function Gallery({ onOpenConsultation }) {
   const filteredItems = selectedCategory === 'all'
     ? galleryItems
     : galleryItems.filter(item => {
-        const cat = item.category.toLowerCase();
-        if (selectedCategory === 'jewellery-shop-decor') return cat.includes('jewel');
-        if (selectedCategory === 'mall-decor') return cat.includes('mall');
-        if (selectedCategory === 'office-decor') return cat.includes('office');
-        if (selectedCategory === 'shop-decor') return cat.includes('shop') && !cat.includes('jewel');
-        if (selectedCategory === 'modular-kitchen') return cat.includes('kitchen');
-        if (selectedCategory === 'living-room') return cat.includes('living');
-        if (selectedCategory === 'bedroom') return cat.includes('bed');
-        if (selectedCategory === 'wardrobe') return cat.includes('wardrobe');
-        if (selectedCategory === 'bathroom') return cat.includes('bath');
-        return cat.includes(selectedCategory);
-      });
+      const cat = item.category.toLowerCase();
+      if (selectedCategory === 'jewellery-shop-decor') return cat.includes('jewel');
+      if (selectedCategory === 'mall-decor') return cat.includes('mall');
+      if (selectedCategory === 'office-decor') return cat.includes('office');
+      if (selectedCategory === 'shop-decor') return cat.includes('shop') && !cat.includes('jewel');
+      if (selectedCategory === 'modular-kitchen') return cat.includes('kitchen');
+      if (selectedCategory === 'living-room') return cat.includes('living');
+      if (selectedCategory === 'bedroom') return cat.includes('bed');
+      if (selectedCategory === 'wardrobe') return cat.includes('wardrobe');
+      if (selectedCategory === 'bathroom') return cat.includes('bath');
+      return cat.includes(selectedCategory);
+    });
 
   return (
     <div className="py-12 bg-slate-50 min-h-screen">
@@ -58,11 +58,10 @@ export default function Gallery({ onOpenConsultation }) {
             <button
               key={f.id}
               onClick={() => setSelectedCategory(f.id)}
-              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 ${
-                selectedCategory === f.id
+              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 ${selectedCategory === f.id
                   ? 'bg-rose-600 text-white shadow-md'
                   : 'bg-white text-slate-700 hover:bg-slate-200'
-              }`}
+                }`}
             >
               <CategoryIcon name={f.icon} className={`w-3.5 h-3.5 ${selectedCategory === f.id ? 'text-white' : 'text-slate-500'}`} />
               <span>{f.title}</span>
@@ -77,7 +76,7 @@ export default function Gallery({ onOpenConsultation }) {
               key={item.id}
               className="bg-white rounded-2xl overflow-hidden shadow-soft border border-slate-100 group card-hover-lift flex flex-col justify-between"
             >
-              <div 
+              <div
                 className="relative h-64 overflow-hidden bg-slate-900 cursor-pointer"
                 onClick={() => setActiveModalItem(item)}
               >

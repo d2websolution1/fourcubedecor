@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Building2, 
-  Sparkles, 
-  ShieldCheck, 
-  Clock, 
-  Phone, 
-  CheckCircle2, 
+import {
+  Building2,
+  Sparkles,
+  ShieldCheck,
+  Clock,
+  Phone,
+  CheckCircle2,
   ArrowRight,
   Eye,
   X
@@ -110,7 +110,7 @@ export default function MallDecor({ onOpenConsultation }) {
                 key={project.id}
                 className="bg-white rounded-3xl overflow-hidden shadow-soft border border-slate-100 group flex flex-col justify-between"
               >
-                <div 
+                <div
                   className="relative h-72 sm:h-80 overflow-hidden bg-slate-100 cursor-pointer"
                   onClick={() => setActiveModalItem(project)}
                 >

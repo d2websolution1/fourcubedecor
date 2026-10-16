@@ -15,23 +15,24 @@ import Guides from './pages/Guides';
 import WhyUs from './pages/WhyUs';
 import Contact from './pages/Contact';
 
+// New Exhibition & Interior Services Pages
+import Services from './pages/Services';
+import ServiceDetail from './pages/ServiceDetail';
+
 // Location-Based Interior Designer Pages (South Delhi)
 import LocationInteriorPage from './pages/LocationInteriorPage';
 import CitiesHub from './pages/CitiesHub';
 
-// New Commercial Decor Pages
+// Commercial Decor Pages
 import Commercial from './pages/Commercial';
 import MallDecor from './pages/MallDecor';
 import OfficeDecor from './pages/OfficeDecor';
 import JewelleryDecor from './pages/JewelleryDecor';
 import ShopDecor from './pages/ShopDecor';
 
-
 // Data for Location & Category Routes
 import { southDelhiLocations } from './data/locationsData';
 import { footerServiceLinks } from './data/seoFooterData';
-
-
 
 export default function App() {
   const [consultationModalOpen, setConsultationModalOpen] = useState(false);
@@ -49,13 +50,26 @@ export default function App() {
   return (
     <Router>
       <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans antialiased">
-        {/* Navigation Bar with Commercial Decor Dropdown */}
+        {/* Navigation Bar with Services & Commercial Dropdowns */}
         <Navbar onOpenConsultation={() => handleOpenConsultation()} />
 
         {/* Main Content Router */}
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            
+            {/* Exhibition & Interior Services Routes */}
+            <Route path="/services" element={<Services onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            <Route path="/services/:slug" element={<ServiceDetail onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            
+            {/* Reference Aliases for Instant Match */}
+            <Route path="/services/modular-booth-design-in-india" element={<Navigate to="/services/modular-booth-design" replace />} />
+            <Route path="/services/custom-trade-show-booth-design-india" element={<Navigate to="/services/custom-booth-design" replace />} />
+            <Route path="/services/two-storey-booth-design-in-india" element={<Navigate to="/services/double-storey-booth-design" replace />} />
+            <Route path="/services/country-pavilion-exhibition-booth-design-india" element={<Navigate to="/services/country-pavilion-booth-design" replace />} />
+            <Route path="/services/portable-exhibition-stand-builder-india" element={<Navigate to="/services/portable-booth-design" replace />} />
+            <Route path="/services/corporate-event-management-services-india" element={<Navigate to="/services/event-management-services" replace />} />
+
             <Route path="/about" element={<About onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
             <Route path="/gallery" element={<Gallery onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
             <Route path="/category/:id" element={<CategoryDetail onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
@@ -81,7 +95,7 @@ export default function App() {
             <Route path="/cities/interior-designers-:slug" element={<LocationInteriorPage onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
             <Route path="/interior-designers-:slug" element={<LocationInteriorPage onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
 
-            {/* Dedicated Service x Locality Pages for ALL 8 Categories across all 7 South Delhi Localities */}
+            {/* Dedicated Service x Locality Pages */}
             {footerServiceLinks.flatMap((service) =>
               southDelhiLocations.map((loc) => (
                 <Route
@@ -98,7 +112,7 @@ export default function App() {
               ))
             )}
 
-            {/* Direct Named Locality Routes for Saket, Hauz Khas, GK, Vasant Kunj, South Ext, Mehrauli, Lajpat Nagar */}
+            {/* Direct Named Locality Routes */}
             {southDelhiLocations.map((loc) => (
               <Route
                 key={`interior-designers-${loc.slug}`}
@@ -126,7 +140,7 @@ export default function App() {
         {/* Footer */}
         <Footer onOpenConsultation={() => handleOpenConsultation()} />
 
-        {/* Global Floating Actions (WhatsApp Chat & Call button - Hidden on mobile for clutter-free scrolling) */}
+        {/* Global Floating Actions */}
         <FloatingActions onOpenConsultation={() => handleOpenConsultation()} />
 
         {/* Consultation Modal Triggered From Any CTA */}
