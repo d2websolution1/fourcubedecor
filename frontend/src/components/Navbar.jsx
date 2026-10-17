@@ -38,6 +38,8 @@ export default function Navbar({ onOpenConsultation }) {
   const [mobileOfferingsOpen, setMobileOfferingsOpen] = useState(false);
   const [mobileCommercialOpen, setMobileCommercialOpen] = useState(false);
   const [mobileCitiesOpen, setMobileCitiesOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const location = useLocation();
 
   const servicesTimeoutRef = useRef(null);
@@ -52,8 +54,43 @@ export default function Navbar({ onOpenConsultation }) {
     setOfferingsDropdownOpen(false);
     setCommercialDropdownOpen(false);
     setCitiesDropdownOpen(false);
+    setIsVisible(true);
     window.scrollTo(0, 0);
   }, [location.pathname]);
+
+  // Smart Navbar: Hide on scroll down, show on scroll up
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Keep navbar visible if mobile drawer is open
+      if (mobileMenuOpen) {
+        setIsVisible(true);
+        setLastScrollY(currentScrollY);
+        return;
+      }
+
+      // Always show at the top of the page
+      if (currentScrollY < 60) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY - lastScrollY > 8) {
+        // Scrolling DOWN -> Hide navbar and close open hover menus
+        setIsVisible(false);
+        setServicesDropdownOpen(false);
+        setOfferingsDropdownOpen(false);
+        setCommercialDropdownOpen(false);
+        setCitiesDropdownOpen(false);
+      } else if (currentScrollY < lastScrollY && lastScrollY - currentScrollY > 8) {
+        // Scrolling UP -> Reveal navbar immediately
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY, mobileMenuOpen]);
 
   const handleServicesMouseEnter = () => {
     if (servicesTimeoutRef.current) clearTimeout(servicesTimeoutRef.current);
@@ -115,7 +152,11 @@ export default function Navbar({ onOpenConsultation }) {
   ].filter(Boolean);
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 transition-all">
+    <header
+      className={`sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-100 transition-transform duration-300 ease-in-out ${
+        isVisible ? 'translate-y-0 shadow-sm' : '-translate-y-full shadow-none pointer-events-none'
+      }`}
+    >
       {/* Top micro bar */}
       <div className="bg-slate-900 text-slate-300 text-xs py-1.5 px-4 sm:px-8 flex justify-between items-center border-b border-slate-800">
         <div className="flex items-center gap-4">
