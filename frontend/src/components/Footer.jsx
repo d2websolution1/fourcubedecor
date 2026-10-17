@@ -252,7 +252,7 @@ export default function Footer({ onOpenConsultation }) {
                 <Link to="/why-us" className="hover:text-rose-400 transition">10-Year Warranty</Link>
               </li>
               <li>
-                <Link to="/guides" className="hover:text-rose-400 transition">Design Guides</Link>
+                <Link to="/services" className="hover:text-rose-400 transition">Services</Link>
               </li>
             </ul>
           </div>

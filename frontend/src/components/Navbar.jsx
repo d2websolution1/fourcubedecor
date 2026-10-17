@@ -173,63 +173,6 @@ export default function Navbar({ onOpenConsultation }) {
               Home
             </Link>
 
-            {/* SERVICES DROPDOWN (Matches dazlevents screenshot style with dark theme & orange border highlight) */}
-            <div
-              className="relative"
-              onMouseEnter={handleServicesMouseEnter}
-              onMouseLeave={handleServicesMouseLeave}
-            >
-              <Link
-                to="/services"
-                className={`inline-flex items-center gap-1.5 px-3 py-2 text-sm font-bold uppercase tracking-wider rounded-lg transition ${servicesDropdownOpen || location.pathname.startsWith('/services')
-                    ? 'text-rose-600 bg-rose-50'
-                    : 'text-slate-800 hover:text-rose-600 hover:bg-slate-50'
-                  }`}
-              >
-                <span>Services</span>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${servicesDropdownOpen ? 'rotate-180 text-rose-600' : 'text-slate-400'}`} />
-              </Link>
-
-              {/* Reference-Styled Dropdown Menu */}
-              {servicesDropdownOpen && (
-                <div className="absolute top-full left-0 w-[300px] bg-[#141414] text-white rounded-xl shadow-2xl border-2 border-orange-500 py-2 animate-scale-in z-50 overflow-hidden">
-                  <div className="px-4 py-2 border-b border-neutral-800/80 bg-neutral-900/60 flex items-center justify-between">
-                    <span className="text-[10px] font-bold text-orange-400 uppercase tracking-widest">
-                      Exhibitions & Interiors
-                    </span>
-                    <span className="text-[10px] bg-orange-500/20 text-orange-300 font-bold px-1.5 py-0.5 rounded">
-                      7 Services
-                    </span>
-                  </div>
-
-                  <div className="divide-y divide-neutral-800/60">
-                    {exhibitionServicesData.map((item) => (
-                      <Link
-                        key={item.id}
-                        to={`/services/${item.slug}`}
-                        className="group flex items-center justify-between px-4 py-3 text-[13px] font-medium text-neutral-200 hover:text-orange-400 hover:bg-white/5 transition-all duration-150"
-                      >
-                        <span className="group-hover:translate-x-1.5 transition-transform duration-200">
-                          {item.title}
-                        </span>
-                        <ArrowRight className="w-3.5 h-3.5 text-neutral-600 group-hover:text-orange-400 opacity-0 group-hover:opacity-100 transition-all duration-150" />
-                      </Link>
-                    ))}
-                  </div>
-
-                  <div className="p-2.5 bg-neutral-950/80 border-t border-neutral-800 text-center">
-                    <Link
-                      to="/services"
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-orange-400 hover:text-orange-300 transition"
-                    >
-                      <span>Explore All Services Overview</span>
-                      <ArrowRight className="w-3 h-3" />
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </div>
-
             {/* COMMERCIAL DECOR MEGA MENU */}
             <div
               className="relative"
@@ -494,13 +437,62 @@ export default function Navbar({ onOpenConsultation }) {
               )}
             </div>
 
-            <Link
-              to="/guides"
-              className={`px-3 py-2 text-sm font-semibold rounded-lg transition ${location.pathname === '/guides' ? 'text-rose-600 bg-rose-50' : 'text-slate-700 hover:text-rose-600 hover:bg-slate-50'
-                }`}
+            {/* SERVICES DROPDOWN */}
+            <div
+              className="relative"
+              onMouseEnter={handleServicesMouseEnter}
+              onMouseLeave={handleServicesMouseLeave}
             >
-              Design Guides
-            </Link>
+              <Link
+                to="/services"
+                className={`inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold rounded-lg transition ${servicesDropdownOpen || location.pathname.startsWith('/services')
+                    ? 'text-rose-600 bg-rose-50'
+                    : 'text-slate-700 hover:text-rose-600 hover:bg-slate-50'
+                  }`}
+              >
+                <span>Services</span>
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${servicesDropdownOpen ? 'rotate-180 text-rose-600' : 'text-slate-400'}`} />
+              </Link>
+
+              {/* Reference-Styled Dropdown Menu */}
+              {servicesDropdownOpen && (
+                <div className="absolute top-full left-0 w-[300px] bg-[#141414] text-white rounded-xl shadow-2xl border-2 border-orange-500 py-2 animate-scale-in z-50 overflow-hidden">
+                  <div className="px-4 py-2 border-b border-neutral-800/80 bg-neutral-900/60 flex items-center justify-between">
+                    <span className="text-[10px] font-bold text-orange-400 uppercase tracking-widest">
+                      Exhibitions & Interiors
+                    </span>
+                    <span className="text-[10px] bg-orange-500/20 text-orange-300 font-bold px-1.5 py-0.5 rounded">
+                      7 Services
+                    </span>
+                  </div>
+
+                  <div className="divide-y divide-neutral-800/60">
+                    {exhibitionServicesData.map((item) => (
+                      <Link
+                        key={item.id}
+                        to={`/services/${item.slug}`}
+                        className="group flex items-center justify-between px-4 py-3 text-[13px] font-medium text-neutral-200 hover:text-orange-400 hover:bg-white/5 transition-all duration-150"
+                      >
+                        <span className="group-hover:translate-x-1.5 transition-transform duration-200">
+                          {item.title}
+                        </span>
+                        <ArrowRight className="w-3.5 h-3.5 text-neutral-600 group-hover:text-orange-400 opacity-0 group-hover:opacity-100 transition-all duration-150" />
+                      </Link>
+                    ))}
+                  </div>
+
+                  <div className="p-2.5 bg-neutral-950/80 border-t border-neutral-800 text-center">
+                    <Link
+                      to="/services"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-orange-400 hover:text-orange-300 transition"
+                    >
+                      <span>Explore All Services Overview</span>
+                      <ArrowRight className="w-3 h-3" />
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
 
             <Link
               to="/about"
@@ -560,44 +552,6 @@ export default function Navbar({ onOpenConsultation }) {
             >
               Home
             </Link>
-
-            {/* Mobile Collapsible Services (Exhibitions & Interiors) */}
-            <div>
-              <button
-                onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                className="w-full flex items-center justify-between px-3 py-2 rounded-lg font-bold text-slate-800 hover:bg-rose-50 hover:text-rose-600"
-              >
-                <div className="flex items-center gap-2">
-                  <Layers className="w-4 h-4 text-orange-600" />
-                  <span>Services (Exhibitions & Interiors)</span>
-                </div>
-                <ChevronDown className={`w-4 h-4 transition-transform ${mobileServicesOpen ? 'rotate-180 text-orange-600' : ''}`} />
-              </button>
-
-              {mobileServicesOpen && (
-                <div className="pl-4 pr-2 py-2 space-y-1 bg-slate-900 rounded-xl my-1 border border-orange-500/50">
-                  {exhibitionServicesData.map((item) => (
-                    <Link
-                      key={item.id}
-                      to={`/services/${item.slug}`}
-                      className="flex items-center justify-between p-2 rounded-lg hover:bg-neutral-800 text-neutral-200 text-xs font-semibold"
-                    >
-                      <span>{item.title}</span>
-                      <span className="text-[10px] text-orange-400 font-normal">
-                        {item.badge}
-                      </span>
-                    </Link>
-                  ))}
-                  <Link
-                    to="/services"
-                    className="flex items-center gap-2 p-2 rounded-lg bg-orange-600 text-white text-xs font-bold mt-2"
-                  >
-                    <span>View All Services & Specs</span>
-                    <ArrowRight className="w-3.5 h-3.5 ml-auto" />
-                  </Link>
-                </div>
-              )}
-            </div>
 
             {/* Mobile Collapsible Commercial Decor */}
             <div>
@@ -714,12 +668,43 @@ export default function Navbar({ onOpenConsultation }) {
               )}
             </div>
 
-            <Link
-              to="/guides"
-              className="block px-3 py-2 rounded-lg font-bold text-slate-800 hover:bg-rose-50 hover:text-rose-600"
-            >
-              Design Guides & Styles
-            </Link>
+            {/* Mobile Collapsible Services (Exhibitions & Interiors) */}
+            <div>
+              <button
+                onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                className="w-full flex items-center justify-between px-3 py-2 rounded-lg font-bold text-slate-800 hover:bg-rose-50 hover:text-rose-600"
+              >
+                <div className="flex items-center gap-2">
+                  <Layers className="w-4 h-4 text-orange-600" />
+                  <span>Services</span>
+                </div>
+                <ChevronDown className={`w-4 h-4 transition-transform ${mobileServicesOpen ? 'rotate-180 text-orange-600' : ''}`} />
+              </button>
+
+              {mobileServicesOpen && (
+                <div className="pl-4 pr-2 py-2 space-y-1 bg-slate-900 rounded-xl my-1 border border-orange-500/50">
+                  {exhibitionServicesData.map((item) => (
+                    <Link
+                      key={item.id}
+                      to={`/services/${item.slug}`}
+                      className="flex items-center justify-between p-2 rounded-lg hover:bg-neutral-800 text-neutral-200 text-xs font-semibold"
+                    >
+                      <span>{item.title}</span>
+                      <span className="text-[10px] text-orange-400 font-normal">
+                        {item.badge}
+                      </span>
+                    </Link>
+                  ))}
+                  <Link
+                    to="/services"
+                    className="flex items-center gap-2 p-2 rounded-lg bg-orange-600 text-white text-xs font-bold mt-2"
+                  >
+                    <span>View All Services & Specs</span>
+                    <ArrowRight className="w-3.5 h-3.5 ml-auto" />
+                  </Link>
+                </div>
+              )}
+            </div>
 
             <Link
               to="/about"
