@@ -30,9 +30,9 @@ export default function Services({ onOpenConsultation }) {
     { name: 'Pragati Maidan (IECC)', city: 'New Delhi', note: 'Approved Super-Fabricator' },
     { name: 'Yashobhoomi (IICC)', city: 'Dwarka, Delhi', note: 'Certified Stall Contractor' },
     { name: 'India Expo Mart (IEML)', city: 'Greater Noida', note: 'Preferred Turnkey Partner' },
-    { name: 'BEC (NESCO)', city: 'Mumbai', note: 'Pan-India Deployment' },
-    { name: 'BIEC', city: 'Bengaluru', note: 'Full Logistic Support' },
-    { name: 'HITEX Exhibition Centre', city: 'Hyderabad', note: 'On-Site Engineering Crew' }
+    { name: 'South Delhi Studio (Saket)', city: 'South Delhi 110017', note: 'Design Experience Centre' },
+    { name: 'Greater Kailash (GK-1 & 2)', city: 'South Delhi 110048', note: 'Luxury Fitout Hub' },
+    { name: 'Hauz Khas & Vasant Kunj', city: 'South Delhi', note: 'Active Interior Sites' }
   ];
 
   return (
@@ -94,8 +94,8 @@ export default function Services({ onOpenConsultation }) {
               <div className="text-xs text-slate-400 mt-0.5">Turnkey Interior SLA</div>
             </div>
             <div>
-              <div className="text-3xl font-black text-cyan-400 font-heading">Pan-India</div>
-              <div className="text-xs text-slate-400 mt-0.5">Delhi · Mumbai · Bengaluru</div>
+              <div className="text-3xl font-black text-cyan-400 font-heading">South Delhi</div>
+              <div className="text-xs text-slate-400 mt-0.5">Saket · GK · Vasant Kunj</div>
             </div>
           </div>
         </div>

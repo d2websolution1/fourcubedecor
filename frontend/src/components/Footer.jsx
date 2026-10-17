@@ -144,7 +144,7 @@ export default function Footer({ onOpenConsultation }) {
             </Link>
 
             <p className="text-sm text-slate-400 leading-relaxed">
-              India's premier exhibition booth fabricator & turnkey modular interior brand. Serving Pragati Maidan, IICC Yashobhoomi, BEC Mumbai, and luxury residential & retail clients nationwide.
+              India's premier exhibition booth fabricator & turnkey modular interior brand. Serving Pragati Maidan, IICC Yashobhoomi, and luxury residential & commercial clients across South Delhi.
             </p>
 
             {/* Social Media Links */}

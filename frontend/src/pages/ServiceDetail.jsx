@@ -63,7 +63,7 @@ export default function ServiceDetail({ onOpenConsultation }) {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight font-heading text-white">
                 {service.title} <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-amber-300 to-rose-500">
-                  in India & Worldwide
+                  in South Delhi & Delhi NCR
                 </span>
               </h1>
 

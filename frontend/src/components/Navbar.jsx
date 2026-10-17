@@ -466,7 +466,7 @@ export default function Navbar({ onOpenConsultation }) {
                         </h4>
                       </div>
                       <p className="text-[11px] text-slate-500 mt-0.5">
-                        ITPO approved fabricator · German CNC precision · Pan-India delivery
+                        ITPO approved fabricator · German CNC precision · South Delhi & Delhi NCR
                       </p>
                     </div>
                     <Link

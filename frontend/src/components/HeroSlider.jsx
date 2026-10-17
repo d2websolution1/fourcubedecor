@@ -72,7 +72,7 @@ const slides = [
     stats: [
       { label: 'Scale Capacity', val: '100 - 2,000m²' },
       { label: 'AV Technology', val: 'Curved P2.6 LED' },
-      { label: 'Coverage', val: 'Pan-India' }
+      { label: 'Coverage', val: 'South Delhi & NCR' }
     ],
     primaryBtn: { text: 'Explore Pavilions & Events', link: '/services/country-pavilion-booth-design' },
     secondaryBtn: { text: 'Book Free 3D Plan', action: 'consultation', service: 'Country Pavilion & Events' }

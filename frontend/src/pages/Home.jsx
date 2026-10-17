@@ -89,19 +89,19 @@ export default function Home({ onOpenConsultation }) {
           <div className="animate-marquee flex items-center gap-8 text-xs font-extrabold tracking-wider text-slate-300">
             {[
               '🏛️ Pragati Maidan (IECC New Delhi)',
-              '🌟 IICC Yashobhoomi (Dwarka)',
-              '🏢 Bombay Exhibition Centre (BEC Mumbai)',
-              '🎪 Bangalore International Exhibition Centre (BIEC)',
+              '🌟 IICC Yashobhoomi (Dwarka, New Delhi)',
+              '📍 South Delhi Experience Studio (Saket & GK-1)',
+              '📍 Hauz Khas & Vasant Kunj Projects',
+              '📍 South Extension & Mehrauli Fitouts',
               '🇩🇪 Hafele Germany Architectural Hardware',
               '🇦🇹 Blum Austria Precision Systems',
               '🪵 Merino Engineered Laminates',
               '✨ Saint-Gobain Certified Toughened Glass',
               '🏛️ Pragati Maidan (IECC New Delhi)',
-              '🌟 IICC Yashobhoomi (Dwarka)',
-              '🏢 Bombay Exhibition Centre (BEC Mumbai)',
-              '🎪 Bangalore International Exhibition Centre (BIEC)',
-              '🇩🇪 Hafele Germany Architectural Hardware',
-              '🇦🇹 Blum Austria Precision Systems'
+              '🌟 IICC Yashobhoomi (Dwarka, New Delhi)',
+              '📍 South Delhi Experience Studio (Saket & GK-1)',
+              '📍 Hauz Khas & Vasant Kunj Projects',
+              '🇩🇪 Hafele Germany Architectural Hardware'
             ].map((partner, pIdx) => (
               <span
                 key={pIdx}
@@ -118,7 +118,7 @@ export default function Home({ onOpenConsultation }) {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-orange-700 text-xs font-bold tracking-wide mb-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-bold tracking-wide mb-2">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Turnkey Exhibition & Interior Solutions</span>
             </div>
@@ -126,7 +126,7 @@ export default function Home({ onOpenConsultation }) {
               Our Professional Exhibition & Interior Services
             </h2>
             <p className="text-slate-600 text-sm mt-1 max-w-2xl">
-              From Pragati Maidan (IECC) and IICC Yashobhoomi to BEC Mumbai, BIEC Bengaluru, and worldwide. Custom booths, modular systems, double storey mezzanines, and corporate staging.
+              Specializing in Pragati Maidan (IECC), IICC Yashobhoomi (Dwarka), and South Delhi luxury spaces (Saket, Hauz Khas, Greater Kailash, Vasant Kunj). Custom booths, modular systems, double storey mezzanines, and turnkey interiors.
             </p>
           </div>
 

@@ -1,5 +1,5 @@
 // Exhibition & Interior Services Data for FourCube Decor
-// Aligned with world-class exhibition standards (Pragati Maidan, IICC Yashobhoomi, BEC Mumbai, BIEC Bengaluru)
+// Aligned with world-class exhibition standards (Pragati Maidan, IICC Yashobhoomi, South Delhi)
 
 export const exhibitionServicesData = [
   {
@@ -52,7 +52,7 @@ export const exhibitionServicesData = [
       },
       {
         q: 'Do you handle venue permissions at Pragati Maidan and IICC Yashobhoomi?',
-        a: 'Yes. FourCube Decor is fully registered with ITPO (Pragati Maidan), Yashobhoomi (IICC Dwarka), BEC Mumbai, and BIEC Bengaluru. We handle structural drawings, fire certificates, and electrical sanctions.'
+        a: 'Yes. FourCube Decor is fully registered with ITPO (Pragati Maidan) and Yashobhoomi (IICC Dwarka). We handle structural drawings, fire certificates, and electrical sanctions.'
       },
       {
         q: 'Can custom elements be reused for future expos?',
@@ -99,8 +99,8 @@ export const exhibitionServicesData = [
         desc: 'Heavy-duty wheeled road cases ensuring safe inter-city transit and damage-free reusable deployments.'
       },
       {
-        title: 'Pan-India Installation',
-        desc: 'Professional installation technicians stationed across Delhi NCR, Mumbai, Bengaluru, Chennai, and Hyderabad.'
+        title: 'On-Site Installation',
+        desc: 'Professional installation technicians stationed across Pragati Maidan, Yashobhoomi, and South Delhi.'
       }
     ],
     faqs: [
@@ -160,7 +160,7 @@ export const exhibitionServicesData = [
     faqs: [
       {
         q: 'What are the venue requirements for a double-storey booth in India?',
-        a: 'The hall ceiling height must be at least 7 meters (available at Pragati Maidan Halls 1-5, IICC Yashobhoomi, BEC Mumbai Hall 1). The organizer must permit mezzanine structures, which typically requires a 50% extra space rental fee.'
+        a: 'The hall ceiling height must be at least 7 meters (available at Pragati Maidan Halls 1-5 and IICC Yashobhoomi). The organizer must permit mezzanine structures, which typically requires a 50% extra space rental fee.'
       },
       {
         q: 'How safe is the upper mezzanine floor?',
@@ -345,7 +345,7 @@ export const exhibitionServicesData = [
       { label: 'Production Scale', value: '50 to 5,000+ Delegates' },
       { label: 'AV Technology', value: 'Curved P2.6 Ultra-HD LED Walls' },
       { label: 'Audio Systems', value: 'JBL / L-Acoustics Line Arrays' },
-      { label: 'Coverage', value: 'Pan-India Production & Staging' }
+      { label: 'Coverage', value: 'South Delhi & Delhi NCR' }
     ],
     features: [
       'Bespoke keynote stage architecture with 3D structural brand backdrops',
@@ -376,7 +376,7 @@ export const exhibitionServicesData = [
     faqs: [
       {
         q: 'Which cities do you provide corporate event management in?',
-        a: 'We provide full staging, AV equipment, and production crews across Delhi NCR, Mumbai, Bengaluru, Hyderabad, Goa, Jaipur, and Kolkata.'
+        a: 'We provide full staging, AV equipment, and production crews across Delhi NCR and South Delhi venues.'
       },
       {
         q: 'Do you manage high-level government & CXO keynote conferences?',
