@@ -454,41 +454,67 @@ export default function Navbar({ onOpenConsultation }) {
                 <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${servicesDropdownOpen ? 'rotate-180 text-rose-600' : 'text-slate-400'}`} />
               </Link>
 
-              {/* Reference-Styled Dropdown Menu */}
+              {/* Services Dropdown - Styled matching Cities Dropdown */}
               {servicesDropdownOpen && (
-                <div className="absolute top-full left-0 w-[300px] bg-[#141414] text-white rounded-xl shadow-2xl border-2 border-orange-500 py-2 animate-scale-in z-50 overflow-hidden">
-                  <div className="px-4 py-2 border-b border-neutral-800/80 bg-neutral-900/60 flex items-center justify-between">
-                    <span className="text-[10px] font-bold text-orange-400 uppercase tracking-widest">
-                      Exhibitions & Interiors
-                    </span>
-                    <span className="text-[10px] bg-orange-500/20 text-orange-300 font-bold px-1.5 py-0.5 rounded">
-                      7 Services
-                    </span>
+                <div className="absolute top-full left-0 w-[580px] bg-white rounded-2xl shadow-mega border border-slate-100 p-5 animate-fade-in z-50">
+                  <div className="pb-3 border-b border-slate-100 flex items-center justify-between">
+                    <div>
+                      <div className="flex items-center gap-1.5">
+                        <Sparkles className="w-4 h-4 text-rose-600" />
+                        <h4 className="text-sm font-bold text-slate-900 font-heading">
+                          Exhibition Booth & Turnkey Interior Services
+                        </h4>
+                      </div>
+                      <p className="text-[11px] text-slate-500 mt-0.5">
+                        ITPO approved fabricator · German CNC precision · Pan-India delivery
+                      </p>
+                    </div>
+                    <Link
+                      to="/services"
+                      className="text-xs font-bold text-rose-600 hover:text-rose-700 flex items-center gap-1"
+                    >
+                      All Services <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
                   </div>
 
-                  <div className="divide-y divide-neutral-800/60">
+                  <div className="grid grid-cols-2 gap-2 pt-3">
                     {exhibitionServicesData.map((item) => (
                       <Link
                         key={item.id}
                         to={`/services/${item.slug}`}
-                        className="group flex items-center justify-between px-4 py-3 text-[13px] font-medium text-neutral-200 hover:text-orange-400 hover:bg-white/5 transition-all duration-150"
+                        className="group flex items-start gap-2.5 p-2 rounded-xl hover:bg-rose-50/80 transition border border-transparent hover:border-rose-100"
                       >
-                        <span className="group-hover:translate-x-1.5 transition-transform duration-200">
-                          {item.title}
-                        </span>
-                        <ArrowRight className="w-3.5 h-3.5 text-neutral-600 group-hover:text-orange-400 opacity-0 group-hover:opacity-100 transition-all duration-150" />
+                        <div className="w-8 h-8 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-rose-600 group-hover:text-white transition">
+                          <CategoryIcon name={item.iconName} className="w-4 h-4" />
+                        </div>
+                        <div className="min-w-0">
+                          <div className="text-xs font-bold text-slate-800 group-hover:text-rose-600 transition flex items-center gap-1">
+                            <span className="truncate">{item.title}</span>
+                            <span className="text-[9px] px-1.5 py-0.2 bg-slate-100 text-slate-600 rounded font-normal shrink-0">
+                              {item.badge ? item.badge.split('&')[0].trim() : 'Turnkey'}
+                            </span>
+                          </div>
+                          <p className="text-[10px] text-slate-500 truncate mt-0.5">
+                            {item.tag || item.shortDesc}
+                          </p>
+                        </div>
                       </Link>
                     ))}
                   </div>
 
-                  <div className="p-2.5 bg-neutral-950/80 border-t border-neutral-800 text-center">
-                    <Link
-                      to="/services"
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-orange-400 hover:text-orange-300 transition"
+                  <div className="mt-3 pt-3 border-t border-slate-100 bg-slate-50 -mx-5 -mb-5 p-3 rounded-b-2xl flex items-center justify-between">
+                    <span className="text-[11px] text-slate-600 font-medium">
+                      Planning an exhibition booth or commercial fitout?
+                    </span>
+                    <button
+                      onClick={() => {
+                        setServicesDropdownOpen(false);
+                        onOpenConsultation('Free 3D Exhibition Stall Plan');
+                      }}
+                      className="text-xs font-bold text-rose-600 hover:text-rose-700 bg-rose-50 px-3 py-1 rounded-lg border border-rose-200 transition cursor-pointer"
                     >
-                      <span>Explore All Services Overview</span>
-                      <ArrowRight className="w-3 h-3" />
-                    </Link>
+                      Book Free 3D Plan
+                    </button>
                   </div>
                 </div>
               )}
@@ -675,29 +701,32 @@ export default function Navbar({ onOpenConsultation }) {
                 className="w-full flex items-center justify-between px-3 py-2 rounded-lg font-bold text-slate-800 hover:bg-rose-50 hover:text-rose-600"
               >
                 <div className="flex items-center gap-2">
-                  <Layers className="w-4 h-4 text-orange-600" />
-                  <span>Services</span>
+                  <Sparkles className="w-4 h-4 text-rose-600" />
+                  <span>Exhibition & Interior Services</span>
                 </div>
-                <ChevronDown className={`w-4 h-4 transition-transform ${mobileServicesOpen ? 'rotate-180 text-orange-600' : ''}`} />
+                <ChevronDown className={`w-4 h-4 transition-transform ${mobileServicesOpen ? 'rotate-180 text-rose-600' : ''}`} />
               </button>
 
               {mobileServicesOpen && (
-                <div className="pl-4 pr-2 py-2 space-y-1 bg-slate-900 rounded-xl my-1 border border-orange-500/50">
+                <div className="pl-4 pr-2 py-2 space-y-1 bg-slate-50 rounded-xl my-1">
                   {exhibitionServicesData.map((item) => (
                     <Link
                       key={item.id}
                       to={`/services/${item.slug}`}
-                      className="flex items-center justify-between p-2 rounded-lg hover:bg-neutral-800 text-neutral-200 text-xs font-semibold"
+                      className="flex items-center justify-between p-2 rounded-lg hover:bg-white text-slate-700 text-xs font-semibold"
                     >
-                      <span>{item.title}</span>
-                      <span className="text-[10px] text-orange-400 font-normal">
-                        {item.badge}
+                      <div className="flex items-center gap-2">
+                        <CategoryIcon name={item.iconName} className="w-3.5 h-3.5 text-rose-500" />
+                        <span>{item.title}</span>
+                      </div>
+                      <span className="text-[10px] px-1.5 py-0.5 bg-rose-100 text-rose-700 rounded font-medium">
+                        {item.badge ? item.badge.split('&')[0].trim() : 'Turnkey'}
                       </span>
                     </Link>
                   ))}
                   <Link
                     to="/services"
-                    className="flex items-center gap-2 p-2 rounded-lg bg-orange-600 text-white text-xs font-bold mt-2"
+                    className="flex items-center gap-2 p-2 rounded-lg bg-rose-100/60 text-rose-700 text-xs font-bold mt-2"
                   >
                     <span>View All Services & Specs</span>
                     <ArrowRight className="w-3.5 h-3.5 ml-auto" />

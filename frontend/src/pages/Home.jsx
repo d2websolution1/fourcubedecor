@@ -32,6 +32,7 @@ import { realLivingImages, realBedroomImages, realKitchenImages } from '../data/
 import { exhibitionServicesData } from '../data/servicesData';
 import HeroSlider from '../components/HeroSlider';
 import CategoryIcon from '../components/CategoryIcon';
+import RealtimeDecorHub from '../components/RealtimeDecorHub';
 
 export default function Home({ onOpenConsultation }) {
   const [heroForm, setHeroForm] = useState({
@@ -65,11 +66,55 @@ export default function Home({ onOpenConsultation }) {
     : galleryItems.filter(item => item.category.includes(galleryFilter)).slice(0, 6);
 
   return (
-    <div className="space-y-20 pb-16">
-      {/* 1. HERO SLIDER SECTION (User's second task) */}
+    <div className="space-y-16 pb-16">
+      {/* 1. HERO SLIDER SECTION (Cleaned, expansive luxury layout) */}
       <HeroSlider onOpenConsultation={(svc) => onOpenConsultation(svc)} />
 
-      {/* 2. EXHIBITION & TRADE SHOW SERVICES SHOWCASE (All 7 services from reference dazlevents) */}
+      {/* 2. REAL-TIME DECOR & EXPO PRODUCTION HUB (Live Ticker & Interactive Cost Estimator) */}
+      <RealtimeDecorHub onOpenConsultation={(svc) => onOpenConsultation(svc)} />
+
+      {/* 3. VENUE ACCREDITATION & HARDWARE PARTNERS MARQUEE */}
+      <div className="w-full bg-slate-900 py-6 overflow-hidden border-y border-slate-800 relative select-none">
+        <div className="max-w-7xl mx-auto px-4 mb-3 flex items-center justify-between">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 font-mono flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
+            OFFICIALLY ACCREDITED AT INDIA'S PREMIER EXPOSITION CENTERS
+          </span>
+          <span className="text-[10px] text-amber-400 font-bold hidden sm:inline">
+            100% ITPO & Venue Certified
+          </span>
+        </div>
+
+        <div className="relative overflow-hidden w-full flex">
+          <div className="animate-marquee flex items-center gap-8 text-xs font-extrabold tracking-wider text-slate-300">
+            {[
+              '🏛️ Pragati Maidan (IECC New Delhi)',
+              '🌟 IICC Yashobhoomi (Dwarka)',
+              '🏢 Bombay Exhibition Centre (BEC Mumbai)',
+              '🎪 Bangalore International Exhibition Centre (BIEC)',
+              '🇩🇪 Hafele Germany Architectural Hardware',
+              '🇦🇹 Blum Austria Precision Systems',
+              '🪵 Merino Engineered Laminates',
+              '✨ Saint-Gobain Certified Toughened Glass',
+              '🏛️ Pragati Maidan (IECC New Delhi)',
+              '🌟 IICC Yashobhoomi (Dwarka)',
+              '🏢 Bombay Exhibition Centre (BEC Mumbai)',
+              '🎪 Bangalore International Exhibition Centre (BIEC)',
+              '🇩🇪 Hafele Germany Architectural Hardware',
+              '🇦🇹 Blum Austria Precision Systems'
+            ].map((partner, pIdx) => (
+              <span
+                key={pIdx}
+                className="px-4 py-2 rounded-xl bg-slate-800/80 border border-slate-700/80 hover:border-rose-500/50 hover:text-white transition whitespace-nowrap shadow-sm"
+              >
+                {partner}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* 4. EXHIBITION & TRADE SHOW SERVICES SHOWCASE */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <div>
@@ -99,19 +144,22 @@ export default function Home({ onOpenConsultation }) {
           {exhibitionServicesData.map((svc) => (
             <div
               key={svc.id}
-              className="group bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-soft hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
+              className="group bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-soft hover-glow-card flex flex-col justify-between"
             >
               <div>
                 <div className="relative h-48 overflow-hidden bg-slate-900">
                   <img
                     src={svc.heroImage}
                     alt={svc.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
-                  <span className="absolute top-2.5 left-2.5 bg-slate-900/90 backdrop-blur-md text-amber-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-slate-700">
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent" />
+                  <span className="absolute top-2.5 left-2.5 bg-slate-900/90 backdrop-blur-md text-amber-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-slate-700/80 shadow">
                     {svc.badge}
                   </span>
+                  <div className="absolute bottom-2.5 right-2.5 bg-rose-600/90 backdrop-blur-md text-white text-[9px] font-bold px-2 py-0.5 rounded-md">
+                    ITPO Approved
+                  </div>
                 </div>
                 <div className="p-4 space-y-2">
                   <h3 className="text-base font-bold text-slate-900 group-hover:text-rose-600 transition font-heading">
@@ -126,16 +174,16 @@ export default function Home({ onOpenConsultation }) {
               <div className="p-4 pt-0 flex items-center justify-between border-t border-slate-50 mt-2">
                 <Link
                   to={`/services/${svc.slug}`}
-                  className="text-xs font-bold text-rose-600 hover:text-rose-700 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform"
+                  className="text-xs font-bold text-rose-600 hover:text-rose-700 flex items-center gap-1 group-hover:translate-x-1 transition-transform"
                 >
-                  <span>Details</span>
-                  <ArrowRight className="w-3 h-3" />
+                  <span>Explore Specs</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
                 <button
                   onClick={() => onOpenConsultation(svc.title)}
-                  className="text-[11px] font-bold px-3 py-1.5 bg-slate-100 hover:bg-rose-600 hover:text-white rounded-lg transition"
+                  className="text-[11px] font-bold px-3 py-1.5 bg-slate-100 hover:bg-rose-600 hover:text-white rounded-lg transition cursor-pointer"
                 >
-                  Get Quote
+                  Get 3D Quote
                 </button>
               </div>
             </div>

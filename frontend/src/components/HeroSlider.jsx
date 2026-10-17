@@ -130,145 +130,87 @@ export default function HeroSlider({ onOpenConsultation }) {
       ))}
 
       {/* Slide Content Layer */}
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Left Text Pitch */}
-          <div className="lg:col-span-8 space-y-5 sm:space-y-6">
-            {/* Top Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-600/25 border border-rose-500/40 text-amber-300 text-xs font-bold tracking-wide backdrop-blur-md animate-fade-in shadow-lg">
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              <span>{active.badge}</span>
-            </div>
-
-            {/* Dynamic Headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.12] font-heading drop-shadow-md">
-              {active.title}{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-amber-300 to-rose-500">
-                {active.highlight}
-              </span>
-            </h1>
-
-            {/* Subtitle */}
-            <p className="text-sm sm:text-base lg:text-lg text-slate-200 leading-relaxed max-w-2xl font-normal drop-shadow">
-              {active.subtitle}
-            </p>
-
-            {/* Micro Stats Pills */}
-            <div className="flex flex-wrap items-center gap-3 pt-1">
-              {active.stats.map((st, i) => (
-                <div
-                  key={i}
-                  className="px-3 py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 flex items-center gap-2"
-                >
-                  <span className="text-amber-300 font-extrabold text-sm font-heading">{st.val}</span>
-                  <span className="text-slate-300 text-xs font-medium">{st.label}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* Interactive CTAs */}
-            <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2">
-              {active.primaryBtn.action === 'consultation' ? (
-                <button
-                  onClick={() => onOpenConsultation(active.primaryBtn.service)}
-                  className="px-6 py-3.5 bg-gradient-to-r from-rose-600 via-rose-700 to-amber-600 hover:from-rose-700 hover:to-amber-700 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-xl shadow-rose-600/40 hover:shadow-2xl hover:shadow-rose-600/60 transform active:scale-95 transition-all flex items-center gap-2 group cursor-pointer"
-                >
-                  <Sparkles className="w-4 h-4 text-amber-300 group-hover:rotate-45 transition-transform" />
-                  <span>{active.primaryBtn.text}</span>
-                </button>
-              ) : (
-                <Link
-                  to={active.primaryBtn.link}
-                  className="px-6 py-3.5 bg-gradient-to-r from-rose-600 via-rose-700 to-amber-600 hover:from-rose-700 hover:to-amber-700 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-xl shadow-rose-600/40 hover:shadow-2xl hover:shadow-rose-600/60 transform active:scale-95 transition-all flex items-center gap-2 group cursor-pointer"
-                >
-                  <Sparkles className="w-4 h-4 text-amber-300 group-hover:rotate-45 transition-transform" />
-                  <span>{active.primaryBtn.text}</span>
-                </Link>
-              )}
-
-              {active.secondaryBtn.action === 'whatsapp' ? (
-                <a
-                  href={`https://wa.me/${companyContact.whatsappRaw}?text=${encodeURIComponent(`Hi FourCube Decor, I want a quick quote for ${active.secondaryBtn.service}.`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-5 py-3.5 bg-emerald-600/90 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm rounded-xl backdrop-blur-md transition shadow flex items-center gap-2"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  <span>{active.secondaryBtn.text}</span>
-                </a>
-              ) : active.secondaryBtn.action === 'consultation' ? (
-                <button
-                  onClick={() => onOpenConsultation(active.secondaryBtn.service)}
-                  className="px-5 py-3.5 bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm rounded-xl border border-white/20 backdrop-blur-md transition flex items-center gap-2"
-                >
-                  <span>{active.secondaryBtn.text}</span>
-                  <ArrowRight className="w-4 h-4 text-rose-400" />
-                </button>
-              ) : (
-                <Link
-                  to={active.secondaryBtn.link}
-                  className="px-5 py-3.5 bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm rounded-xl border border-white/20 backdrop-blur-md transition flex items-center gap-2"
-                >
-                  <span>{active.secondaryBtn.text}</span>
-                  <ArrowRight className="w-4 h-4 text-rose-400" />
-                </Link>
-              )}
-            </div>
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 w-full">
+        <div className="max-w-4xl space-y-5 sm:space-y-6">
+          {/* Top Pill Badge */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-600/25 border border-rose-500/40 text-amber-300 text-xs font-bold tracking-wide backdrop-blur-md animate-fade-in shadow-lg">
+            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+            <span>{active.badge}</span>
           </div>
 
-          {/* Right Floating Trust Highlights Card */}
-          <div className="lg:col-span-4 hidden lg:block">
-            <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-700/70 p-6 rounded-3xl shadow-2xl space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-700/60">
-                <div className="flex items-center gap-1.5 text-amber-400">
-                  <Star className="w-4 h-4 fill-amber-400" />
-                  <span className="font-bold text-sm text-white">4.9 / 5.0</span>
-                </div>
-                <span className="text-[11px] text-slate-400 font-medium">500+ Happy Brands</span>
+          {/* Dynamic Headline */}
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.12] font-heading drop-shadow-md">
+            {active.title}{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-amber-300 to-rose-500">
+              {active.highlight}
+            </span>
+          </h1>
+
+          {/* Subtitle */}
+          <p className="text-sm sm:text-base lg:text-lg text-slate-200 leading-relaxed max-w-2xl font-normal drop-shadow">
+            {active.subtitle}
+          </p>
+
+          {/* Micro Stats Pills */}
+          <div className="flex flex-wrap items-center gap-3 pt-1">
+            {active.stats.map((st, i) => (
+              <div
+                key={i}
+                className="px-3.5 py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 flex items-center gap-2 shadow-sm"
+              >
+                <span className="text-amber-300 font-extrabold text-sm font-heading">{st.val}</span>
+                <span className="text-slate-300 text-xs font-medium">{st.label}</span>
               </div>
+            ))}
+          </div>
 
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-rose-600/20 text-rose-400 flex items-center justify-center shrink-0 mt-0.5">
-                    <Clock className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-white">Pragati Maidan & Yashobhoomi</h4>
-                    <p className="text-[11px] text-slate-400">Registered fabricator with full structural & fire certifications.</p>
-                  </div>
-                </div>
+          {/* Interactive CTAs */}
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2">
+            {active.primaryBtn.action === 'consultation' ? (
+              <button
+                onClick={() => onOpenConsultation(active.primaryBtn.service)}
+                className="px-6 py-3.5 bg-gradient-to-r from-rose-600 via-rose-700 to-amber-600 hover:from-rose-700 hover:to-amber-700 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-xl shadow-rose-600/40 hover:shadow-2xl hover:shadow-rose-600/60 transform active:scale-95 transition-all flex items-center gap-2 group cursor-pointer"
+              >
+                <Sparkles className="w-4 h-4 text-amber-300 group-hover:rotate-45 transition-transform" />
+                <span>{active.primaryBtn.text}</span>
+              </button>
+            ) : (
+              <Link
+                to={active.primaryBtn.link}
+                className="px-6 py-3.5 bg-gradient-to-r from-rose-600 via-rose-700 to-amber-600 hover:from-rose-700 hover:to-amber-700 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-xl shadow-rose-600/40 hover:shadow-2xl hover:shadow-rose-600/60 transform active:scale-95 transition-all flex items-center gap-2 group cursor-pointer"
+              >
+                <Sparkles className="w-4 h-4 text-amber-300 group-hover:rotate-45 transition-transform" />
+                <span>{active.primaryBtn.text}</span>
+              </Link>
+            )}
 
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-amber-600/20 text-amber-400 flex items-center justify-center shrink-0 mt-0.5">
-                    <ShieldCheck className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-white">10-Year Flat Warranty</h4>
-                    <p className="text-[11px] text-slate-400">German factory joinery with certified quality assurance.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-600/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
-                    <CheckCircle2 className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-white">Zero Delay Handover</h4>
-                    <p className="text-[11px] text-slate-400">Handed over 24 hours prior to exhibitor hall entry.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-3 border-t border-slate-700/60">
-                <button
-                  onClick={() => onOpenConsultation('Quick Callback')}
-                  className="w-full py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs rounded-xl transition shadow flex items-center justify-center gap-2"
-                >
-                  <Phone className="w-3.5 h-3.5" />
-                  <span>Request Instant Callback</span>
-                </button>
-              </div>
-            </div>
+            {active.secondaryBtn.action === 'whatsapp' ? (
+              <a
+                href={`https://wa.me/${companyContact.whatsappRaw}?text=${encodeURIComponent(`Hi FourCube Decor, I want a quick quote for ${active.secondaryBtn.service}.`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-3.5 bg-emerald-600/90 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm rounded-xl backdrop-blur-md transition shadow flex items-center gap-2"
+              >
+                <MessageCircle className="w-4 h-4" />
+                <span>{active.secondaryBtn.text}</span>
+              </a>
+            ) : active.secondaryBtn.action === 'consultation' ? (
+              <button
+                onClick={() => onOpenConsultation(active.secondaryBtn.service)}
+                className="px-5 py-3.5 bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm rounded-xl border border-white/20 backdrop-blur-md transition flex items-center gap-2 cursor-pointer"
+              >
+                <span>{active.secondaryBtn.text}</span>
+                <ArrowRight className="w-4 h-4 text-rose-400" />
+              </button>
+            ) : (
+              <Link
+                to={active.secondaryBtn.link}
+                className="px-5 py-3.5 bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm rounded-xl border border-white/20 backdrop-blur-md transition flex items-center gap-2"
+              >
+                <span>{active.secondaryBtn.text}</span>
+                <ArrowRight className="w-4 h-4 text-rose-400" />
+              </Link>
+            )}
           </div>
         </div>
       </div>
