@@ -179,8 +179,8 @@ export default function LocationInteriorPage({ onOpenConsultation, locationSlug,
         </div>
       </div>
 
-      {/* 2. Locality Quick Switcher Bar (HomeLane Style City Selector) */}
-      <div className="bg-white border-b border-slate-200 sticky top-20 z-30 shadow-sm">
+      {/* 2. Locality Quick Switcher Bar (Static Top Bar - No Scrolling Overlay) */}
+      <div className="bg-white border-b border-slate-200 shadow-sm relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto scrollbar-none pb-1 sm:pb-0">
             <span className="text-xs font-bold uppercase tracking-wider text-slate-400 shrink-0 flex items-center gap-1">

@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 import { navigationOfferings, companyContact } from '../data/interiorData';
 import { southDelhiLocations } from '../data/locationsData';
-import { footerServiceLinks } from '../data/seoFooterData';
+import { residentialFooterLinks, commercialFooterLinks } from '../data/seoFooterData';
 import { locationsList } from '../data/pages120Data';
 import { exhibitionServicesData } from '../data/servicesData';
 import { InstagramIcon, FacebookIcon, LinkedinIcon, YoutubeIcon } from './SocialIcons';
@@ -22,19 +22,29 @@ export default function Footer({ onOpenConsultation }) {
   const [subscribed, setSubscribed] = useState(false);
   const location = useLocation();
 
-  // Find category matching current URL if any, otherwise default to 'interior-design'
-  const matchedService = footerServiceLinks.find((item) => item.path === location.pathname);
-  const [activeCategoryId, setActiveCategoryId] = useState(matchedService ? matchedService.id : 'interior-design');
+  // Find active matches for Residential (Section 1) and Commercial (Section 2)
+  const matchedResidential = residentialFooterLinks.find((item) => item.path === location.pathname);
+  const matchedCommercial = commercialFooterLinks.find((item) => item.path === location.pathname);
 
-  // Keep synced if user navigates between pages
+  const [activeResidentialId, setActiveResidentialId] = useState(
+    matchedResidential ? matchedResidential.id : 'modular-kitchen'
+  );
+  const [activeCommercialId, setActiveCommercialId] = useState(
+    matchedCommercial ? matchedCommercial.id : 'mall-decor'
+  );
+
   React.useEffect(() => {
-    const match = footerServiceLinks.find((item) => item.path === location.pathname);
-    if (match) {
-      setActiveCategoryId(match.id);
-    }
+    const matchRes = residentialFooterLinks.find((item) => item.path === location.pathname);
+    if (matchRes) setActiveResidentialId(matchRes.id);
+
+    const matchComm = commercialFooterLinks.find((item) => item.path === location.pathname);
+    if (matchComm) setActiveCommercialId(matchComm.id);
   }, [location.pathname]);
 
-  const currentCategory = footerServiceLinks.find((item) => item.id === activeCategoryId) || footerServiceLinks[0];
+  const currentResidential =
+    residentialFooterLinks.find((item) => item.id === activeResidentialId) || residentialFooterLinks[0];
+  const currentCommercial =
+    commercialFooterLinks.find((item) => item.id === activeCommercialId) || commercialFooterLinks[0];
 
   const handleSubscribe = (e) => {
     e.preventDefault();
@@ -46,41 +56,46 @@ export default function Footer({ onOpenConsultation }) {
 
   return (
     <footer className="bg-slate-950 text-slate-300 pt-16 pb-24 md:pb-12 border-t border-slate-800">
-      {/* 1. Popular Services & Category Direct Links (Matching User's Second Image) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 pb-12 border-b border-slate-800/80 space-y-5">
+      {/* 1. SECTION 1: RESIDENTIAL SERVICES & OFFERINGS */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 pb-10 border-b border-slate-800/80 space-y-5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-rose-500 font-heading">
-              Popular Services & Offerings
-            </span>
-            <p className="text-xs text-slate-400 mt-0.5">
-              Explore German-precision interior design & decor solutions across South Delhi: Saket, Hauz Khas, Greater Kailash, Vasant Kunj, South Extension, Mehrauli & Lajpat Nagar.
+            <div className="flex items-center gap-2">
+              <span className="px-2 py-0.5 rounded-md bg-rose-600/20 text-rose-400 text-[10px] font-bold uppercase tracking-wider">
+                1st Section
+              </span>
+              <span className="text-xs font-bold uppercase tracking-wider text-rose-500 font-heading">
+                Residential Services & Offerings
+              </span>
+            </div>
+            <p className="text-xs text-slate-400 mt-1">
+              Explore German-precision luxury home interior design solutions across South Delhi: Saket, Hauz Khas, Greater Kailash, Vasant Vihar, Vasant Kunj, Defence Colony, Lajpat Nagar, CR Park, Green Park & South Extension.
             </p>
           </div>
           <Link 
             to="/cities" 
             className="text-xs font-semibold text-rose-400 hover:text-white transition flex items-center gap-1 shrink-0 self-start sm:self-auto"
           >
-            <span>View All Locality Guides</span>
+            <span>All Locality Guides</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
 
-        {/* Category Buttons directly linked to Navbar pages with auto redirect */}
+        {/* Residential Service Buttons (8 Buttons) */}
         <div className="flex flex-wrap gap-2 sm:gap-2.5 items-center pt-1">
-          {footerServiceLinks.map((item) => {
-            const isActive = activeCategoryId === item.id;
+          {residentialFooterLinks.map((item) => {
+            const isActive = activeResidentialId === item.id;
             return (
               <Link
                 key={item.id}
                 to={item.path}
                 onClick={() => {
-                  setActiveCategoryId(item.id);
+                  setActiveResidentialId(item.id);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
                 className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-150 cursor-pointer ${
                   isActive
-                    ? 'bg-white text-slate-900 shadow-md font-bold'
+                    ? 'bg-rose-600 text-white shadow-md font-bold'
                     : 'bg-slate-900/60 hover:bg-white hover:text-slate-900 text-slate-300 border border-slate-700/80 hover:border-white'
                 }`}
               >
@@ -90,24 +105,24 @@ export default function Footer({ onOpenConsultation }) {
           })}
         </div>
 
-        {/* South Delhi Locality Text Links (Dynamic based on selected category) */}
+        {/* South Delhi Locality Links for Active Residential Service */}
         <div className="pt-4 border-t border-slate-800/80 space-y-2.5">
           <div className="flex items-center justify-between gap-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-rose-500 font-heading">
-              South Delhi
+            <span className="text-xs font-bold uppercase tracking-wider text-rose-400 font-heading">
+              South Delhi Residential ({currentResidential.title})
             </span>
             <Link
-              to={currentCategory.path}
+              to={currentResidential.path}
               className="text-xs text-rose-400 hover:text-white transition flex items-center gap-1"
             >
-              <span>Explore {currentCategory.title}</span>
+              <span>Explore {currentResidential.title}</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
 
           <div className="text-xs sm:text-sm text-slate-400 leading-relaxed sm:leading-loose">
             {locationsList.map((loc, idx) => {
-              const locationPageUrl = `/${currentCategory.prefix}-in-${loc.slug}`;
+              const locationPageUrl = `/${currentResidential.prefix}-in-${loc.slug}`;
               return (
                 <React.Fragment key={loc.slug}>
                   <Link
@@ -117,7 +132,95 @@ export default function Footer({ onOpenConsultation }) {
                     }}
                     className="hover:text-rose-400 hover:underline transition-colors"
                   >
-                    {currentCategory.title} in {loc.name}
+                    {currentResidential.prefix} in {loc.name}
+                  </Link>
+                  {idx < locationsList.length - 1 && (
+                    <span className="text-slate-600 select-none mx-2 sm:mx-2.5 font-light">|</span>
+                  )}
+                </React.Fragment>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* 2. SECTION 2: COMMERCIAL SERVICES & OFFERINGS */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 pb-12 border-b border-slate-800/80 space-y-5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="px-2 py-0.5 rounded-md bg-amber-500/20 text-amber-300 text-[10px] font-bold uppercase tracking-wider">
+                2nd Section
+              </span>
+              <span className="text-xs font-bold uppercase tracking-wider text-amber-400 font-heading">
+                Commercial Services & Offerings
+              </span>
+            </div>
+            <p className="text-xs text-slate-400 mt-1">
+              Turnkey commercial retail showrooms, corporate offices, high-security jewellery boutiques & shopping mall atriums across South Delhi prime business hubs.
+            </p>
+          </div>
+          <Link 
+            to="/commercial" 
+            className="text-xs font-semibold text-amber-400 hover:text-white transition flex items-center gap-1 shrink-0 self-start sm:self-auto"
+          >
+            <span>All Commercial Fitouts</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+
+        {/* Commercial Service Buttons (4 Buttons) */}
+        <div className="flex flex-wrap gap-2 sm:gap-2.5 items-center pt-1">
+          {commercialFooterLinks.map((item) => {
+            const isActive = activeCommercialId === item.id;
+            return (
+              <Link
+                key={item.id}
+                to={item.path}
+                onClick={() => {
+                  setActiveCommercialId(item.id);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-150 cursor-pointer ${
+                  isActive
+                    ? 'bg-amber-500 text-slate-950 shadow-md font-bold'
+                    : 'bg-slate-900/60 hover:bg-white hover:text-slate-900 text-slate-300 border border-slate-700/80 hover:border-white'
+                }`}
+              >
+                {item.title}
+              </Link>
+            );
+          })}
+        </div>
+
+        {/* South Delhi Locality Links for Active Commercial Service */}
+        <div className="pt-4 border-t border-slate-800/80 space-y-2.5">
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-amber-300 font-heading">
+              South Delhi Commercial ({currentCommercial.title})
+            </span>
+            <Link
+              to={currentCommercial.path}
+              className="text-xs text-amber-400 hover:text-white transition flex items-center gap-1"
+            >
+              <span>Explore {currentCommercial.title}</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
+          <div className="text-xs sm:text-sm text-slate-400 leading-relaxed sm:leading-loose">
+            {locationsList.map((loc, idx) => {
+              const locationPageUrl = `/${currentCommercial.prefix}-in-${loc.slug}`;
+              return (
+                <React.Fragment key={loc.slug}>
+                  <Link
+                    to={locationPageUrl}
+                    onClick={() => {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="hover:text-amber-300 hover:underline transition-colors"
+                  >
+                    {currentCommercial.prefix} in {loc.name}
                   </Link>
                   {idx < locationsList.length - 1 && (
                     <span className="text-slate-600 select-none mx-2 sm:mx-2.5 font-light">|</span>

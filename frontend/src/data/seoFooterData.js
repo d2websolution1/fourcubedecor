@@ -1,38 +1,8 @@
-// Service & Category Navigation Links for Footer
-// 12 Core Services: 4 Commercial + 8 Residential
+// Service & Category Navigation Links for Footer (Residential & Commercial 2-Section Split)
+// 12 Core Services: 8 Residential (1st Section) + 4 Commercial (2nd Section)
 
-export const footerServiceLinks = [
-  // Commercial (4)
-  {
-    id: 'mall-decor',
-    title: 'Mall Decor',
-    path: '/commercial/mall-decor',
-    prefix: 'mall-decor',
-    description: 'Shopping mall atriums, brand kiosks & showroom fitouts'
-  },
-  {
-    id: 'office-decor',
-    title: 'Office Decor',
-    path: '/commercial/office-decor',
-    prefix: 'office-decor',
-    description: 'Turnkey corporate offices, MD cabins & conference rooms'
-  },
-  {
-    id: 'jewellery-decor',
-    title: 'Jewellery Shop',
-    path: '/commercial/jewellery-shop-decor',
-    prefix: 'jewellery-decor',
-    description: 'High-security display counters & luxury retail boutiques'
-  },
-  {
-    id: 'shop-decor',
-    title: 'Shop Decor',
-    path: '/commercial/shop-decor',
-    prefix: 'shop-decor',
-    description: 'Boutique eyewear, sanitaryware & branded retail store fitouts'
-  },
-
-  // Residential (8)
+// 1st Section: Residential Services
+export const residentialFooterLinks = [
   {
     id: 'modular-kitchen',
     title: 'Modular Kitchen',
@@ -91,4 +61,37 @@ export const footerServiceLinks = [
   }
 ];
 
+// 2nd Section: Commercial Services
+export const commercialFooterLinks = [
+  {
+    id: 'mall-decor',
+    title: 'Mall Decor',
+    path: '/commercial/mall-decor',
+    prefix: 'mall-decor',
+    description: 'Shopping mall atriums, brand kiosks & showroom fitouts'
+  },
+  {
+    id: 'office-decor',
+    title: 'Office Decor',
+    path: '/commercial/office-decor',
+    prefix: 'office-decor',
+    description: 'Turnkey corporate offices, MD cabins & conference rooms'
+  },
+  {
+    id: 'jewellery-decor',
+    title: 'Jewellery Shop',
+    path: '/commercial/jewellery-shop-decor',
+    prefix: 'jewellery-decor',
+    description: 'High-security display counters & luxury retail boutiques'
+  },
+  {
+    id: 'shop-decor',
+    title: 'Shop Decor',
+    path: '/commercial/shop-decor',
+    prefix: 'shop-decor',
+    description: 'Boutique eyewear, sanitaryware & branded retail store fitouts'
+  }
+];
 
+// Combined for backwards compatibility
+export const footerServiceLinks = [...residentialFooterLinks, ...commercialFooterLinks];
