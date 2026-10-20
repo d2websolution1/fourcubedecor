@@ -81,7 +81,6 @@ const slides = [
 
 export default function HeroSlider({ onOpenConsultation }) {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
   const autoPlayRef = useRef(null);
 
   const nextSlide = () => {
@@ -93,33 +92,30 @@ export default function HeroSlider({ onOpenConsultation }) {
   };
 
   useEffect(() => {
-    if (isPaused) return;
-    autoPlayRef.current = setInterval(nextSlide, 5500);
+    autoPlayRef.current = setInterval(nextSlide, 3500);
     return () => {
       if (autoPlayRef.current) clearInterval(autoPlayRef.current);
     };
-  }, [currentSlide, isPaused]);
+  }, [currentSlide]);
 
   const active = slides[currentSlide];
 
   return (
     <div
       className="relative w-full overflow-hidden bg-slate-950 text-white select-none min-h-[580px] sm:min-h-[640px] lg:min-h-[700px] flex items-center"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
     >
       {/* Background Slides with Cross-Fade */}
       {slides.map((slide, idx) => (
         <div
           key={slide.id}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+          className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
             }`}
         >
           {/* High-Res Background Image */}
           <img
             src={slide.image}
             alt={slide.title}
-            className={`w-full h-full object-cover object-center transform transition-transform duration-7000 ease-out ${idx === currentSlide ? 'scale-105' : 'scale-100'
+            className={`w-full h-full object-cover object-center transform transition-transform duration-5000 ease-out ${idx === currentSlide ? 'scale-105' : 'scale-100'
               }`}
           />
 
@@ -131,7 +127,7 @@ export default function HeroSlider({ onOpenConsultation }) {
 
       {/* Slide Content Layer */}
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 w-full">
-        <div className="max-w-4xl space-y-5 sm:space-y-6">
+        <div key={active.id} className="max-w-4xl space-y-5 sm:space-y-6 animate-fade-in">
           {/* Top Pill Badge */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-600/25 border border-rose-500/40 text-amber-300 text-xs font-bold tracking-wide backdrop-blur-md animate-fade-in shadow-lg">
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
@@ -241,11 +237,19 @@ export default function HeroSlider({ onOpenConsultation }) {
               key={idx}
               onClick={() => setCurrentSlide(idx)}
               aria-label={`Go to slide ${idx + 1}`}
-              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${idx === currentSlide
-                  ? 'w-8 sm:w-10 bg-gradient-to-r from-rose-500 to-amber-400'
+              className={`h-2 rounded-full transition-all duration-300 cursor-pointer overflow-hidden relative ${
+                idx === currentSlide
+                  ? 'w-10 sm:w-12 bg-white/20'
                   : 'w-2 bg-white/40 hover:bg-white/80'
-                }`}
-            />
+              }`}
+            >
+              {idx === currentSlide && (
+                <div
+                  key={`progress-${currentSlide}`}
+                  className="h-full bg-gradient-to-r from-rose-500 to-amber-400 rounded-full animate-hero-progress"
+                />
+              )}
+            </button>
           ))}
         </div>
 

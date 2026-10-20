@@ -15,14 +15,18 @@ import {
 export { realDecorVideo };
 
 export const SOUTH_DELHI_LOCATIONS = [
-  'Saket',
   'Hauz Khas',
+  'Saket',
   'Greater Kailash',
+  'Vasant Vihar',
   'Vasant Kunj',
-  'South Extension',
-  'Mehrauli',
-  'Lajpat Nagar'
+  'Defence Colony',
+  'Lajpat Nagar',
+  'Chittaranjan Park',
+  'Green Park',
+  'South Extension'
 ];
+
 
 export const southDelhiLocations = [
   {
@@ -743,6 +747,261 @@ export const southDelhiLocations = [
       {
         q: 'Do you provide on-site measurements in Lajpat Nagar?',
         a: 'Yes, our senior interior architect visits your site with laser measuring tools for a free consultation and floor plan assessment.'
+      }
+    ]
+  },
+  {
+    slug: 'vasant-vihar',
+    path: '/interior-designers-vasant-vihar',
+    name: 'Vasant Vihar',
+    district: 'South Delhi',
+    pincode: '110057',
+    tagline: 'Diplomatic Estates, Contemporary European Villas & Minimalist Mansions',
+    heroImage: realLivingImages[2].image,
+    stats: {
+      projectsDone: '110+',
+      designers: '12+',
+      turnaroundDays: '45 Days',
+      warrantyYears: '10 Years Flat',
+      rating: '4.9/5'
+    },
+    popularSocieties: [
+      'Paschimi Marg Luxury Estates',
+      'Vasant Vihar A to F Blocks',
+      'Poorvi Marg Residences',
+      'Munirka Vihar Enclave',
+      'Basant Lok Priya Corridor'
+    ],
+    overview: 'Vasant Vihar is South Delhi’s most elite diplomatic neighborhood, home to sprawling private villas and European-inspired mansions. FourCube Decor designs bespoke Italian lacquer modular kitchens, bookmatched marble TV backdrops, and acoustic boardroom home studies backed by German CNC prefabrication and a strict 45-day move-in SLA.',
+    avgCostSummary: {
+      bhk1: '₹3.5L - ₹5.5L',
+      bhk2: '₹6.5L - ₹11L',
+      bhk3: '₹12.5L - ₹21L',
+      bhk4: '₹22L - ₹42L',
+      commercial: '₹1,200 - ₹2,500 / sq.ft'
+    },
+    featuredRooms: [
+      {
+        title: 'Italian Lacquer Kitchens in Vasant Vihar',
+        desc: 'High-gloss anti-fingerprint PU lacquer shutters, motorized Blum servo-drive drawers, and waterfall quartz islands.',
+        image: realKitchenImages[1].image,
+        category: 'Modular Kitchen',
+        specs: ['PU High-Gloss Lacquer', 'Blum Motorized Servo-Drive', 'Waterfall Quartz Island', '10-Yr Flat Warranty']
+      },
+      {
+        title: 'Bookmatched Marble TV Walls',
+        desc: 'Statuario Italian marble slabs with fluted smoked oak panelling and integrated concealed LED channels.',
+        image: realLivingImages[0].image,
+        category: 'Living Room',
+        specs: ['Statuario Italian Marble', 'Smoked Oak Fluting', 'Concealed Cable Raceways', 'Push-to-Open Consoles']
+      }
+    ],
+    commercialHighlights: [
+      {
+        title: 'Basant Lok Executive Suites & Boutiques',
+        desc: 'Acoustic fluted wooden director cabins, designer conference rooms, and luxury boutique fitouts.',
+        image: officeDecorData[1].image
+      }
+    ],
+    reviews: [
+      {
+        name: 'Vikramaditya & Rohini Scindia',
+        colony: 'Vasant Vihar C-Block',
+        rating: 5,
+        review: 'FourCube Decor transformed our 4 BHK villa with world-class German joinery. The kitchen and living room panelling are flawless. Handed over right on schedule!',
+        service: '4 BHK Full Villa Turnkey Woodwork'
+      }
+    ],
+    faqs: [
+      {
+        q: 'Do you manage luxury bungalow woodwork in Vasant Vihar?',
+        a: 'Yes, our team specializes in expansive independent floors and private villas with German CNC factory fabrication.'
+      }
+    ]
+  },
+  {
+    slug: 'defence-colony',
+    path: '/interior-designers-defence-colony',
+    name: 'Defence Colony',
+    district: 'South Delhi',
+    pincode: '110024',
+    tagline: 'Cosmopolitan Mansions, Gourmet Lounges & Luxury Retail Avenues',
+    heroImage: realLivingImages[3].image,
+    stats: {
+      projectsDone: '135+',
+      designers: '14+',
+      turnaroundDays: '45 Days',
+      warrantyYears: '10 Years Flat',
+      rating: '4.9/5'
+    },
+    popularSocieties: [
+      'Defence Colony A & B Blocks',
+      'Def Col C & D Luxury Rows',
+      'Varun Marg Avenue',
+      'Ring Road Luxury Strip',
+      'Flyover Market Enclave'
+    ],
+    overview: 'Defence Colony is known for its cosmopolitan lifestyle, sophisticated builder floors, and high-street boutique dining. FourCube Decor delivers floor-to-ceiling tinted glass walk-in wardrobes, acrylic modular kitchens, and fluted living room acoustic walls tailored for Def Col homes.',
+    avgCostSummary: {
+      bhk1: '₹3.2L - ₹5L',
+      bhk2: '₹5.8L - ₹9.5L',
+      bhk3: '₹10.5L - ₹18.5L',
+      bhk4: '₹18L - ₹32L',
+      commercial: '₹1,100 - ₹2,200 / sq.ft'
+    },
+    featuredRooms: [
+      {
+        title: 'Modern Modular Kitchens in Def Col',
+        desc: 'Anti-scratch acrylic finishes, quartz countertops, and Blum soft-close tandem pullouts.',
+        image: realKitchenImages[0].image,
+        category: 'Modular Kitchen',
+        specs: ['Action TESA HDHMR', 'Blum Soft-Close Runners', 'Quartz Slab', '10-Yr Cover']
+      }
+    ],
+    commercialHighlights: [
+      {
+        title: 'Def Col Market Retail & Gourmet Lounges',
+        desc: 'Turnkey boutique showroom fitouts, custom cashier counters, and luxury display wall niches.',
+        image: shopDecorData[1].image
+      }
+    ],
+    reviews: [
+      {
+        name: 'Kabir & Alisha Sethi',
+        colony: 'Def Col C-Block',
+        rating: 5,
+        review: 'The precision of their factory-made wardrobes and kitchen in our Def Col builder floor is astounding. Delivered in 43 days flat!',
+        service: '3 BHK Builder Floor Modular Fitout'
+      }
+    ],
+    faqs: [
+      {
+        q: 'How do you coordinate with Def Col RWA?',
+        a: 'We adhere strictly to Def Col RWA working hours and sound regulations with pre-fabricated modules that minimize on-site disturbance.'
+      }
+    ]
+  },
+  {
+    slug: 'chittaranjan-park',
+    path: '/interior-designers-chittaranjan-park',
+    name: 'Chittaranjan Park',
+    district: 'South Delhi',
+    pincode: '110019',
+    tagline: 'Serene Residential Plots, Warm Wooden Living & Modern Family Apartments',
+    heroImage: realLivingImages[4].image,
+    stats: {
+      projectsDone: '125+',
+      designers: '11+',
+      turnaroundDays: '45 Days',
+      warrantyYears: '10 Years Flat',
+      rating: '4.9/5'
+    },
+    popularSocieties: [
+      'CR Park B & C Blocks',
+      'K-Block Green Enclave',
+      'Pocket 40 & Pocket 52',
+      'Bipin Chandra Pal Marg',
+      'Market No. 2 Residences'
+    ],
+    overview: 'Chittaranjan Park combines leafy South Delhi residential tranquility with vibrant community culture. Homes in CR Park demand smart modular kitchens with spice storage, multi-functional study desks, and warm wood-grain wardrobes built to last decades.',
+    avgCostSummary: {
+      bhk1: '₹2.8L - ₹4.2L',
+      bhk2: '₹4.8L - ₹8.2L',
+      bhk3: '₹8.5L - ₹14.5L',
+      bhk4: '₹14L - ₹24L',
+      commercial: '₹850 - ₹1,650 / sq.ft'
+    },
+    featuredRooms: [
+      {
+        title: 'Bespoke Family Kitchens in CR Park',
+        desc: 'Heavy-duty stainless steel wire baskets, tandem Blum drawers, and stain-proof quartz countertops.',
+        image: realKitchenImages[2].image,
+        category: 'Modular Kitchen',
+        specs: ['Boiling Water Proof Core', 'Blum Tandembox', 'Corner Carousel', '10-Yr Warranty']
+      }
+    ],
+    commercialHighlights: [
+      {
+        title: 'CR Park Market Retail & Medical Clinics',
+        desc: 'Ergonomic doctor consultation cabins, optical display racks, and branded pharmacy counters.',
+        image: officeDecorData[2].image
+      }
+    ],
+    reviews: [
+      {
+        name: 'Subhash & Debjani Mukherjee',
+        colony: 'CR Park B-Block',
+        rating: 5,
+        review: 'Excellent craftsmanship and sincere service. The kitchen and study units were installed seamlessly without any mess.',
+        service: '3 BHK Complete Woodwork'
+      }
+    ],
+    faqs: [
+      {
+        q: 'What modular kitchen materials work best in CR Park?',
+        a: 'We use Action TESA HDHMR with marine-grade edge banding and anti-fingerprint acrylic finishes.'
+      }
+    ]
+  },
+  {
+    slug: 'green-park',
+    path: '/interior-designers-green-park',
+    name: 'Green Park',
+    district: 'South Delhi',
+    pincode: '110016',
+    tagline: 'Quiet Enclaves, Boutique Medical Spas & Modern Penthouses',
+    heroImage: realLivingImages[1].image,
+    stats: {
+      projectsDone: '115+',
+      designers: '12+',
+      turnaroundDays: '45 Days',
+      warrantyYears: '10 Years Flat',
+      rating: '4.9/5'
+    },
+    popularSocieties: [
+      'Green Park Main A to G Blocks',
+      'Green Park Extension Floors',
+      'Gulmohar Enclave Corridor',
+      'Yusuf Sarai Hub',
+      'Gautam Nagar Luxury Suites'
+    ],
+    overview: 'Green Park is an established, peaceful South Delhi residential enclave featuring spacious builder floors and specialized medical clinics. FourCube Decor provides turnkey 3BHK home interiors, floating vanity bathrooms, and clinic interior fitouts backed by 10-year warranties.',
+    avgCostSummary: {
+      bhk1: '₹2.9L - ₹4.5L',
+      bhk2: '₹5L - ₹8.5L',
+      bhk3: '₹9L - ₹15.5L',
+      bhk4: '₹15L - ₹26L',
+      commercial: '₹900 - ₹1,800 / sq.ft'
+    },
+    featuredRooms: [
+      {
+        title: 'Fluted TV Units & Partitions in Green Park',
+        desc: 'Natural oak vertical acoustic louvers with floating media consoles and wire concealment.',
+        image: realLivingImages[5].image,
+        category: 'Living Room',
+        specs: ['Oak Fluted Louvers', 'Concealed LED Strip', 'Wire Raceway', 'Heavy-Load Hardware']
+      }
+    ],
+    commercialHighlights: [
+      {
+        title: 'Green Park Wellness & Dental Clinics',
+        desc: 'Hygienic anti-bacterial vanity counters, soundproof consultation cabins, and patient waiting lounges.',
+        image: officeDecorData[0].image
+      }
+    ],
+    reviews: [
+      {
+        name: 'Dr. Hemant & Sarita Vats',
+        colony: 'Green Park Main D-Block',
+        rating: 5,
+        review: 'Our penthouse in Green Park looks like a 5-star hotel suite. The team was punctual, polite, and uncompromising on quality.',
+        service: '3 BHK Penthouse Interior Fitout'
+      }
+    ],
+    faqs: [
+      {
+        q: 'Do you design medical clinics in Green Park?',
+        a: 'Yes, we design specialized dental and wellness clinics with anti-microbial surfaces and acoustic patient consultation suites.'
       }
     ]
   }

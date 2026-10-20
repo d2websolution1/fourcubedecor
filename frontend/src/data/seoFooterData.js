@@ -1,14 +1,38 @@
-// Service & Category Navigation Links for Footer (Second Image Layout)
-// Direct Links matching all pages in the Navbar
+// Service & Category Navigation Links for Footer
+// 12 Core Services: 4 Commercial + 8 Residential
 
 export const footerServiceLinks = [
+  // Commercial (4)
   {
-    id: 'interior-design',
-    title: 'Interior Design',
-    path: '/category/home-interiors',
-    prefix: 'interior-design',
-    description: 'Turnkey 2BHK & 3BHK full home interior design solutions'
+    id: 'mall-decor',
+    title: 'Mall Decor',
+    path: '/commercial/mall-decor',
+    prefix: 'mall-decor',
+    description: 'Shopping mall atriums, brand kiosks & showroom fitouts'
   },
+  {
+    id: 'office-decor',
+    title: 'Office Decor',
+    path: '/commercial/office-decor',
+    prefix: 'office-decor',
+    description: 'Turnkey corporate offices, MD cabins & conference rooms'
+  },
+  {
+    id: 'jewellery-decor',
+    title: 'Jewellery Shop',
+    path: '/commercial/jewellery-shop-decor',
+    prefix: 'jewellery-decor',
+    description: 'High-security display counters & luxury retail boutiques'
+  },
+  {
+    id: 'shop-decor',
+    title: 'Shop Decor',
+    path: '/commercial/shop-decor',
+    prefix: 'shop-decor',
+    description: 'Boutique eyewear, sanitaryware & branded retail store fitouts'
+  },
+
+  // Residential (8)
   {
     id: 'modular-kitchen',
     title: 'Modular Kitchen',
@@ -17,46 +41,54 @@ export const footerServiceLinks = [
     description: 'Acrylic, parallel, island & German-precision modular kitchens'
   },
   {
-    id: 'wardrobes-storage',
-    title: 'Wardrobes & Storage',
-    path: '/category/wardrobe',
-    prefix: 'wardrobes-storage',
-    description: 'Floor-to-ceiling, sliding & walk-in modular wardrobes'
-  },
-  {
-    id: 'living-room-tv',
-    title: 'Living Room & TV Units',
+    id: 'living-room',
+    title: 'Living Room & TV',
     path: '/category/living-room',
-    prefix: 'living-room-tv',
+    prefix: 'living-room',
     description: 'Marble TV walls, fluted acoustic panels & console units'
   },
   {
-    id: 'commercial-office',
-    title: 'Commercial & Office',
-    path: '/commercial/office-decor',
-    prefix: 'commercial-office',
-    description: 'Turnkey office interiors, MD cabins & conference rooms'
+    id: 'bedroom',
+    title: 'Master Bedroom',
+    path: '/category/bedroom',
+    prefix: 'bedroom',
+    description: 'Custom velvet headboards, hydraulic beds & nightstands'
   },
   {
-    id: 'jewellery-shop',
-    title: 'Jewellery & Shop Decor',
-    path: '/commercial/jewellery-shop-decor',
-    prefix: 'jewellery-shop',
-    description: 'High-security display counters & luxury retail boutiques'
+    id: 'wardrobe',
+    title: 'Wardrobes & Storage',
+    path: '/category/wardrobe',
+    prefix: 'wardrobe',
+    description: 'Floor-to-ceiling, sliding & walk-in modular wardrobes'
   },
   {
-    id: 'exhibition-mall',
-    title: 'Exhibition & Mall Decor',
-    path: '/commercial/mall-decor',
-    prefix: 'exhibition-mall',
-    description: 'Shopping mall atriums, brand kiosks & showroom fitouts'
+    id: 'space-saving',
+    title: 'Space Saving Furniture',
+    path: '/category/space-saving',
+    prefix: 'space-saving',
+    description: 'Murphy wall beds, extendable dining tables & study desks'
   },
   {
-    id: 'turnkey-renovation',
-    title: 'Turnkey Renovation',
-    path: '/cities',
-    prefix: 'turnkey-renovation',
-    description: 'End-to-end luxury home renovation across South Delhi'
+    id: 'home-office',
+    title: 'Home Office & Study',
+    path: '/category/home-office',
+    prefix: 'home-office',
+    description: 'Acoustic Zoom call backdrops, executive study desks & bookcases'
+  },
+  {
+    id: 'bathroom',
+    title: 'Luxury Bathrooms',
+    path: '/category/bathroom',
+    prefix: 'bathroom',
+    description: 'Floating waterproof vanities, anti-fog LED mirrors & shower niches'
+  },
+  {
+    id: 'home-interiors',
+    title: 'Full Home Interiors',
+    path: '/category/home-interiors',
+    prefix: 'home-interiors',
+    description: 'Turnkey 2BHK, 3BHK & 4BHK luxury home interior design solutions'
   }
 ];
+
 

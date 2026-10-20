@@ -12,6 +12,7 @@ import {
 import { navigationOfferings, companyContact } from '../data/interiorData';
 import { southDelhiLocations } from '../data/locationsData';
 import { footerServiceLinks } from '../data/seoFooterData';
+import { locationsList } from '../data/pages120Data';
 import { exhibitionServicesData } from '../data/servicesData';
 import { InstagramIcon, FacebookIcon, LinkedinIcon, YoutubeIcon } from './SocialIcons';
 import logoImg from '../assets/forhomedecor.png';
@@ -105,7 +106,7 @@ export default function Footer({ onOpenConsultation }) {
           </div>
 
           <div className="text-xs sm:text-sm text-slate-400 leading-relaxed sm:leading-loose">
-            {southDelhiLocations.map((loc, idx) => {
+            {locationsList.map((loc, idx) => {
               const locationPageUrl = `/${currentCategory.prefix}-in-${loc.slug}`;
               return (
                 <React.Fragment key={loc.slug}>
@@ -116,9 +117,9 @@ export default function Footer({ onOpenConsultation }) {
                     }}
                     className="hover:text-rose-400 hover:underline transition-colors"
                   >
-                    {currentCategory.prefix} in {loc.name}
+                    {currentCategory.title} in {loc.name}
                   </Link>
-                  {idx < southDelhiLocations.length - 1 && (
+                  {idx < locationsList.length - 1 && (
                     <span className="text-slate-600 select-none mx-2 sm:mx-2.5 font-light">|</span>
                   )}
                 </React.Fragment>

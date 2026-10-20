@@ -22,6 +22,7 @@ import ServiceDetail from './pages/ServiceDetail';
 // Location-Based Interior Designer Pages (South Delhi)
 import LocationInteriorPage from './pages/LocationInteriorPage';
 import CitiesHub from './pages/CitiesHub';
+import DedicatedServiceLocationPage from './pages/DedicatedServiceLocationPage';
 
 // Commercial Decor Pages
 import Commercial from './pages/Commercial';
@@ -33,6 +34,7 @@ import ShopDecor from './pages/ShopDecor';
 // Data for Location & Category Routes
 import { southDelhiLocations } from './data/locationsData';
 import { footerServiceLinks } from './data/seoFooterData';
+import { all120Pages } from './data/pages120Data';
 
 export default function App() {
   const [consultationModalOpen, setConsultationModalOpen] = useState(false);
@@ -95,22 +97,45 @@ export default function App() {
             <Route path="/cities/interior-designers-:slug" element={<LocationInteriorPage onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
             <Route path="/interior-designers-:slug" element={<LocationInteriorPage onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
 
-            {/* Dedicated Service x Locality Pages */}
-            {footerServiceLinks.flatMap((service) =>
-              southDelhiLocations.map((loc) => (
+            {/* 120 DEDICATED UNIQUE SERVICE X LOCATION PAGES */}
+            {all120Pages.map((page) => (
+              <Route
+                key={page.slug}
+                path={`/${page.slug}`}
+                element={<DedicatedServiceLocationPage onOpenConsultation={(svc) => handleOpenConsultation(svc)} />}
+              />
+            ))}
+
+            {/* Aliases for Alternative Service Prefixes */}
+            {all120Pages.map((page) => {
+              const aliases = [];
+              if (page.serviceSlug === 'jewellery-decor') {
+                aliases.push(`jewellery-shop-decor-in-${page.locationSlug}`);
+                aliases.push(`jewellery-shop-in-${page.locationSlug}`);
+              }
+              if (page.serviceSlug === 'wardrobe') {
+                aliases.push(`wardrobes-storage-in-${page.locationSlug}`);
+              }
+              if (page.serviceSlug === 'space-saving') {
+                aliases.push(`space-saving-furniture-in-${page.locationSlug}`);
+              }
+              if (page.serviceSlug === 'bathroom') {
+                aliases.push(`bathroom-decor-in-${page.locationSlug}`);
+              }
+              if (page.serviceSlug === 'living-room') {
+                aliases.push(`living-room-tv-in-${page.locationSlug}`);
+              }
+              if (page.serviceSlug === 'office-decor') {
+                aliases.push(`commercial-office-in-${page.locationSlug}`);
+              }
+              return aliases.map((alias) => (
                 <Route
-                  key={`${service.prefix}-${loc.slug}`}
-                  path={`/${service.prefix}-in-${loc.slug}`}
-                  element={
-                    <LocationInteriorPage
-                      locationSlug={loc.slug}
-                      serviceKey={service.id}
-                      onOpenConsultation={(svc) => handleOpenConsultation(svc)}
-                    />
-                  }
+                  key={alias}
+                  path={`/${alias}`}
+                  element={<Navigate to={`/${page.slug}`} replace />}
                 />
-              ))
-            )}
+              ));
+            })}
 
             {/* Direct Named Locality Routes */}
             {southDelhiLocations.map((loc) => (
@@ -126,6 +151,7 @@ export default function App() {
                 }
               />
             ))}
+
 
             <Route path="/guides" element={<Guides onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
             <Route path="/why-us" element={<WhyUs onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />

@@ -222,9 +222,26 @@
   box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.12), 0 0 20px rgba(225, 29, 72, 0.15);
 }
 
+@keyframes heroProgress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-hero-progress {
+  animation: heroProgress 3.5s linear forwards;
+}
+
 @layer utilities {
+  .duration-5000 {
+    transition-duration: 5000ms;
+  }
   .duration-7000 {
     transition-duration: 7000ms;
   }
 }
+
 
