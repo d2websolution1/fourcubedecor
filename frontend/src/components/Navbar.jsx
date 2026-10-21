@@ -7,8 +7,6 @@ import {
   Menu,
   X,
   Sparkles,
-  ShieldCheck,
-  Clock,
   ArrowRight,
   Building2,
   Briefcase,
@@ -158,19 +156,7 @@ export default function Navbar({ onOpenConsultation }) {
       }`}
     >
       {/* Top micro bar */}
-      <div className="bg-slate-900 text-slate-300 text-xs py-1.5 px-4 sm:px-8 flex justify-between items-center border-b border-slate-800">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-1.5 text-amber-400 font-medium">
-            <Clock className="w-3.5 h-3.5" />
-            <span>Guaranteed 45-Day Move-In · Exhibition Zero Delay</span>
-          </div>
-          <span className="hidden md:inline text-slate-600">|</span>
-          <div className="hidden md:flex items-center gap-1.5 text-slate-300">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-            <span>10-Year Flat Warranty · ITPO Approved</span>
-          </div>
-        </div>
-
+      <div className="bg-slate-900 text-slate-300 text-xs py-1.5 px-4 sm:px-8 flex justify-center sm:justify-end items-center border-b border-slate-800">
         <div className="flex items-center gap-4">
           <a
             href={`tel:${companyContact.phoneRaw}`}
