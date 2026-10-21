@@ -96,6 +96,8 @@ export default function App() {
             <Route path="/cities" element={<CitiesHub onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
             <Route path="/cities/interior-designers-:slug" element={<LocationInteriorPage onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
             <Route path="/interior-designers-:slug" element={<LocationInteriorPage onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            <Route path="/cities/:slug" element={<LocationInteriorPage onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
+            <Route path="/interior-design-in-:slug" element={<LocationInteriorPage onOpenConsultation={(svc) => handleOpenConsultation(svc)} />} />
 
             {/* 120 DEDICATED UNIQUE SERVICE X LOCATION PAGES */}
             {all120Pages.map((page) => (

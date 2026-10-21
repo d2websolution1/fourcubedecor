@@ -188,11 +188,14 @@ export default function LocationInteriorPage({ onOpenConsultation, locationSlug,
             </span>
             {southDelhiLocations.map((loc) => {
               const isActive = loc.slug === locationData.slug;
-              const targetUrl = `/${effectiveService}-in-${loc.slug}`;
+              const targetUrl = location.pathname.includes('interior-designers-')
+                ? `/interior-designers-${loc.slug}`
+                : `/${effectiveService === 'interior-design' ? 'home-interiors' : effectiveService}-in-${loc.slug}`;
               return (
                 <Link
                   key={loc.slug}
                   to={targetUrl}
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                   className={`px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition shrink-0 ${
                     isActive
                       ? 'bg-rose-600 text-white shadow-md shadow-rose-600/30'
