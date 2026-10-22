@@ -6,7 +6,6 @@ import {
   MapPin, 
   Clock, 
   ShieldCheck, 
-  CheckCircle2, 
   ArrowRight
 } from 'lucide-react';
 import { navigationOfferings, companyContact } from '../data/interiorData';
@@ -18,8 +17,6 @@ import { InstagramIcon, FacebookIcon, LinkedinIcon, YoutubeIcon } from './Social
 import logoImg from '../assets/forhomedecor.png';
 
 export default function Footer({ onOpenConsultation }) {
-  const [emailSub, setEmailSub] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
   const location = useLocation();
 
   // Find active matches for Residential (Section 1) and Commercial (Section 2)
@@ -46,13 +43,6 @@ export default function Footer({ onOpenConsultation }) {
   const currentCommercial =
     commercialFooterLinks.find((item) => item.id === activeCommercialId) || commercialFooterLinks[0];
 
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    if (emailSub) {
-      setSubscribed(true);
-      setEmailSub('');
-    }
-  };
 
   return (
     <footer className="bg-slate-950 text-slate-300 pt-16 pb-24 md:pb-12 border-t border-slate-800">
@@ -393,35 +383,7 @@ export default function Footer({ onOpenConsultation }) {
               </div>
             </div>
 
-            {/* Newsletter */}
-            <div className="pt-2">
-              <p className="text-xs font-semibold text-slate-300 mb-2">
-                Get monthly interior trend report & decor discounts:
-              </p>
-              {subscribed ? (
-                <div className="flex items-center gap-2 text-xs text-emerald-400 bg-emerald-950/60 p-2.5 rounded-xl border border-emerald-800">
-                  <CheckCircle2 className="w-4 h-4" />
-                  <span>Subscribed! Check your inbox soon.</span>
-                </div>
-              ) : (
-                <form onSubmit={handleSubscribe} className="flex gap-2">
-                  <input
-                    type="email"
-                    required
-                    placeholder="Enter your email"
-                    value={emailSub}
-                    onChange={(e) => setEmailSub(e.target.value)}
-                    className="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:ring-1 focus:ring-rose-500"
-                  />
-                  <button
-                    type="submit"
-                    className="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-semibold transition"
-                  >
-                    Join
-                  </button>
-                </form>
-              )}
-            </div>
+
           </div>
         </div>
 
